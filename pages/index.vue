@@ -25,22 +25,22 @@
       <div class="v-index__bottom__contact">
         <div>
           <div class="v-index__bottom__contact__header">Adresse general</div>
-          info@mssavocates.ch
+          <a href="mailto:info@mssavocates.ch">info@mssavocates.ch</a>
         </div>
 
         <div>
           <div class="v-index__bottom__contact__header">Me Camille MAULINI</div>
-          maulini@mssavocates.ch
+          <a href="mailto:maulini@mssavocates.ch">maulini@mssavocates.ch</a>
         </div>
 
         <div>
           <div class="v-index__bottom__contact__header">Me Clara SCHNEUWLY</div>
-          schneuwly@mssavocates.ch
+          <a href="mailto:schneuwly@mssavocates.ch">schneuwly@mssavocates.ch</a>
         </div>
 
         <div>
           <div class="v-index__bottom__contact__header">Me Sara STRUMMIELLO</div>
-          strummiello@mssavocates.ch
+          <a href="mailto:strummiello@mssavocates.ch">strummiello@mssavocates.ch</a>
         </div>
       </div>
 
