@@ -1,0 +1,12 @@
+@use "font-import";
+
+html {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 20px;
+  font-weight: 500;
+}
