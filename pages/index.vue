@@ -72,18 +72,29 @@ const props = defineProps<{
 
 
 <style lang="scss" scoped >
+.v-index {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .v-index__top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10;
   box-sizing: border-box;
   padding: 1rem;
+
+  @media (min-width: 1100px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+
+  }
 }
 
 .v-index__top__info {
-  font-weight: 800;
+  font-weight: 700;
   margin-bottom: 1rem;
 }
 
@@ -102,32 +113,44 @@ const props = defineProps<{
 
 
 .v-index__content {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 0;
+  box-sizing: border-box;
+  padding: 1rem;
+
+  @media (min-width: 1100px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
 }
 
 .v-index__content__names {
   font-size: 2.5rem;
   line-height: 1em;
-  text-align: center;
+  font-weight: 600;
+
+  @media (min-width: 1100px) {
+    text-align: center;
+  }
 }
 
 
 .v-index__bottom {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10;
   box-sizing: border-box;
   padding: 1rem;
+
+  @media (min-width: 1100px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
 }
 
 .v-index__bottom__contact {
