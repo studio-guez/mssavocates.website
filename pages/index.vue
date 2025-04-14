@@ -7,16 +7,16 @@
       </div>
 
       <div class="v-index__top__description">
-        L’Etude ouvrira ses portes le 1er mai 2025.
-        <br>Nous nous rejouissons de vous accueillir.
+        L’Étude ouvrira ses portes le 1<sup>er</sup> mai 2025.
+        <br>Nous nous réjouissons de vous accueillir.
       </div>
     </div>
 
     <div class="v-index__content">
       <div class="v-index__content__names">
-        MAULINI
+        MAULINI,
         <br>SCHNEUWLY
-        <br>STRUMMIELLO
+        <br>& STRUMMIELLO
         <br>Avocates
       </div>
     </div>
@@ -24,7 +24,7 @@
     <div class="v-index__bottom">
       <div class="v-index__bottom__contact">
         <div>
-          <div class="v-index__bottom__contact__header">Adresse general</div>
+          <div class="v-index__bottom__contact__header">Adresse générale</div>
           <a href="mailto:info@mssavocates.ch">info@mssavocates.ch</a>
         </div>
 
@@ -45,7 +45,8 @@
       </div>
 
       <div class="v-index__bottom__address">
-        Rue du Conseil General, 14
+        <a href="tel:+41223370220">+41 22 337 02 20</a>
+        <br>Rue du Conseil-Général, 14
         <br>1205 Geneve
       </div>
     </div>
