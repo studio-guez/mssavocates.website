@@ -17,3 +17,12 @@ body {
 a {
   color: inherit;
 }
+
+.app-button {
+  text-decoration: none;
+  border: solid 1px;
+  padding: .5em;
+  border-radius: .5em;
+  display: inline-block;
+  text-align: center;
+}

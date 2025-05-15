@@ -19,7 +19,14 @@
         <br>& STRUMMIELLO
         <br>Avocates
       </div>
+      <div>
+        <NuxtLink class="app-button"
+                href="/dispostifdeprotection"
+        >À l'attention du personnel
+          <br>de Genève Aéroport</NuxtLink>
+      </div>
     </div>
+
 
     <div class="v-index__bottom">
       <div class="v-index__bottom__contact">
@@ -116,6 +123,9 @@ const props = defineProps<{
 .v-index__content {
   box-sizing: border-box;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 
   @media (min-width: 1100px) {
     display: flex;
