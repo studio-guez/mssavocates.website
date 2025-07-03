@@ -20,7 +20,7 @@ yarn install
 bun install
 ```
 
-## Development Server
+## Development
 
 Start the development server on `http://localhost:3000`:
 
@@ -37,6 +37,10 @@ yarn dev
 # bun
 bun run dev
 ```
+
+Variables for dev server api connection in .env file
+
+![img.png](img.png)
 
 ## Production
 
