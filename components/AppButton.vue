@@ -1,33 +1,52 @@
 <template>
-    <section class="v-app-button"
-    >
-      {{message}}
-    </section>
+  <button
+    class="v-app-button outlined"
+    :class="{ 'is-selected': selected }"
+    @click="$emit('click')"
+  >
+    <slot>{{ label }}</slot>
+  </button>
 </template>
 
-
-
-
-
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 
-const props = defineProps<{
-    message?: string
+defineProps<{
+  label?: string
+  selected?: boolean
+}>()
+
+defineEmits<{
+  (e: 'click'): void
 }>()
 </script>
 
-
-
-
-
-<style lang="scss" scoped >
+<style scoped lang="scss">
 .v-app-button {
-  display: inline-block;
-  background: lightgrey;
-  border-radius: 1rem;
-  padding: .5rem 1rem;
-  border: 1px solid black;
-  user-select: none;
+  border-radius: 100px;
+  padding: 0.3rem 1rem;
+  min-width: 6rem;
+  font-family: 'InterDisplay', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &.outlined {
+    background: transparent;
+    border: 2px solid #f94be4;
+    color: #f94be4;
+
+    &:hover {
+      background: #f94be4;
+      color: white;
+    }
+  }
+
+  &.is-selected {
+    background: #f94be4;
+    color: white;
+    border-color: #f94be4;
+  }
 }
 </style>

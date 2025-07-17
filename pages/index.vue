@@ -1,6 +1,6 @@
 <template>
-  <main class="v-index"
-  >
+  <main class="v-index">
+    <AppHeader />
     <p>{{status}}</p>
 
     <template v-if="data && data.status === 'ok'">
@@ -33,7 +33,7 @@
           <AppTeam :v_app_team_data="people" />
         </template>
       </div>
-
+<AppButton label="Lire" variant="outlined" />
 
     </template>
     <template v-else>
