@@ -12,8 +12,16 @@ html {
 
 body {
   margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  //background-color:#F94BE4;;
 }
 
 a {
   color: inherit;
+}
+
+h2 {
+  color:rgb(0, 0, 0);
+  font-size: 3rem;
 }
