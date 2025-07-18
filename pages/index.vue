@@ -35,6 +35,21 @@
       </div>
 <AppButton label="Lire" variant="outlined" />
 
+      <div>
+        <h2>domaines_activite</h2>
+        <template v-for="activity of data.result.domaines_activite"
+        >
+          {{activity.image}}
+          <template v-for="domaine of activity.domaines">
+            <div>
+              <h3>{{domaine.titre  }}</h3>
+              <div v-html="domaine.description"></div>
+            </div>
+          </template>
+        </template>
+      </div>
+
+
     </template>
     <template v-else>
       oups, la page n'existe pas :/
@@ -58,6 +73,7 @@ type FetchData  = CMS_API_Response & {
         'titre' :         string,
         'texte' :         string,
         'equipe' :        CMS_API_people[],
+        domaines_activite: CMS_API_domaines_activite[]
     }
 }
 
@@ -73,6 +89,7 @@ const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
             'titre' : true,
             'texte' : true,
             'equipe' : 'page.equipe.toStructure()',
+            'domaines_activite': 'page.domaines_activite.toStructure()'
         }
     }
 })

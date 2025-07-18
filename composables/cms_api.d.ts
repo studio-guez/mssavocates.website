@@ -10,3 +10,9 @@ type CMS_API_people = {
     lien: [],
     "id": string,
 }
+
+type CMS_API_domaines_activite = {
+    "domaines": { "titre": string, "description": string }[],
+    "image": string[],
+    "id": string
+}
