@@ -4,49 +4,53 @@
     <p>{{status}}</p>
 
     <template v-if="data && data.status === 'ok'">
-      <div><h1>{{data?.result?.title}}</h1></div>
+      <div><h1>{{data?.result?.home.title}}</h1></div>
 
       <div>
         <h2>slug</h2>
-        /{{data.result.slug}}
+        /{{data.result.home.slug}}
       </div>
 
       <div>
         <h2>introduction</h2>
-        {{data.result.introduction}}
+      {{data.result.home.introduction}}
       </div>
 
       <div>
         <h2>titre</h2>
-        {{data.result.titre}}
+        <template v-for="hero of data.result.home.introduction">
+          <AppHero :v_app_hero_data="hero" /> 
+        </template> 
+       <!-- {{data.result.titre}}-->
       </div>
 
       <div>
-        <h2>texte</h2>
-        {{data.result.texte}}
+        <h2>articles</h2>
+       <template v-for="article of data.result.actualites.articles">
+        <AppArticle :v_app_article_data="article"/>
+       </template>
       </div>
 
       <div>
         <h2>equipe</h2>
-        <template v-for="people of data.result.equipe"
-        >
-          <AppTeam :v_app_team_data="people" />
-        </template>
+       <template v-for="people of data.result.home.equipe">
+          <AppTeam :v_app_team_data="people" /> 
+        </template> 
       </div>
-<AppButton label="Lire" variant="outlined" />
+        <AppButton label="Lire" variant="outlined" />
 
       <div>
         <h2>domaines_activite</h2>
-        <template v-for="activity of data.result.domaines_activite"
-        >
+         <template v-for="activity of data.result.home.domaines_activities"
+              >
           {{activity.image}}
           <template v-for="domaine of activity.domaines">
             <div>
-              <h3>{{domaine.titre  }}</h3>
+              <h3>{{domaine.titre}}</h3>
               <div v-html="domaine.description"></div>
             </div>
           </template>
-        </template>
+        </template>            
       </div>
 
 
@@ -65,34 +69,65 @@
 
 <script setup lang="ts">
 
-type FetchData  = CMS_API_Response & {
-    result: {
-        'title' :         string,
-        'slug' :          string,
-        'introduction' :  string,
-        'titre' :         string,
-        'texte' :         string,
-        'equipe' :        CMS_API_people[],
-        domaines_activite: CMS_API_domaines_activite[]
+type FetchData = CMS_API_Response & {
+  result: {
+    home: {
+      title: string
+      slug: string
+      introduction: CMS_API_hero[]
+      titre: string
+      texte: string
+      equipe: CMS_API_people[]
+      domaines_activities: CMS_API_domaines_activite[]
+    },
+    actualites: {
+      title: string
+      slug: string
+      articles: CMS_API_Article[]
     }
+  }
 }
 
 const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
-    lazy: true,
-    method: 'POST',
-    body: {
-        query: `site.find('home')`,
+  lazy: true,
+  method: 'POST',
+  body: {
+    query: 'site',
+    select: {
+      home: {
+        query: `site.find("home")`,
         select: {
-            'title' : true,
-            'slug' : true,
-            'introduction' : true,
-            'titre' : true,
-            'texte' : true,
-            'equipe' : 'page.equipe.toStructure()',
-            'domaines_activite': 'page.domaines_activite.toStructure()'
+          title: true,
+          slug: true,
+          introduction: true,
+          titre: true,
+          texte: true,
+          equipe: 'page.equipe.toStructure()',
+          domaines_activities: 'page.domaines_activities.toStructure()'
         }
+      },
+      actualites: {
+        query: `site.find("actualites")`,
+        select: {
+          title: true,
+          slug: true,
+          articles: {
+            query: 'page.children()',
+            select: {
+              main_title: true,
+              date: true,
+              resume: true,
+            }
+          }
+        }
+      }
     }
+  }
 })
+
+
+
+
 
 </script>
 

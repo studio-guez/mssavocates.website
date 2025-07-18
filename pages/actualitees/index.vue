@@ -49,6 +49,9 @@ const {data: children_data, status: children_status} = await useFetch<FetchData_
         select: {
             'title' : true,
             'slug' : true,
+            'resume': true,
+            'date': true,
+            'main_title': true,
         }
     }
 })

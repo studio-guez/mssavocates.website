@@ -16,3 +16,16 @@ type CMS_API_domaines_activite = {
     "image": string[],
     "id": string
 }
+
+
+type CMS_API_hero = {
+    titre: string
+    texte: string
+  }    
+
+
+  type CMS_API_Article = {
+    main_title: string
+    date: string
+    resume: string
+  }
