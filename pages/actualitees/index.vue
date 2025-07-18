@@ -1,8 +1,20 @@
 <template>
   <main class="v-actualities"
   >
-    <p>liste des actualitées</p>
-    {{data}}
+    <div class="v-actualities__content">
+      <h2>contenu de la page</h2>
+      {{data?.result}}
+    </div>
+
+    <div class="v-actualities__children">
+      <h2>contenu des pages enfant</h2>
+      <div class="v-actualities__children__item"
+           v-for="item of children_data?.result"
+      >
+      {{item}}
+      </div>
+    </div>
+
   </main>
 </template>
 
@@ -21,10 +33,26 @@ const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
         select: {
             'title' : true,
             'slug' : true,
-            'children' : 'page.children.toArray()',
         }
     }
 })
+
+type FetchData_children  = CMS_API_Response & {
+    result: {}
+}
+
+const {data: children_data, status: children_status} = await useFetch<FetchData_children>('/api/CMS_KQLRequest', {
+    lazy: true,
+    method: 'POST',
+    body: {
+        query: `site.find('actualites').children()`,
+        select: {
+            'title' : true,
+            'slug' : true,
+        }
+    }
+})
+
 </script>
 
 
