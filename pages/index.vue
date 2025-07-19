@@ -19,8 +19,8 @@
       <div>
         <h2>titre</h2>
         <template v-for="hero of data.result.home.introduction">
-          <AppHero :v_app_hero_data="hero" /> 
-        </template> 
+          <AppHero :v_app_hero_data="hero" />
+        </template>
        <!-- {{data.result.titre}}-->
       </div>
 
@@ -34,8 +34,8 @@
       <div>
         <h2>equipe</h2>
        <template v-for="people of data.result.home.equipe">
-          <AppTeam :v_app_team_data="people" /> 
-        </template> 
+          <AppTeam :v_app_team_data="people" />
+        </template>
       </div>
         <AppButton label="Lire" variant="outlined" />
 
@@ -50,7 +50,7 @@
               <div v-html="domaine.description"></div>
             </div>
           </template>
-        </template>            
+        </template>
       </div>
 
 
@@ -61,7 +61,9 @@
     </template>
 
 
+    <h1>teste</h1>
 
+    {{data_test}}
 
   </main>
 </template>
@@ -127,6 +129,25 @@ const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
 
 
 
+
+
+const { data: data_test, status: status_test } = await useFetch<unknown>('/api/CMS_KQLRequest', {
+    lazy: true,
+    method: 'POST',
+    body: {
+        query: "site.find('home').equipe.toStructure()",
+        select: {
+            "image": {
+                "query": "structureItem.image.toFile",
+                "select": {
+                    "url": true,
+                    "alt": "file.alt.value"
+                }
+            },
+            "caption": "structureItem.caption.value"
+        }
+    }
+})
 
 
 </script>
