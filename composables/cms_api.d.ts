@@ -1,3 +1,25 @@
+type CMS_API_Image = {
+    "extension": string,
+    "filename": string,
+    "height": number,
+    "id": string,
+    "mime": string,
+    "niceSize": "951 B",
+    "template": "",
+    "type": "image",
+    "url": "http://localhost:8000/media/pages/home/0a94594deb-1751548581/capture-decran-2025-07-03-a-15.14.47-50x-q10.png",
+    "width": 50
+}
+
+type CMS_API_ImageObject = {
+    "alt": null,
+    "tiny": CMS_API_Image,
+    "small": CMS_API_Image,
+    "reg": CMS_API_Image,
+    "large": CMS_API_Image,
+    "xxl": CMS_API_Image,
+}
+
 type CMS_API_Response = {
     code: number,
     status: 'ok' | string,
@@ -6,9 +28,8 @@ type CMS_API_Response = {
 type CMS_API_people = {
     prenom: string,
     nom: string,
-    image: [],
+    image: CMS_API_ImageObject,
     lien: [],
-    "id": string,
 }
 
 type CMS_API_domaines_activite = {
@@ -21,7 +42,7 @@ type CMS_API_domaines_activite = {
 type CMS_API_hero = {
     titre: string
     texte: string
-  }    
+  }
 
 
   type CMS_API_Article = {

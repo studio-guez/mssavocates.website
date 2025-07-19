@@ -3,7 +3,9 @@
     >
       <h3>{{v_app_team_data.nom}}</h3>
       <h3>{{v_app_team_data.prenom}}</h3>
-      <h3>{{v_app_team_data.image}}</h3>
+      <img
+             :src="v_app_team_data.image.reg.url"
+      />
     </section>
 </template>
 

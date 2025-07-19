@@ -1,7 +1,6 @@
 <template>
   <main class="v-index">
     <AppHeader />
-    <p>{{status}}</p>
 
     <template v-if="data && data.status === 'ok'">
       <div><h1>{{data?.result?.home.title}}</h1></div>
@@ -51,6 +50,9 @@
             </div>
           </template>
         </template>
+
+        <h1>teste</h1>
+        {{data.result}}
       </div>
 
 
@@ -61,9 +63,7 @@
     </template>
 
 
-    <h1>teste</h1>
 
-    {{data_test}}
 
   </main>
 </template>
@@ -90,62 +90,60 @@ type FetchData = CMS_API_Response & {
   }
 }
 
-const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
-  lazy: true,
-  method: 'POST',
-  body: {
-    query: 'site',
-    select: {
-      home: {
-        query: `site.find("home")`,
-        select: {
-          title: true,
-          slug: true,
-          introduction: true,
-          titre: true,
-          texte: true,
-          equipe: 'page.equipe.toStructure()',
-          domaines_activities: 'page.domaines_activities.toStructure()'
-        }
-      },
-      actualites: {
-        query: `site.find("actualites")`,
-        select: {
-          title: true,
-          slug: true,
-          articles: {
-            query: 'page.children()',
-            select: {
-              main_title: true,
-              date: true,
-              resume: true,
-            }
-          }
-        }
-      }
-    }
-  }
-})
-
-
-
-
-
-const { data: data_test, status: status_test } = await useFetch<unknown>('/api/CMS_KQLRequest', {
+const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
     lazy: true,
     method: 'POST',
     body: {
-        query: "site.find('home').equipe.toStructure()",
+        query: 'site',
         select: {
-            "image": {
-                "query": "structureItem.image.toFile",
-                "select": {
-                    "url": true,
-                    "alt": "file.alt.value"
+            home: {
+                query: "site.find('home')",
+                select: {
+                    title: true,
+                    slug: true,
+                    introduction: true,
+                    titre: true,
+                    texte: true,
+                    domaines_activities: 'page.domaines_activities.toStructure()',
+                    equipe: {
+                        query: "page.equipe.toStructure()",
+                        select: {
+                            lien_test: 'structureItem.lien.value',
+                            nom: 'structureItem.nom.value',
+                            image: {
+                                query: "structureItem.image.toFile",
+                                select: {
+                                    alt: "file.alt.value",
+                                    tiny: 'file.resize(50, null, 10)',
+                                    small: 'file.resize(500)',
+                                    reg: 'file.resize(1280)',
+                                    large: 'file.resize(1920)',
+                                    xxl: 'file.resize(2500)',
+                                }
+                            },
+                            caption: "structureItem.caption.value"
+                        }
+                    }
+                },
+            },
+            actualites: {
+                query: `site.find("actualites")`,
+                select: {
+                    title: true,
+                    slug: true,
+                    articles: {
+                        query: 'page.children()',
+                        select: {
+                            main_title: true,
+                            date: true,
+                            resume: true,
+                        }
+                    }
                 }
             },
-            "caption": "structureItem.caption.value"
-        }
+        },
+
+
     }
 })
 
