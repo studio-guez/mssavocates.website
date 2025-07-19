@@ -35,13 +35,13 @@ type CMS_API_people = {
 type CMS_API_domaines_activite = {
     "domaines": { "titre": string, "description": string }[],
     "image": string[],
-    "id": string
+/*     "id": string */
 }
 
 
 type CMS_API_hero = {
-    titre: string
-    texte: string
+    titre: string,
+    texte: string,
   }
 
 

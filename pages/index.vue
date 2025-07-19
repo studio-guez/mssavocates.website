@@ -4,43 +4,61 @@
 
     <template v-if="data && data.status === 'ok'">
       <div><h1>{{data?.result?.home.title}}</h1></div>
-
+<!--  
       <div>
         <h2>slug</h2>
         /{{data.result.home.slug}}
       </div>
 
-      <div>
+     <div>
         <h2>introduction</h2>
       {{data.result.home.introduction}}
       </div>
-
-      <div>
-        <h2>titre</h2>
+ -->
+ <div>
+        <h2>hero</h2>
         <template v-for="hero of data.result.home.introduction">
           <AppHero :v_app_hero_data="hero" />
         </template>
-       <!-- {{data.result.titre}}-->
       </div>
 
       <div>
-        <h2>articles</h2>
-       <template v-for="article of data.result.actualites.articles">
-        <AppArticle :v_app_article_data="article"/>
-       </template>
+        <h2>hero articles</h2>
+        <template v-for="article of data.result.actualites.articles">
+          <AppArticle :v_app_article_data="article" />
+        </template>
       </div>
 
       <div>
         <h2>equipe</h2>
-       <template v-for="people of data.result.home.equipe">
+        <template v-for="people of data.result.home.equipe" :key="people.nom">
           <AppTeam :v_app_team_data="people" />
         </template>
       </div>
-        <AppButton label="Lire" variant="outlined" />
+<div>
+      <AppButton label="Lire" variant="outlined" />
+    </div>
 
+<section>
       <div>
-        <h2>domaines_activite</h2>
-         <template v-for="activity of data.result.home.domaines_activities"
+      {{data.result}}
+    </div>
+  </section>
+
+  <div>
+  <h2>domaines d'activités</h2>
+  <div v-for="bloc in data.result.home.domaines_activite">
+    <AppDomaine :v_app_domaine_data="bloc" />
+  </div>
+</div>
+
+
+    </template>
+
+
+
+
+<!--          <template v-for="activity of data.result.home.domaines_activites"
               >
           {{activity.image}}
           <template v-for="domaine of activity.domaines">
@@ -51,17 +69,17 @@
           </template>
         </template>
 
-        <h1>teste</h1>
-        {{data.result}}
-      </div>
-
+ -->
+<!--  <p>{{ data.result.home.domaines_activite }}</p>
+<pre>{{ JSON.stringify(data.result.home.domaines_activite, null, 2) }}</pre>
+        <h1>test</h1>
 
     </template>
     <template v-else>
       oups, la page n'existe pas :/
       -> bouton retour home
     </template>
-
+ -->
 
 
 
@@ -80,7 +98,7 @@ type FetchData = CMS_API_Response & {
       titre: string
       texte: string
       equipe: CMS_API_people[]
-      domaines_activities: CMS_API_domaines_activite[]
+      domaines_activite: CMS_API_domaines_activite[]
     },
     actualites: {
       title: string
@@ -91,61 +109,86 @@ type FetchData = CMS_API_Response & {
 }
 
 const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
-    lazy: true,
-    method: 'POST',
-    body: {
-        query: 'site',
+  lazy: true,
+  method: 'POST',
+  body: {
+    query: 'site',
+    select: {
+      home: {
+        query: "site.find('home')",
         select: {
-            home: {
-                query: "site.find('home')",
+          title: true,
+          slug: true,
+          introduction: {
+            query: "page.introduction.toStructure()",
+            select: {
+              titre: true,
+              texte: true,
+            }
+          },
+          domaines_activite: {
+            query: 'page.domaines_activite.toStructure()',
+            select: {
+              domaines: {
+                query: 'structureItem.domaines.toStructure()',
                 select: {
-                    title: true,
-                    slug: true,
-                    introduction: true,
-                    titre: true,
-                    texte: true,
-                    domaines_activities: 'page.domaines_activities.toStructure()',
-                    equipe: {
-                        query: "page.equipe.toStructure()",
-                        select: {
-                            lien_test: 'structureItem.lien.value',
-                            nom: 'structureItem.nom.value',
-                            image: {
-                                query: "structureItem.image.toFile",
-                                select: {
-                                    alt: "file.alt.value",
-                                    tiny: 'file.resize(50, null, 10)',
-                                    small: 'file.resize(500)',
-                                    reg: 'file.resize(1280)',
-                                    large: 'file.resize(1920)',
-                                    xxl: 'file.resize(2500)',
-                                }
-                            },
-                            caption: "structureItem.caption.value"
-                        }
+                  titre: 'structureItem.titre.value',
+                  description: 'structureItem.description.value',
+                  image: {
+                    query: "structureItem.image.toFile",
+                    select: {
+                      alt: "file.alt.value",
+                      tiny: 'file.resize(50, null, 10)',
+                      small: 'file.resize(500)',
+                      reg: 'file.resize(1280)',
+                      large: 'file.resize(1920)',
+                      xxl: 'file.resize(2500)'
                     }
-                },
-            },
-            actualites: {
-                query: `site.find("actualites")`,
-                select: {
-                    title: true,
-                    slug: true,
-                    articles: {
-                        query: 'page.children()',
-                        select: {
-                            main_title: true,
-                            date: true,
-                            resume: true,
-                        }
-                    }
+                  },
                 }
-            },
-        },
-
-
+              }
+            }
+          },
+          equipe: {
+            query: "page.equipe.toStructure()",
+            select: {
+              lien_test: 'structureItem.lien.value',
+              nom: 'structureItem.nom.value',
+              image: {
+                query: "structureItem.image.toFile",
+                select: {
+                  alt: "file.alt.value",
+                  tiny: 'file.resize(50, null, 10)',
+                  small: 'file.resize(500)',
+                  reg: 'file.resize(1280)',
+                  large: 'file.resize(1920)',
+                  xxl: 'file.resize(2500)'
+                }
+              },
+              caption: "structureItem.caption.value"
+            }
+          }
+        }
+      },
+      actualites: {
+        query: `site.find("actualites")`,
+        select: {
+          title: true,
+          slug: true,
+          articles: {
+            query: 'page.children()',
+            select: {
+              main_title: true,
+              date: true,
+              resume: true
+            }
+          }
+        }
+      }
     }
-})
+  }
+});
+
 
 
 </script>

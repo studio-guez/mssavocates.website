@@ -3,7 +3,7 @@
     <h3>{{v_app_hero_data.titre}}</h3>
     <h3>{{v_app_hero_data.texte}}</h3>
 
-
+    
   </section>
 </template>
 
