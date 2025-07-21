@@ -1,3 +1,13 @@
+
+// CMI_API_Response: Ce type est une enveloppe de base pour toutes les réponses du CMS.
+// Il permet de vérifier si la requête s'est bien passée (code = 200, status = "ok").
+// Avant de lire les données, on regarde ces deux champs pour éviter les erreurs.
+
+type CMS_API_Response = {
+    code: number,
+    status: 'ok' | string,
+}
+
 type CMS_API_Image = {
     "extension": string,
     "filename": string,
@@ -20,10 +30,6 @@ type CMS_API_ImageObject = {
     "xxl": CMS_API_Image,
 }
 
-type CMS_API_Response = {
-    code: number,
-    status: 'ok' | string,
-}
 
 type CMS_API_people = {
     prenom: string,
@@ -34,7 +40,7 @@ type CMS_API_people = {
 
 type CMS_API_domaines_activite = {
     "domaines": { "titre": string, "description": string }[],
-    "image": string[],
+    "image": CMS_API_ImageObject,
 /*     "id": string */
 }
 

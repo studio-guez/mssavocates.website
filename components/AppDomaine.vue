@@ -1,14 +1,12 @@
 <template>
-    <section class="v-app-domaine">
-      <div v-for="domaine in v_app_domaine_data.domaines">
-        <h3>{{ domaine.titre }}</h3>
-        <p>{{ domaine.description }}</p>
-<!--               <img
-             :src="v_app_team_data.image.reg.url"
-      /> -->
-      </div>
-    </section>
-  </template>
+  <section class="v-app-domaine">
+    <div v-for="domaine in v_app_domaine_data.domaines">
+      <h3 v-html="domaine.titre"></h3>
+      <div v-html="domaine.description"></div>
+    </div>
+    <img :src="v_app_domaine_data.image.reg.url" />
+  </section>
+</template>
   
   
   <script setup lang="ts">
