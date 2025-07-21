@@ -1,6 +1,6 @@
 <template>
   <main class="v-index">
-    <AppHeader />
+<!--     <AppHeader /> -->
 
     <template v-if="data && data.status === 'ok'">
       <div>
@@ -60,11 +60,11 @@
 
       <!-- test data pour debugger  -->
 
-      <!-- <section>
+      <section>
         <div>
           {{ data.result }}
         </div>
-      </section> -->
+      </section>
 
 
 
@@ -79,6 +79,8 @@
       oups, la page n'existe pas :/
       -> bouton retour home
     </template>
+
+   <!-- footer -->
 
 
   </main>
@@ -156,7 +158,6 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
               }
             }
           },
-
           equipe: {
             query: "page.equipe.toStructure()",
             select: {
@@ -195,7 +196,7 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
       }
     }
   }
-});
+})
 
 
 
