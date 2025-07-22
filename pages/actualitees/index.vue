@@ -1,19 +1,22 @@
 <template>
-  <main class="v-actualities"
-  >
+  <main class="v-actualities">
     <div class="v-actualities__content">
       <h2>contenu de la page</h2>
-      {{data?.result}}
+      {{ data?.result }}
     </div>
 
-    <div class="v-actualities__children">
+    <!-- <div class="v-actualities__children">
       <h2>contenu des pages enfant</h2>
-      <div class="v-actualities__children__item"
-           v-for="item of children_data?.result"
-      >
-      {{item}}
+      <div class="v-actualities__children__item" v-for="item of children_data?.result">
+        {{ item }}
       </div>
-    </div>
+    </div> -->
+
+    <AppArticle
+  v-for="article in children_data?.result"
+  :key="article.main_title"
+  :v_app_article_data="article"
+/>
 
   </main>
 </template>
@@ -21,45 +24,45 @@
 
 <script setup lang="ts">
 
-type FetchData  = CMS_API_Response & {
-    result: {}
+type FetchData = CMS_API_Response & {
+  result: {}
 }
 
 const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
-    lazy: true,
-    method: 'POST',
-    body: {
-        query: `site.find('actualites')`,
-        select: {
-            'title' : true,
-            'slug' : true,
-        }
+  lazy: true,
+  method: 'POST',
+  body: {
+    query: `site.find('actualites')`,
+    select: {
+      'title': true,
+      'slug': true,
     }
+  }
 })
 
-type FetchData_children  = CMS_API_Response & {
-    result: {}
+type FetchData_children = CMS_API_Response & {
+  result: CMS_API_Article[],
 }
 
-const {data: children_data, status: children_status} = await useFetch<FetchData_children>('/api/CMS_KQLRequest', {
-    lazy: true,
-    method: 'POST',
-    body: {
-        query: `site.find('actualites').children()`,
-        select: {
-            'title' : true,
-            'slug' : true,
-            'resume': true,
-            'date': true,
-            'main_title': true,
-        }
+const { data: children_data, status: children_status } = await useFetch<FetchData_children>('/api/CMS_KQLRequest', {
+  lazy: true,
+  method: 'POST',
+  body: {
+    query: `site.find('actualites').children()`,
+    select: {
+      'title': true,
+      'slug': true,
+      'resume': true,
+      'date': true,
+      'main_title': true,
+      'contenu': true,
     }
+  }
 })
 
 </script>
 
 
 <style lang="scss" scoped>
-.v-actualities {
-}
+.v-actualities {}
 </style>

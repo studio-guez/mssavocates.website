@@ -1,6 +1,6 @@
 <template>
   <main class="v-index">
-<!--     <AppHeader /> -->
+    <!--     <AppHeader /> -->
 
     <template v-if="data && data.status === 'ok'">
       <div>
@@ -36,28 +36,33 @@
 
       <!-- équipe  -->
 
-
+      <StyleBlock>
       <div>
-        <h2>equipe</h2>
+        <h2>EQUIPE</h2>
+        <div class="flex flex-between">
         <template v-for="people of data.result.home.equipe" :key="people.nom">
           <AppTeam :v_app_team_data="people" />
         </template>
       </div>
-      <div>
-        <AppButton label="Lire" variant="outlined" />
       </div>
+      <div class="flex flex-center">
+        <AppButton label="Toutes les actualités" href="/actualitees" variant="outlined-white" />
+        <AppButton label="Toutes les actualités" href="/actualitees" variant="outlined" />
+      </div>
+
+    </StyleBlock>
 
 
 
       <!-- domaines d'activités  -->
-
+<StyleBlock>
       <div>
-        <h2>domaines d'activités</h2>
+        <h2>DOMAINES D'ACTIVITÉS</h2>
         <div v-for="domaine in data.result.home.domaines_activite">
           <AppDomaine :v_app_domaine_data="domaine" />
         </div>
       </div>
-
+    </StyleBlock>
       <!-- test data pour debugger  -->
 
       <section>
@@ -80,7 +85,7 @@
       -> bouton retour home
     </template>
 
-   <!-- footer -->
+    <!-- footer -->
 
 
   </main>
@@ -162,6 +167,7 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
             query: "page.equipe.toStructure()",
             select: {
               lien_test: 'structureItem.lien.value',
+              prenom: 'structureItem.prenom.value',
               nom: 'structureItem.nom.value',
               image: {
                 query: "structureItem.image.toFile",

@@ -56,6 +56,7 @@ type CMS_API_Article = {
     main_title: string
     date: string
     resume: string
+    contenu: string
 }
 
 type CMS_API_Footer = {
@@ -70,6 +71,17 @@ type CMS_API_membre = {
     email: string
   }
   
+  type CMS_API_profils = {
+    profils_list: {
+      fullname: string;
+      email: string;
+      description: string;
+      photo: CMS_API_ImageObject;
+    }[];
+  }
+  
+  
+
   type CMS_API_contact = {
     etude_nom: string
     etude_email: string
