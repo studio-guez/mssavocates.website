@@ -1,7 +1,43 @@
 @use "font-import";
 
+/* ==========================================================================
+   LES VARIABLES
+   ========================================================================== */
+
+:root {
+
+  // les couleurs //
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-pink: #FF33CC;
+
+  // les typos //
+  --font-NewEdge: 'NewEdge', sans-serif;
+  --font-Inter: 'InterDisplay', sans-serif;
+
+  // Tailles d'espacement
+  --space-xs: 0.25rem;
+  --space-s: 0.5rem;
+  --space-m: 1rem;
+  --space-l: 2rem;
+  --space-xl: 4rem;
+
+  // Border-radius
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 16px;
+  --radius-full: 9999px;
+
+  // Largeurs max
+  --container-width: 1200px;
+}
+
+/* ==========================================================================
+   GLOBAL FONTS + HTML BASE
+   ========================================================================== */
+
 html {
-  font-family: "InterDisplay", sans-serif;
+  font-family: var(--font-Inter);
   font-optical-sizing: auto;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -14,14 +50,231 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  //background-color:#F94BE4;;
+  background-color: var(--color-pink);
 }
 
 a {
   color: inherit;
+  cursor: pointer;
+}
+
+
+/* ==========================================================================
+   @font-face IMPORTS — pour NewEdge
+   ========================================================================== */
+
+@font-face {
+  font-family: var(--font-NewEdge);
+  src: url('/fonts/NewEdge666Test-RegularRounded.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: var(--font-NewEdge);
+  src: url('/fonts/NewEdge666Test-SemiboldRounded.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+/* TITRES */
+
+h1 {
+  font-family: var(--font-NewEdge);
+  font-weight: 600;
+  font-size: 4rem;
+  color: var(--color-black);
 }
 
 h2 {
-  color:rgb(0, 0, 0);
-  font-size: 3rem;
+  font-family: var(--font-NewEdge);
+  font-weight: 400;
+  font-size: 2rem;
+  color: var(--color-black);
+}
+
+h3 {
+  font-family: var(--font-Inter);
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--color-black);
+}
+
+h4 {
+  font-family: var(--font-Inter);
+  font-weight: 700;
+  font-size: 2rem;
+  color: var(--color-black);
+}
+
+/* Variantes de h4 */
+h4.text-black {
+  color: var(--color-black);
+}
+
+h4.text-pink {
+  color: var(--color-pink);
+}
+
+h4.text-white {
+  color: var(--color-white);
+}
+
+/* CORPS DE TEXTE */
+
+.body-1 {
+  font-family: var(--font-Inter);
+  font-weight: 300;
+  font-size: 1.25rem;
+  color: var(--color-black);
+}
+
+.body-2 {
+  font-family: var(--font-Inter);
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--color-black);
+}
+
+p,
+li,
+span {
+  font-family: var(--font-Inter);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-black);
+}
+
+/* Fond */
+.bg-white {
+  background-color: var(--color-white);
+}
+
+.bg-pink {
+  background-color: var(--color-pink);
+}
+
+
+
+/* Layout utilitaires */
+.container {
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-m);
+}
+
+.section {
+  padding-block: var(--space-l);
+}
+
+/* Border radius */
+.rounded-s {
+  border-radius: var(--radius-s);
+}
+
+.rounded-m {
+  border-radius: var(--radius-m);
+}
+
+.rounded-l {
+  border-radius: var(--radius-l);
+}
+
+.rounded-full {
+  border-radius: var(--radius-full);
+}
+
+/* Espacement rapide */
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.mt-s {
+  margin-top: var(--space-s);
+}
+
+.mb-s {
+  margin-bottom: var(--space-s);
+}
+
+.pt-l {
+  padding-top: var(--space-l);
+}
+
+.pb-l {
+  padding-bottom: var(--space-l);
+}
+
+/* Alignements */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+/* Couleurs texte */
+.text-black {
+  color: var(--color-black);
+}
+
+.text-white {
+  color: var(--color-white);
+}
+
+.text-pink {
+  color: var(--color-pink);
+}
+
+/* Fond */
+.bg-white {
+  background-color: var(--color-white);
+}
+
+.bg-pink {
+  background-color: var(--color-pink);
+}
+
+/* Flex helpers */
+.flex {
+  display: flex;
+  gap: var(--space-m);
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Taille texte */
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-base {
+  font-size: 1rem;
+}
+
+.text-lg {
+  font-size: 1.25rem;
 }

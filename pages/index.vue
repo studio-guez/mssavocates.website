@@ -2,6 +2,7 @@
   <main class="v-index">
     <AppHeader />
 
+
     <template v-if="data && data.status === 'ok'">
       <div>
         <h1>{{ data?.result?.home.title }}</h1>
@@ -21,11 +22,12 @@
       <!-- hero= texte + articles  -->
 
       <div>
-        <h2>hero</h2>
+        <h1>HERO</h1>
         <template v-for="hero of data.result.home.introduction">
           <AppHero :v_app_hero_data="hero" />
         </template>
       </div>
+          
 
       <div>
         <h2>hero articles</h2>
@@ -38,14 +40,17 @@
 
 
       <div>
-        <h2>equipe</h2>
+        <h2>EQUIPE</h2>
         <template v-for="people of data.result.home.equipe" :key="people.nom">
           <AppTeam :v_app_team_data="people" />
         </template>
       </div>
-      <div>
-        <AppButton label="Lire" variant="outlined" />
-      </div>
+
+
+<AppButton label="Toutes les actualités" href="/actualitees" variant="outlined-white" />
+<AppButton label="Toutes les actualités" href="/actualitees" variant="outlined" />
+
+
 
 
 
@@ -60,11 +65,11 @@
 
       <!-- test data pour debugger  -->
 
-      <!-- <section>
+
         <div>
           {{ data.result }}
         </div>
-      </section> -->
+
 
 
 
