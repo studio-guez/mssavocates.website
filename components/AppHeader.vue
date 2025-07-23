@@ -13,10 +13,10 @@
 
     <nav class="v-header__nav" :class="{ 'is-visible': showMenu }">
       <ul>
-        <li><a href="#actualites">ACTUALITÉS</a></li>
-        <li><a href="#equipe">ÉQUIPE</a></li>
+        <li><a href="/actualitees">ACTUALITÉS</a></li>
+        <li><a href="/equipe">ÉQUIPE</a></li>
         <li><a href="#domaines">DOMAINES D’ACTIVITÉS</a></li>
-        <li><a href="#contact">CONTACT</a></li>
+        <li><a href="/contact">CONTACT</a></li>
       </ul>
     </nav>
   </header>

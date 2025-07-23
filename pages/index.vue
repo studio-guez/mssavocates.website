@@ -36,8 +36,10 @@
         </template>
       </div>
 
+
       <!-- équipe  -->
 
+<<<<<<< Updated upstream
 
       <div>
         <h2>EQUIPE</h2>
@@ -51,7 +53,22 @@
 <AppButton label="Toutes les actualités" href="/actualitees" variant="outlined" />
 
 
+=======
+<StyleBlock>
+  <h2 class="mb-s">EQUIPE</h2>
+>>>>>>> Stashed changes
 
+  <div
+    class="flex flex-center"
+    style="flex-wrap: wrap; gap: var(--space-xl);"
+  >
+    <AppTeam
+      v-for="person in data.result.home.equipe"
+      :key="`${person.prenom}-${person.nom}`"
+      :v_app_team_data="person"
+    />
+  </div>
+</StyleBlock>
 
 
       <!-- domaines d'activités  -->
@@ -62,6 +79,7 @@
           <AppDomaine :v_app_domaine_data="domaine" />
         </div>
       </div>
+<<<<<<< Updated upstream
 
       <!-- test data pour debugger  -->
 
@@ -70,11 +88,41 @@
           {{ data.result }}
         </div>
 
+=======
+    </StyleBlock>
+
+      <!-- test data pour debugger  -->
+
+      <!-- <section>
+        <div>
+          {{ data.result }}
+        </div>
+      </section> -->
+>>>>>>> Stashed changes
 
 
 
       <!-- <pre>{{ JSON.stringify(data.result.home.domaines_activite, null, 2) }}</pre> -->
 
+
+  <h2 class="mb-s">Articles</h2>
+
+  <div class="article-grid">
+    <AppArticletest
+      v-for="article in data.result.actualites.articles"
+      :v_app_article_data="article"
+    />
+  </div>
+
+      <div class="section">
+  <div class="flex flex-center">
+    <AppButton
+      label="Toutes les actualités"
+      href="/actualitees"
+      variant="outlined-white"
+    />
+  </div>
+</div>
 
     </template>
 
@@ -85,6 +133,10 @@
       -> bouton retour home
     </template>
 
+<<<<<<< Updated upstream
+=======
+    <!-- footer -->
+>>>>>>> Stashed changes
 
   </main>
 </template>
@@ -189,7 +241,7 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
           title: true,
           slug: true,
           articles: {
-            query: 'page.children()',
+            query: 'page.children().listed().sortBy("date", "desc").limit(4)',
             select: {
               main_title: true,
               date: true,
