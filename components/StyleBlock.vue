@@ -11,6 +11,7 @@
    
    
    <style scoped lang="scss">
+   
    .v-style-block {
     background-color: var(--color-white);
     border-radius: var(--radius-l);
@@ -19,10 +20,15 @@
     box-sizing: border-box;
     border: 2px solid var(--color-pink);
    }
+
+   .v-style-block.is-fill {
+  padding: 0; // on retire le padding interne pour les images pleine largeur
+}
+
    </style>
    
    
    
-   
+
    
    

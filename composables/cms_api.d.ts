@@ -83,12 +83,15 @@ type CMS_API_membre = {
   
 
   type CMS_API_contact = {
+    intro: string
     etude_nom: string
     etude_email: string
     etude_tel: string
     adresse: string
-    "membres": CMS_API_membre[] // attention, bien CMS_API_membre sans le S
-    "image": CMS_API_ImageObject,
+    membres: CMS_API_membre[] // ou { nom: string, email: string }[]
+    image: CMS_API_ImageObject
   }
   
+  type CMS_API_PhotoEquipe = CMS_API_ImageObject
+
   

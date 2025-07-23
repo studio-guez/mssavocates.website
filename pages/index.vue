@@ -1,10 +1,8 @@
 <template>
   <main class="v-index">
-    <!--     <AppHeader /> -->
-
     <template v-if="data && data.status === 'ok'">
       <div>
-        <h1>{{ data?.result?.home.title }}</h1>
+        <!-- <h1>{{ data?.result?.home.title }}</h1> -->
       </div>
       <!--  
       <div>
@@ -19,50 +17,58 @@
  -->
 
       <!-- hero= texte + articles  -->
+      <StyleBlock>
+        <div>
+          <h2>hero</h2>
+          <template v-for="hero of data.result.home.introduction">
+            <AppHero :v_app_hero_data="hero" />
+          </template>
+        </div>
 
-      <div>
-        <h2>hero</h2>
-        <template v-for="hero of data.result.home.introduction">
-          <AppHero :v_app_hero_data="hero" />
-        </template>
-      </div>
+        <div>
+          <h2>hero articles</h2>
+          <template v-for="article of data.result.actualites.articles">
+            <AppArticle :v_app_article_data="article" />
+          </template>
+        </div>
+      </StyleBlock>
+      <!-- photo équipe  -->
 
-      <div>
-        <h2>hero articles</h2>
-        <template v-for="article of data.result.actualites.articles">
-          <AppArticle :v_app_article_data="article" />
-        </template>
-      </div>
+ 
+        <StyleBlock class="is-fill">
+          <img :src="data.result.home.photo_equipe.reg.url" class="img-full" />
+        </StyleBlock>
+
 
       <!-- équipe  -->
 
       <StyleBlock>
-      <div>
-        <h2>EQUIPE</h2>
-        <div class="flex flex-between">
-        <template v-for="people of data.result.home.equipe" :key="people.nom">
-          <AppTeam :v_app_team_data="people" />
-        </template>
-      </div>
-      </div>
-      <div class="flex flex-center">
-        <AppButton label="Toutes les actualités" href="/actualitees" variant="outlined-white" />
-        <AppButton label="Toutes les actualités" href="/actualitees" variant="outlined" />
-      </div>
+        <div>
+          <h2>EQUIPE</h2>
+          <div class="flex flex-between">
+            <template v-for="people of data.result.home.equipe" :key="people.nom">
+              <AppTeam :v_app_team_data="people" />
+            </template>
+          </div>
+        </div>
+        <div class="flex flex-center">
+          <AppButton label="Toutes les actualités" href="/actualitees" variant="outlined-white" />
+          <AppButton label="Toutes les actualités" href="/actualitees" variant="outlined" />
+        </div>
 
-    </StyleBlock>
+      </StyleBlock>
 
 
 
       <!-- domaines d'activités  -->
-<StyleBlock>
-      <div>
-        <h2>DOMAINES D'ACTIVITÉS</h2>
-        <div v-for="domaine in data.result.home.domaines_activite">
-          <AppDomaine :v_app_domaine_data="domaine" />
+      <StyleBlock>
+        <div>
+          <h2>DOMAINES D'ACTIVITÉS</h2>
+          <div v-for="domaine in data.result.home.domaines_activite">
+            <AppDomaine :v_app_domaine_data="domaine" />
+          </div>
         </div>
-      </div>
-    </StyleBlock>
+      </StyleBlock>
       <!-- test data pour debugger  -->
 
       <section>
@@ -106,6 +112,7 @@ type FetchData = CMS_API_Response & {
       introduction: CMS_API_hero[]
       titre: string
       texte: string
+      photo_equipe: CMS_API_PhotoEquipe
       equipe: CMS_API_people[]
       domaines_activite: CMS_API_domaines_activite[]
     },
@@ -133,13 +140,27 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
         select: {
           title: true,
           slug: true,
+
           introduction: {
             query: "page.introduction.toStructure()",
             select: {
               titre: true,
-              texte: true,
+              texte: true
             }
           },
+
+          photo_equipe: {
+            query: 'page.photo_equipe.toFiles.first',
+            select: {
+              alt: "file.alt.value",
+              tiny: 'file.resize(50, null, 10)',
+              small: 'file.resize(500)',
+              reg: 'file.resize(1280)',
+              large: 'file.resize(1920)',
+              xxl: 'file.resize(2500)'
+            }
+          },
+
           domaines_activite: {
             query: 'page.domaines_activite.toStructure()',
             select: {
@@ -163,6 +184,7 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
               }
             }
           },
+
           equipe: {
             query: "page.equipe.toStructure()",
             select: {
@@ -185,6 +207,7 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
           }
         }
       },
+
       actualites: {
         query: `site.find("actualites")`,
         select: {

@@ -1,13 +1,15 @@
 <template>
   <main class="v-contact">
     <div v-if="data && data.status === 'ok'">
-      <h2>Contact</h2>
-      <AppContact :v_app_contact_data="data.result" />
+      <!-- <h2>Contact</h2> -->
 
+      <StyleBlock>
+        <AppContact :v_app_contact_data="data.result" />
+      </StyleBlock>
       <section>
         <!-- test data pour debugger -->
         <div>
-          {{ data.result }}
+          <!-- {{ data.result }} -->
 
         </div>
       </section>
@@ -53,11 +55,19 @@ const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
           nom: "structureItem.nom.value",
           email: "structureItem.email.value"
         }
-        
+      },
+      image: {
+        query: "page.files.filterBy('type', '==', 'image').first",
+        select: {
+          url: "file.url",
+          alt: "file.alt.value",
+          reg: "file.resize(1280)"
+        }
       }
     }
   }
 })
+
 
 
 </script>
