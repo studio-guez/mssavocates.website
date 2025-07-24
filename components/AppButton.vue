@@ -1,12 +1,12 @@
 <template>
-  <component
-    :is="linkTag"
-    class="v-app-button"
-    :href="href"
-    :to="to"
-    :class="[variant, { 'is-selected': selected }]"
-    @click="$emit('click')"
-  >
+<component
+  :is="linkTag"
+  v-bind="linkAttrs"
+  class="v-app-button"
+  :class="[variant, { 'is-selected': selected }]"
+  @click="$emit('click')"
+>
+
     <slot>{{ label }}</slot>
   </component>
  </template>
@@ -14,26 +14,34 @@
  
  <script setup lang="ts">
  import { defineProps, defineEmits, computed } from 'vue'
- 
+ import { NuxtLink } from '#components'
  
  const props = defineProps<{
-  label?: string
-  selected?: boolean
-  to?: string
-  href?: string
-  variant?: 'outlined' | 'outlined-white'
+   label?: string
+   selected?: boolean
+   to?: string
+   href?: string
+   variant?: 'outlined' | 'outlined-white'
  }>()
- 
  
  defineEmits<{
-  (e: 'click'): void
+   (e: 'click'): void
  }>()
  
- 
  const linkTag = computed(() => {
-  if (props.to) return 'NuxtLink'
-  if (props.href) return 'a'
-  return 'button'
+   if (props.to) return NuxtLink
+   if (props.href) return 'a'
+   return 'button'
+ })
+ 
+ const linkAttrs = computed(() => {
+   if (linkTag.value === NuxtLink) {
+     return { to: props.to }
+   } else if (linkTag.value === 'a') {
+     return { href: props.href, target: '_blank', rel: 'noopener' }
+   } else {
+     return {}
+   }
  })
  </script>
  

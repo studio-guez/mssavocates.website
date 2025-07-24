@@ -60,6 +60,7 @@ watchEffect(() => {
 </script>
 
 
+
 <style scoped lang="scss">
 .v-article-detail {
   padding: var(--space-xl);
