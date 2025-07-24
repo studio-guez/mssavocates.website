@@ -39,24 +39,8 @@
 
       <!-- équipe  -->
 
-<<<<<<< Updated upstream
-
-      <div>
-        <h2>EQUIPE</h2>
-        <template v-for="people of data.result.home.equipe" :key="people.nom">
-          <AppTeam :v_app_team_data="people" />
-        </template>
-      </div>
-
-
-<AppButton label="Toutes les actualités" href="/actualitees" variant="outlined-white" />
-<AppButton label="Toutes les actualités" href="/actualitees" variant="outlined" />
-
-
-=======
 <StyleBlock>
   <h2 class="mb-s">EQUIPE</h2>
->>>>>>> Stashed changes
 
   <div
     class="flex flex-center"
@@ -72,23 +56,13 @@
 
 
       <!-- domaines d'activités  -->
-
+<StyleBlock>
       <div>
         <h2>domaines d'activités</h2>
         <div v-for="domaine in data.result.home.domaines_activite">
           <AppDomaine :v_app_domaine_data="domaine" />
         </div>
       </div>
-<<<<<<< Updated upstream
-
-      <!-- test data pour debugger  -->
-
-
-        <div>
-          {{ data.result }}
-        </div>
-
-=======
     </StyleBlock>
 
       <!-- test data pour debugger  -->
@@ -98,7 +72,6 @@
           {{ data.result }}
         </div>
       </section> -->
->>>>>>> Stashed changes
 
 
 
@@ -133,10 +106,7 @@
       -> bouton retour home
     </template>
 
-<<<<<<< Updated upstream
-=======
     <!-- footer -->
->>>>>>> Stashed changes
 
   </main>
 </template>

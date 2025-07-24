@@ -1,11 +1,4 @@
 <template>
-<<<<<<< Updated upstream
-    <section class="v-app-article">
-        <h3>{{v_app_article_data.date}}</h3>
-        <h3>{{v_app_article_data.main_title}}</h3>
-        <h3>{{v_app_article_data.resume}}</h3>
-    </section>
-=======
   <div class="v-article-card">
     <div class="v-article-content">
       <p class="v-article-date">{{ v_app_article_data.date }}</p>
@@ -25,7 +18,6 @@
       />
     </div>
   </div>
->>>>>>> Stashed changes
 </template>
 
 

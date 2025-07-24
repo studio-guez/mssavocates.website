@@ -1,14 +1,4 @@
 <template>
-<<<<<<< Updated upstream
-    <section class="v-app-team"
-    >
-      <h3>{{v_app_team_data.nom}}</h3>
-      <h3>{{v_app_team_data.prenom}}</h3>
-      <img
-             :src="v_app_team_data.image.reg.url"
-      />
-    </section>
-=======
   <a href="/equipe" class="v-app-team">
 <img
   :src="v_app_team_data.image.reg.url"
@@ -18,7 +8,6 @@
     <h3 class="prenom">{{ v_app_team_data.prenom }}</h3>
     <h3 class="nom">{{ v_app_team_data.nom }}</h3>
   </a>
->>>>>>> Stashed changes
 </template>
 
 <script setup lang="ts">
@@ -61,10 +50,6 @@ const props = defineProps<{
   border-radius: var(--radius-s);
 }
 
-<<<<<<< Updated upstream
-<style lang="scss" scoped >
-.v-app-team {
-=======
   .prenom,
   .nom {
     transition: color 0.2s;
@@ -74,6 +59,5 @@ const props = defineProps<{
   &:hover .nom {
     color: var(--color-pink);
   }
->>>>>>> Stashed changes
 }
 </style>
