@@ -1,6 +1,6 @@
 <template>
     <main>
-    <StyleBlock :withDivider="true">
+        <StyleBlock :withDivider="true">
     <AppProfilsEquipe
   :profils="(data?.result?.profils_list as CMS_API_profils['profils_list']) || []"
 />
