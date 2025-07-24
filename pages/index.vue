@@ -32,31 +32,24 @@
           </template>
         </div>
       </StyleBlock>
+
       <!-- photo équipe  -->
-
- 
-        <StyleBlock class="is-fill">
-          <img :src="data.result.home.photo_equipe.reg.url" class="img-full" />
-        </StyleBlock>
-
+      <StyleBlock class="is-fill">
+        <img :src="data.result.home.photo_equipe.reg.url" class="img-full" />
+      </StyleBlock>
 
       <!-- équipe  -->
-
       <StyleBlock>
-        <div>
-          <h2>EQUIPE</h2>
-          <div class="flex flex-between">
-            <template v-for="people of data.result.home.equipe" :key="people.nom">
-              <AppTeam :v_app_team_data="people" />
-            </template>
-          </div>
-        </div>
-        <div class="flex flex-center">
-          <AppButton label="Toutes les actualités" href="/actualitees" variant="outlined-white" />
-          <AppButton label="Toutes les actualités" href="/actualitees" variant="outlined" />
-        </div>
+        <h2 class="mb-s">EQUIPE</h2>
 
+
+        <div class="flex flex-center" style="flex-wrap: wrap; gap: var(--space-xl);">
+          <AppTeam v-for="person in data.result.home.equipe" :key="`${person.prenom}-${person.nom}`"
+            :v_app_team_data="person" />
+        </div>
       </StyleBlock>
+
+
 
 
 
@@ -69,6 +62,21 @@
           </div>
         </div>
       </StyleBlock>
+
+      <!-- Articles Home  -->
+
+      <h2 class="mb-s">Articles</h2>
+
+      <div class="article-grid">
+        <AppHomeArticle v-for="article in data.result.actualites.articles" :v_app_article_data="article" />
+      </div>
+
+      <div class="section">
+        <div class="flex flex-center">
+          <AppButton label="Toutes les actualités" href="/actualitees" variant="outlined-white" />
+        </div>
+      </div>
+
       <!-- test data pour debugger  -->
 
       <section>
@@ -214,7 +222,7 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
           title: true,
           slug: true,
           articles: {
-            query: 'page.children()',
+            query: 'page.children().listed().sortBy("date", "desc").limit(4)',
             select: {
               main_title: true,
               date: true,

@@ -345,6 +345,14 @@ img {
 }
 
 
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  padding-top: var(--space-l);
+}
+
+
+
 /* Taille texte */
 .text-xs {
  font-size: 0.75rem;
