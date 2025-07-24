@@ -50,6 +50,16 @@
 
 
       <!-- domaines d'activités  -->
+<<<<<<< Updated upstream
+=======
+      <StyleBlock>
+        <div>
+          <div v-for="domaine in data.result.home.domaines_activite">
+            <AppDomaine :v_app_domaine_data="domaine" />
+          </div>
+        </div>
+      </StyleBlock>
+>>>>>>> Stashed changes
 
       <div>
         <h2>domaines d'activités</h2>
