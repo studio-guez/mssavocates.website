@@ -38,6 +38,11 @@ type FetchData = CMS_API_Response & {
 // Cela permet à TypeScript de garantir la structure de la réponse
 // et de proposer de l’autocomplétion pour data.result.home, etc.
 
+
+// -----------------------------
+//   Données de contact
+// -----------------------------
+
 const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
   lazy: true,
   method: 'POST',
@@ -67,8 +72,6 @@ const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
     }
   }
 })
-
-
 
 </script>
 

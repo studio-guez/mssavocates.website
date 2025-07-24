@@ -1,8 +1,8 @@
 <template>
   <main class="v-actualities">
     <div class="v-actualities__content">
-      <h2>contenu de la page</h2>
-      {{ data?.result }}
+      <!-- <h2>contenu de la page</h2> -->
+      <!-- {{ data?.result }} -->
     </div>
 
     <!-- <div class="v-actualities__children">
@@ -13,32 +13,33 @@
     </div> -->
 
     <AppArticle
-  v-for="article in children_data?.result"
-  :key="article.main_title"
+  v-for="(article, i) in children_data?.result"
+  :key="article.slug"
   :v_app_article_data="article"
+  :isPreview="true"
+  :reversed="i % 2 === 1"
 />
-
   </main>
 </template>
 
 
 <script setup lang="ts">
 
-type FetchData = CMS_API_Response & {
-  result: {}
-}
+// type FetchData = CMS_API_Response & {
+//   result: {}
+// }
 
-const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
-  lazy: true,
-  method: 'POST',
-  body: {
-    query: `site.find('actualites')`,
-    select: {
-      'title': true,
-      'slug': true,
-    }
-  }
-})
+// const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
+//   lazy: true,
+//   method: 'POST',
+//   body: {
+//     query: `site.find('actualites')`,
+//     select: {
+//       'title': true,
+//       'slug': true,
+//     }
+//   }
+// })
 
 type FetchData_children = CMS_API_Response & {
   result: CMS_API_Article[],
@@ -56,6 +57,7 @@ const { data: children_data, status: children_status } = await useFetch<FetchDat
       'date': true,
       'main_title': true,
       'contenu': true,
+      'accroche': true,
     }
   }
 })

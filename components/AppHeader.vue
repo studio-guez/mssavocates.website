@@ -47,7 +47,7 @@ function toggleMenu() {
 
   .v-header__logo {
     img {
-      height: 3rem;
+      height: 3.5rem;
       display: block;
     }
   }

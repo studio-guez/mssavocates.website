@@ -21,11 +21,13 @@
 
 
  // Tailles d'espacement
+ --space-xxs: 0.05rem; 
  --space-xs: 0.25rem;
  --space-s: 0.5rem;
  --space-m: 1rem;
  --space-l: 2rem;
  --space-xl: 4rem;
+ --space-xxl: 5rem;
 
 
  // Border-radius
@@ -36,7 +38,7 @@
 
 
  // Largeurs max
- --container-width: 1200px;
+ --container-width: 90vw;
 }
 
 
@@ -103,6 +105,17 @@ a {
 /* TITRES */
 
 
+  /* H5 = H0 – Titre principal extra-large */
+
+h5 {
+
+  font-family: var(--font-NewEdge);
+  font-weight: 800;       // ✅ plus gras que h1
+  font-size: 15.5rem;      // ✅ plus grand que h1
+  color: var(--color-black);
+  margin: 0;
+}
+
 h1 {
  font-family: var(--font-NewEdge);
  font-weight: 600;
@@ -136,6 +149,8 @@ h4 {
  color: var(--color-black);
  margin: 0;
 }
+
+
 
 
 /* Variantes de h4 */

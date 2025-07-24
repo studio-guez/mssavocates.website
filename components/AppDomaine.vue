@@ -1,4 +1,5 @@
 <template>
+      <h2 class="v-app-domaine__titre">DOMAINES D’ACTIVITÉS</h2>
   <section class="v-app-domaine">
     <div class="v-app-domaine__text">
       <!-- <h2>Domaines d’activités</h2> -->
@@ -31,11 +32,17 @@
   </style>
 
 <style scoped>
+
+.v-app-domaine__titre {
+  margin-bottom: var(--space-xl);
+}
+
 .v-app-domaine {
   display: flex;
   justify-content: space-between;
   gap: var(--space-xl);
-  align-items: flex-start;
+  /* align-items: flex-start; */
+  align-items: center;
   padding-inline: var(--space-m);
 }
 .v-app-domaine__bloc h4 {
@@ -71,6 +78,9 @@
 .v-app-domaine__media {
   flex: 1;
   padding: var(--space-xs);
-  min-height: 600px;
+  display: flex;
+  align-items: center; /* ✅ centre verticalement */
+  justify-content: center; /* ✅ centre horizontalement */
+  width: 100%;
 }
 </style>

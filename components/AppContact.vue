@@ -24,9 +24,9 @@
             </div>
             <!-- Colonne droite -->
             <div class="v-app-contact__right">
+                <p class="v-app-contact__address">{{ v_app_contact_data.adresse }}</p>
                 <img v-if="v_app_contact_data.image" :src="v_app_contact_data.image.reg.url"
                     :alt="v_app_contact_data.image.alt || 'Plan de l\'étude'" class="v-app-contact__image" />
-                <p class="v-app-contact__address">{{ v_app_contact_data.adresse }}</p>
             </div>
         </div>
     </section>
@@ -53,13 +53,14 @@ const props = defineProps<{
     flex-wrap: wrap;
     gap: var(--space-xl);
     justify-content: space-between;
+    align-items: center; /* ✅ centre verticalement tous les enfants */
 }
 
 /* Colonne gauche */
 .v-app-contact__left {
     flex: 1;
     min-width: 280px;
-    max-width: 35vw;
+    max-width: 30vw;
     display: flex;
     flex-direction: column;
     gap: var(--space-s);
@@ -110,21 +111,23 @@ const props = defineProps<{
     flex-direction: column;
     align-items: flex-end;
     gap: var(--space-s);
-    text-align: right;
+    text-align: center;
+    /* vertical-align: middle; */
 }
 
 .v-app-contact__address {
     font-size: var(--body-5-size);
     color: var(--color-text-muted);
+    align-self: center;
 }
 
 .v-app-contact__image {
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
   border-radius: var(--radius-m);
   display: block;
   margin-inline: auto; /* ✅ centre horizontalement */
-  margin-top: var(--space-xl);
-  margin-bottom: var(--space-xl);
+  margin-top: var(--space-s);
+  margin-bottom: var(--space-m);
 }
 </style>

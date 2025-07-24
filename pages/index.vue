@@ -56,7 +56,6 @@
       <!-- domaines d'activités  -->
       <StyleBlock>
         <div>
-          <h2>DOMAINES D'ACTIVITÉS</h2>
           <div v-for="domaine in data.result.home.domaines_activite">
             <AppDomaine :v_app_domaine_data="domaine" />
           </div>
@@ -78,6 +77,7 @@
       </div>
 
       <!-- test data pour debugger  -->
+
 
       <section>
         <div>

@@ -1,23 +1,23 @@
 <template>
     <main>
-        <div>
-            <h2>Profils</h2>
+    <StyleBlock :withDivider="true">
+    <AppProfilsEquipe
+  :profils="(data?.result?.profils_list as CMS_API_profils['profils_list']) || []"
+/>
+</StyleBlock>
 
-            <div v-for="profil in data?.result?.profils_list" :key="profil.email">
-                <h3>{{ profil.fullname }}</h3>
-                <img :src="profil.photo.small.url" :alt="profil.photo.alt || profil.fullname" />
-                <p v-html="profil.description"></p>
-            </div>
-        </div>
     </main>
-</template>
-
+  </template>
 
 <script setup lang="ts">
 
 type FetchData = CMS_API_Response & {
     result: CMS_API_profils
 }
+
+// -----------------------------
+//   Données équipes
+// -----------------------------
 
 const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
     lazy: true,
@@ -49,4 +49,5 @@ const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
         }
     }
 })
+
 </script>

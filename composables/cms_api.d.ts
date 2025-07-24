@@ -53,10 +53,13 @@ type CMS_API_hero = {
 
 
 type CMS_API_Article = {
+    // title: string
+    accroche: string, 
     main_title: string
     date: string
     resume: string
     contenu: string
+    slug: string
 }
 
 type CMS_API_Footer = {
