@@ -1,375 +1,394 @@
-  @use "font-import";
+@use "font-import";
 
 
-  /* ==========================================================================
+/* ==========================================================================
   LES VARIABLES
   ========================================================================== */
 
 
-  :root {
-
-    // les couleurs //
-    --color-black: #000000;
-    --color-white: #ffffff;
-    --color-pink: #FF33CC;
-
-  // Tailles d'espacement
-  --space-xs: 0.25rem;
-  --space-s: 0.5rem;
-  --space-m: 1rem;
-  --space-l: 2rem;
-  --space-xl: 4rem;
-
-    // les typos //
-    --font-NewEdge: 'NewEdge', sans-serif;
-    --font-Inter: 'InterDisplay', sans-serif;
+:root {
 
 
-    // Tailles d'espacement
-    --space-xs: 0.25rem;
-    --space-s: 0.5rem;
-    --space-m: 1rem;
-    --space-l: 2rem;
-    --space-xl: 4rem;
+ // les couleurs //
+ --color-black: #000000;
+ --color-white: #ffffff;
+ --color-pink: #FF33CC;
 
 
-    // Border-radius
-    --radius-s: 1rem;
-    --radius-m: 2rem;
-    --radius-l: 3rem;
-    --radius-full: 9999px;
+ // les typos //
+ --font-NewEdge: 'NewEdge', sans-serif;
+ --font-Inter: 'InterDisplay', sans-serif;
 
 
-    // Largeurs max
-    --container-width: 1200px;
-  }
+ // Tailles d'espacement
+ --space-xxs: 0.05rem; 
+ --space-xs: 0.25rem;
+ --space-s: 0.5rem;
+ --space-m: 1rem;
+ --space-l: 2rem;
+ --space-xl: 4rem;
+ --space-xxl: 8rem;
 
 
-  /* ==========================================================================
+ // Border-radius
+ --radius-s: 1rem;
+ --radius-m: 2rem;
+ --radius-l: 3rem;
+ --radius-full: 9999px;
+
+
+ // Largeurs max
+ --container-width: 90vw;
+}
+
+
+/* ==========================================================================
   GLOBAL FONTS + HTML BASE
   ========================================================================== */
 
 
-  html {
-    font-family: var(--font-Inter);
-    font-optical-sizing: auto;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 20px;
-    font-weight: 500;
-  }
+html {
+ font-family: var(--font-Inter);
+ font-optical-sizing: auto;
+ font-style: normal;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+ font-size: 20px;
+ font-weight: 500;
+}
 
 
-  body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    background-color: var(--color-pink);
-  }
+body {
+ margin: 0;
+ padding: 0;
+ overflow-x: hidden;
+ background-color: var(--color-pink);
+}
 
 
-  a {
-    color: inherit;
-    cursor: pointer;
-  }
+a {
+ color: inherit;
+ cursor: pointer;
+}
 
 
 
 
-  /* ==========================================================================
+/* ==========================================================================
   @font-face IMPORTS — pour NewEdge
   ========================================================================== */
 
 
-  @font-face {
-    font-family: var(--font-NewEdge);
-    src: url('/fonts/NewEdge666Test-RegularRounded.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-  }
+@font-face {
+ font-family: var(--font-NewEdge);
+ src: url('/fonts/NewEdge666Test-RegularRounded.otf') format('opentype');
+ font-weight: 400;
+ font-style: normal;
+}
 
 
-  @font-face {
-    font-family: var(--font-NewEdge);
-    src: url('/fonts/NewEdge666Test-SemiboldRounded.otf') format('opentype');
-    font-weight: 600;
-    font-style: normal;
-  }
+@font-face {
+ font-family: var(--font-NewEdge);
+ src: url('/fonts/NewEdge666Test-SemiboldRounded.otf') format('opentype');
+ font-weight: 600;
+ font-style: normal;
+}
 
 
 
 
-  /* ==========================================================================
+/* ==========================================================================
   TYPOGRAPHY
   ========================================================================== */
 
 
-  /* TITRES */
+/* TITRES */
 
 
-  h1 {
-    font-family: var(--font-NewEdge);
-    font-weight: 600;
-    font-size: 4rem;
-    color: var(--color-black);
-  }
+  /* H5 = H0 – Titre principal extra-large */
 
+h5 {
 
-  h2 {
-    font-family: var(--font-NewEdge);
-    font-weight: 400;
-    font-size: 2rem;
-    color: var(--color-black);
-  }
+  font-family: var(--font-NewEdge);
+  font-weight: 800;       // ✅ plus gras que h1
+  font-size: 15.5rem;      // ✅ plus grand que h1
+  color: var(--color-black);
+  margin: 0;
+}
 
+h1 {
+ font-family: var(--font-NewEdge);
+ font-weight: 600;
+ font-size: 4rem;
+ color: var(--color-black);
+}
 
-  h3 {
-    font-family: var(--font-Inter);
-    font-weight: 700;
-    font-size: 1.8rem;
-    color: var(--color-black);
-    margin: 0;
-  }
 
+h2 {
+ font-family: var(--font-NewEdge);
+ font-weight: 400;
+ font-size: 2rem;
+ color: var(--color-black);
+ margin: 0;
+}
 
-  h4 {
-    font-family: var(--font-Inter);
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: var(--color-black);
-    margin: 0;
-  }
 
+h3 {
+ font-family: var(--font-Inter);
+ font-weight: 700;
+ font-size: 1.8rem;
+ color: var(--color-black);
+ margin: 0;
+}
 
-  /* Variantes de h4 */
-  h4.text-black {
-    color: var(--color-black);
-  }
 
+h4 {
+ font-family: var(--font-Inter);
+ font-weight: 700;
+ font-size: 1.2rem;
+ color: var(--color-black);
+ margin: 0;
+}
 
-  h4.text-pink {
-    color: var(--color-pink);
-  }
 
 
-  h4.text-white {
-    color: var(--color-white);
-  }
 
+/* Variantes de h4 */
+h4.text-black {
+ color: var(--color-black);
+}
 
-  /* CORPS DE TEXTE */
 
+h4.text-pink {
+ color: var(--color-pink);
+}
 
-  .body-1 {
-    font-family: var(--font-Inter);
-    font-weight: 300;
-    font-size: 1.5rem;
-    color: var(--color-black);
-  }
 
+h4.text-white {
+ color: var(--color-white);
+}
 
-  .body-2 {
-    font-family: var(--font-Inter);
-    font-weight: 400;
-    font-size: 1.05rem;
-    color: var(--color-black);
-  }
 
+/* CORPS DE TEXTE */
 
-  p,
-  li,
-  span {
-    font-family: var(--font-Inter);
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: var(--color-black);
-  }
 
+.body-1 {
+ font-family: var(--font-Inter);
+ font-weight: 300;
+ font-size: 1.5rem;
+ color: var(--color-black);
+}
 
-  /* Fond */
-  .bg-white {
-    background-color: var(--color-white);
-  }
 
+.body-2 {
+ font-family: var(--font-Inter);
+ font-weight: 400;
+ font-size: 1.05rem;
+ color: var(--color-black);
+}
 
-  .bg-pink {
-    background-color: var(--color-pink);
-  }
 
+p,
+li,
+span {
+ font-family: var(--font-Inter);
+ font-weight: 400;
+ font-size: 1rem;
+ line-height: 1.6;
+ color: var(--color-black);
+ margin: 0;
+}
 
 
+/* Fond */
+.bg-white {
+ background-color: var(--color-white);
+}
 
 
+.bg-pink {
+ background-color: var(--color-pink);
+}
 
-  /* Layout utilitaires */
-  .container {
-    max-width: var(--container-width);
-    margin-inline: auto;
-    padding-inline: var(--space-m);
-  }
 
 
-  .section {
-    padding-block: var(--space-xl);
-  }
+/* Layout utilitaires */
+.container {
+ max-width: var(--container-width);
+ margin-inline: auto;
+ padding-inline: var(--space-m);
+}
 
 
-  /* Border radius */
-  .rounded-s {
-    border-radius: var(--radius-s);
-  }
+.section {
+ padding-block: var(--space-l);
+}
 
 
-  .rounded-m {
-    border-radius: var(--radius-m);
-  }
+/* Border radius */
+.rounded-s {
+ border-radius: var(--radius-s);
+}
 
 
-  .rounded-l {
-    border-radius: var(--radius-l);
-  }
+.rounded-m {
+ border-radius: var(--radius-m);
+}
 
 
-  .rounded-full {
-    border-radius: var(--radius-full);
-  }
+.rounded-l {
+ border-radius: var(--radius-l);
+}
 
 
-  /* Espacement rapide */
-  .mt-0 {
-    margin-top: 0 !important;
-  }
+.rounded-full {
+ border-radius: var(--radius-full);
+}
 
 
-  .mb-0 {
-    margin-bottom: 0 !important;
-  }
+/* Espacement rapide */
+.mt-0 {
+ margin-top: 0 !important;
+}
 
 
-  .mt-s {
-    margin-top: var(--space-s);
-  }
+.mb-0 {
+ margin-bottom: 0 !important;
+}
 
 
-  .mb-s {
-    margin-bottom: var(--space-s);
-  }
+.mt-s {
+ margin-top: var(--space-s);
+}
 
 
-  .pt-l {
-    padding-top: var(--space-l);
-  }
+.mb-s {
+ margin-bottom: var(--space-s);
+}
 
 
-  .pb-l {
-    padding-bottom: var(--space-l);
-  }
+.pt-l {
+ padding-top: var(--space-l);
+}
 
 
-  /* Alignements */
-  .text-center {
-    text-align: center;
-  }
+.pb-l {
+ padding-bottom: var(--space-l);
+}
 
 
-  .text-left {
-    text-align: left;
-  }
+/* Alignements */
+.text-center {
+ text-align: center;
+}
 
 
-  /* Couleurs texte */
-  .text-black {
-    color: var(--color-black);
-  }
+.text-left {
+ text-align: left;
+}
 
 
-  .text-white {
-    color: var(--color-white);
-  }
+/* Couleurs texte */
+.text-black {
+ color: var(--color-black);
+}
 
 
-  .text-pink {
-    color: var(--color-pink);
-  }
+.text-white {
+ color: var(--color-white);
+}
 
 
-  /* Fond */
-  .bg-white {
-    background-color: var(--color-white);
-  }
+.text-pink {
+ color: var(--color-pink);
+}
 
 
-  .bg-pink {
-    background-color: var(--color-pink);
-  }
+/* Fond */
+.bg-white {
+ background-color: var(--color-white);
+}
 
 
+.bg-pink {
+ background-color: var(--color-pink);
+}
 
 
-  /* images */
 
 
-  img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    object-fit: cover;
+/* images */
 
 
-    // arrondi par défaut
-    border-radius: var(--radius-s);
+img {
+ display: block;
+ max-width: 100%;
+ height: auto;
+ object-fit: cover;
 
 
-    // sauf si la classe 'no-radius' est présente
-    &.no-radius {
-      border-radius: 0;
-    }
-  }
+ // arrondi par défaut
+ border-radius: var(--radius-s);
 
 
-  /* Flex helpers */
-  .flex {
-    display: flex;
-    gap: var(--space-m);
-  }
+ // sauf si la classe 'no-radius' est présente
+ &.no-radius {
+   border-radius: 0;
+ }
+}
 
 
-  .flex-center {
-    justify-content: center;
-    align-items: center;
-  }
+/* Flex helpers */
+.flex {
+ display: flex;
+ gap: var(--space-m);
+}
 
 
-  .flex-between {
-    justify-content: space-between;
-    align-items: center;
-  }
+.flex-center {
+ justify-content: center;
+ align-items: center;
+}
 
-  .article-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    padding-top: var(--space-l);
-  }
 
+.flex-between {
+ justify-content: space-between;
+ align-items: center;
+}
 
-  /* Taille texte */
-  .text-xs {
-    font-size: 0.75rem;
-  }
 
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  padding-top: var(--space-l);
+}
 
-  .text-sm {
-    font-size: 0.875rem;
-  }
 
 
-  .text-base {
-    font-size: 1rem;
-  }
+/* Taille texte */
+.text-xs {
+ font-size: 0.75rem;
+}
 
 
-  .text-lg {
-    font-size: 1.25rem;
-  }
+.text-sm {
+ font-size: 0.875rem;
+}
+
+
+.text-base {
+ font-size: 1rem;
+}
+
+
+.text-lg {
+ font-size: 1.25rem;
+}
+
+.img-full {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-l);
+}

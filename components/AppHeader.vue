@@ -1,10 +1,10 @@
 <template>
   <header class="v-header">
 
-  <div class="v-header__top">
-  <a href="/" class="v-header__logo">
-    <img src="/public/img/mss_logo.svg" alt="Maulini Schneuwly Strummiello – Avocates" />
-  </a>
+    <div class="v-header__top">
+      <a href="/" class="v-header__logo">
+        <img src="/public/img/mss_logo.svg" alt="Maulini Schneuwly Strummiello – Avocates" class="no-radius" />
+      </a>
 
       <div class="v-header__menu" @click="toggleMenu">
         MENU
@@ -33,7 +33,6 @@ function toggleMenu() {
 </script>
 
 <style scoped lang="scss">
-
 .v-header {
   width: 100%;
   background-color: white;
@@ -48,7 +47,7 @@ function toggleMenu() {
 
   .v-header__logo {
     img {
-      height: 3rem;
+      height: 3.5rem;
       display: block;
     }
   }
@@ -59,39 +58,39 @@ function toggleMenu() {
     user-select: none;
   }
 
- .v-header__nav {
-  display: none;
-  background-color: #f94be4;
-  padding: 1.5rem 0;
+  .v-header__nav {
+    display: none;
+    background-color: var(--color-pink);
+    padding: 1.5rem 0;
 
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    max-width: 1200px; 
-    margin-inline: auto;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-evenly;
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
 
-    li {
-      flex: 1;
-      text-align: center;
+      li {
+        flex: 1;
+        text-align: center;
+      }
+
+      li a {
+        font-family: 'inter', sans-serif;
+        font-weight: 600;
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+        display: inline-block;
+      }
     }
 
-    li a {
-      font-family: 'inter', sans-serif;
-      font-weight: 600;
-      color: white;
-      text-decoration: none;
-      font-size: 1.2rem;
-      display: inline-block;
+    &.is-visible {
+      display: block;
     }
   }
-
-  &.is-visible {
-    display: block;
-  }
-}
 }
 </style>
