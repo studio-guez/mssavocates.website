@@ -1,14 +1,13 @@
 <template>
-  <h2 class="v-app-domaine__titre">DOMAINES D'ACTIVITÉS</h2>
+      <h2 class="v-app-domaine__titre">DOMAINES D’ACTIVITÉS</h2>
   <section class="v-app-domaine">
-<<<<<<< Updated upstream
-    <div v-for="domaine in v_app_domaine_data.domaines">
-      <h3 v-html="domaine.titre"></h3>
-      <div v-html="domaine.description"></div>
-=======
     <div class="v-app-domaine__text">
       <!-- <h2>Domaines d’activités</h2> -->
-      <div v-for="domaine in v_app_domaine_data.domaines" :key="domaine.titre" class="v-app-domaine__bloc">
+      <div
+        v-for="domaine in v_app_domaine_data.domaines"
+        :key="domaine.titre"
+        class="v-app-domaine__bloc"
+      >
         <h4 v-html="domaine.titre" />
         <div v-html="domaine.description" />
       </div>
@@ -16,13 +15,10 @@
 
     <div class="v-app-domaine__media">
       <img :src="v_app_domaine_data.image.reg.url" alt="" />
->>>>>>> Stashed changes
     </div>
-    <img :src="v_app_domaine_data.image.reg.url" />
   </section>
 </template>
-<<<<<<< Updated upstream
-  
+
   
   <script setup lang="ts">
   import { defineProps } from 'vue'
@@ -32,30 +28,13 @@
   }>()
   </script>
   
-  
-  
-  
-  
-  <style lang="scss" scoped >
-
+  <style scoped>
   </style>
-  
-=======
-
-
-<script setup lang="ts">
-import { defineProps } from 'vue'
-
-const props = defineProps<{
-  v_app_domaine_data: CMS_API_domaines_activite
-}>()
-</script>
-
-<style scoped></style>
 
 <style scoped>
+
 .v-app-domaine__titre {
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-xl);
 }
 
 .v-app-domaine {
@@ -63,11 +42,9 @@ const props = defineProps<{
   justify-content: space-between;
   gap: var(--space-xl);
   /* align-items: flex-start; */
-  padding-inline: var(--space-m);
   align-items: center;
-
+  padding-inline: var(--space-m);
 }
-
 .v-app-domaine__bloc h4 {
   color: var(--color-pink);
 }
@@ -78,32 +55,32 @@ const props = defineProps<{
   max-width: 50vw;
   display: flex;
   flex-direction: column;
-  gap: var(--space-m);
+  gap: var(--space-s);
 }
 
 .v-app-domaine__bloc {
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  margin-bottom: var(--space-xs);
-  /* 👈 ajoute cette ligne */
+  margin-bottom: var(--space-m); /* 👈 ajoute cette ligne */
 }
 
 /* Contenu injecté */
 .v-app-domaine__desc :deep(p),
 .v-app-domaine__desc :deep(ul),
 .v-app-domaine__desc :deep(li) {
-  margin: 0 0 var(--space-l) 0;
+  margin: 0 0 var(--space-xs) 0;
   padding: 0;
   color: var(--color-black);
   line-height: 1.6;
 }
-
 /* Colonne droite */
 .v-app-domaine__media {
   flex: 1;
   padding: var(--space-xs);
-  min-height: 70vh;
+  display: flex;
+  align-items: center; /* ✅ centre verticalement */
+  justify-content: center; /* ✅ centre horizontalement */
+  width: 100%;
 }
 </style>
->>>>>>> Stashed changes
