@@ -1,5 +1,7 @@
 <template>
+    <StyleBlock>
   <main class="v-article-detail">
+
     <div class="v-article-detail__content">
       <div class="v-article-detail__left">
         <h1 class="main-title">{{ article?.main_title }}</h1>
@@ -15,7 +17,9 @@
     <div class="v-article-detail__footer">
       <NuxtLink to="/actualites" class="back-button">Retour</NuxtLink>
     </div>
+ 
   </main>
+</StyleBlock>
 </template>
 
 
@@ -63,18 +67,17 @@ watchEffect(() => {
 
 <style scoped lang="scss">
 .v-article-detail {
-  padding: var(--space-xl);
+  // padding: var(--space-xl);
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .v-article-detail__content {
   display: flex;
-  gap: var(--space-xl);
+  // gap: var(--space-xl);
   background: white;
   border-radius: var(--radius-xl);
-  border: 2px solid var(--color-pink, #ff00aa);
-  padding: var(--space-xl);
+  // padding: var(--space-xl);
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -84,7 +87,7 @@ watchEffect(() => {
 
 .v-article-detail__left {
   flex: 1;
-  padding-right: var(--space-m);
+  // padding-right: var(--space-m);
 
   .main-title {
     font-size: 2rem;
@@ -123,7 +126,7 @@ watchEffect(() => {
 }
 
 .v-article-detail__footer {
-  margin-top: var(--space-l);
+  // margin-top: var(--space-l);
   display: flex;
   justify-content: flex-end;
 

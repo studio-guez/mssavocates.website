@@ -5,8 +5,8 @@
   :alt="`${v_app_team_data.prenom} ${v_app_team_data.nom}`"
   class="team-image"
  />
-    <h3 class="prenom">{{ v_app_team_data.prenom }}</h3>
-    <h3 class="nom">{{ v_app_team_data.nom }}</h3>
+    <h2 class="prenom">{{ v_app_team_data.prenom }}</h2>
+    <h2 class="nom">{{ v_app_team_data.nom }}</h2>
   </a>
  </template>
  
@@ -61,6 +61,7 @@
   .prenom,
   .nom {
     transition: color 0.2s;
+    display: inline-block;
   }
  
  
