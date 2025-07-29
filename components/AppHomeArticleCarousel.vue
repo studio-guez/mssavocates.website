@@ -1,6 +1,6 @@
 <template>
     <div class="article-carousel-wrapper">
-      <h1 class="text-white text-center mb-s">ACTUS</h1>
+      <h1 class="text-white text-center">ACTUS</h1>
    
    
       <div
@@ -24,7 +24,7 @@
           <AppButton
             label="Toutes les actualités"
             to="/actualites"
-            variant="outlined-white"
+            variant="cta-actus"
          />
         </div>
       </div>
@@ -93,6 +93,7 @@
    
    <style scoped lang="scss">
    .article-carousel-wrapper {
+    margin-top: var(--space-xxl);
     margin-bottom: var(--space-xl);
    
    

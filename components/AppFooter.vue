@@ -49,8 +49,9 @@
  <style lang="scss" scoped >
  .app-footer {
   background-color: var(--color-white);
-  padding-block: var(--space-l);
-  border: 2px solid var(--color-pink);
+  padding-block: var(--space-xl);
+  padding-bottom: var(--space-xxxl);
+  //border: 2px solid var(--color-pink);
   border-radius: var(--radius-l) var(--radius-l) 0 0;
  }
  
@@ -74,13 +75,7 @@
  
  
  .footer-block h4 {
-  text-transform: uppercase;
   margin-bottom: var(--space-s);
- }
- 
- 
- .footer-block .body-2 {
-  margin: 0;
  }
  
  

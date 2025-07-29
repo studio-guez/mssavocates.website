@@ -1,19 +1,20 @@
 <template>
   <section class="v-app-hero">
-    <div class="v-app-hero__grid">
-      <!-- Texte : 4 colonnes -->
-      <div class="v-app-hero__text">
-        <div class="v-app-hero__text-inner">
-          <h1 class="v-app-hero__title">
-            {{ v_app_hero_data.titre }}
-          </h1>
-          <h3 class="v-app-hero__subtitle">
-            {{ v_app_hero_data.texte }}
-           
-              <!-- <h4 v-html="domaine.titre" /> -->
-          </h3>
-        </div>
+<div class="v-app-hero__grid">
+  <!-- Texte : 4 colonnes -->
+  <div class="v-app-hero__text">
+    <div class="container">
+      <div class="v-app-hero__text-inner">
+        <h1 class="v-app-hero__title">
+          {{ v_app_hero_data.titre }}
+        </h1>
+        <h3 class="v-app-hero__subtitle">
+          {{ v_app_hero_data.texte }}
+        </h3>
       </div>
+    </div>
+  </div>
+
  
  
       <!-- Articles : 2 colonnes -->
@@ -46,13 +47,16 @@
  
  <style scoped lang="scss">
  .v-app-hero {
+  margin-block: var(--space-xl);
+padding-right: var(--space-xl);
+padding-left: var(--space-xl);
   &__grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: var(--space-l);
+    gap: var(--space-xxl);
     align-items: start;
- 
- 
+    justify-content: center;
+
     @media (max-width: 900px) {
       grid-template-columns: 1fr;
     }
@@ -73,9 +77,9 @@
  
  
    &__text-inner {
+
     display: flex;
-    flex-direction: column;
-    justify-content: center;    // Centrage vertical dans le bloc
+    flex-direction: column;   // Centrage vertical dans le bloc
     align-items: flex-start;    // Alignement du texte à gauche
     text-align: left;
     width: 100%;
@@ -94,8 +98,6 @@
     box-sizing: border-box; // Pour éviter que padding fasse déborder
  
  
- 
- 
     @media (max-width: 900px) {
       grid-column: span 1;
       padding-left: 0;
@@ -107,15 +109,15 @@
     }
   }
  
- 
+
   &__articles-title {
+    font-family: var(--font-NewEdge);
     font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text);
+    font-weight: 400;
     text-align: center;
-    margin-bottom: var(--space-s);
   }
  }
+ 
  </style>
  
  

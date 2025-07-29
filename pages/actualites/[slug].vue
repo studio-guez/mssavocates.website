@@ -1,25 +1,31 @@
 <template>
-    <StyleBlock>
-  <main class="v-article-detail">
+  <StyleBlock :withDivider="true" dividerPosition="center" :isShortDivider="true">
+    <main class="v-article-detail">
+      <div class="two-cols container">
+        <!-- Colonne gauche : titre -->
+        <div class="col">
+          <div class="col-inner v-article-detail__left">
+            <h2 class="main-title">{{ article?.main_title }}</h2>
+          </div>
+        </div>
 
-    <div class="v-article-detail__content">
-      <div class="v-article-detail__left">
-        <h1 class="main-title">{{ article?.main_title }}</h1>
+        <!-- Colonne droite : contenu + bouton -->
+        <div class="col">
+          <div class="col-inner v-article-detail__right">
+            <div class="v-article-detail__right-content">
+              <p class="article-date">{{ article?.date }}</p>
+              <p class="article-accroche"><strong>{{ article?.accroche }}</strong></p>
+              <div class="article-body" v-html="article?.contenu" />
+            </div>
+
+            <div class="v-article-detail__footer">
+              <AppButton to="/actualites" variant="outlined">Retour</AppButton>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="v-article-detail__right">
-        <p class="article-date">{{ article?.date }}</p>
-        <p class="article-accroche"><strong>{{ article?.accroche }}</strong></p>
-        <div class="article-body" v-html="article?.contenu" />
-      </div>
-    </div>
-
-    <div class="v-article-detail__footer">
-      <NuxtLink to="/actualites" class="back-button">Retour</NuxtLink>
-    </div>
- 
-  </main>
-</StyleBlock>
+    </main>
+  </StyleBlock>
 </template>
 
 
@@ -66,52 +72,64 @@ watchEffect(() => {
 
 
 <style scoped lang="scss">
-.v-article-detail {
-  // padding: var(--space-xl);
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.v-article-detail__content {
+.two-cols {
   display: flex;
-  // gap: var(--space-xl);
-  background: white;
-  border-radius: var(--radius-xl);
-  // padding: var(--space-xl);
-  overflow: hidden;
+  gap: var(--space-xxxl);
+  margin-block: var(--space-l);
+  margin-bottom: var(--space-xxl);
 
-  @media (max-width: 768px) {
+  .col {
+    flex: 1;
+    display: flex;
+    align-items: flex-start; // nouveau : contenu en haut
+    justify-content: flex-start; // nouveau : alignement à gauche
+    min-height: 200px;
+    min-width: 400px;
+  }
+
+  .col-inner {
+    width: 100%;
+    display: flex;
     flex-direction: column;
   }
 }
 
 .v-article-detail__left {
-  flex: 1;
-  // padding-right: var(--space-m);
-
   .main-title {
-    font-size: 2rem;
-    font-weight: bold;
     text-transform: uppercase;
     line-height: 1.2;
   }
 }
 
 .v-article-detail__right {
-  flex: 1;
-  border-left: 2px solid var(--color-pink, #ff00aa);
-  padding-left: var(--space-m);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 100%;
+
+  .v-article-detail__right-content {
+    flex-grow: 1;
+  }
+
+  .v-article-detail__footer {
+    align-self: flex-end;
+    margin-top: var(--space-xxl);
+  }
+}
+
+.v-article-detail__right-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
 
   .article-date {
     font-size: 0.9rem;
     color: #999;
-    margin-bottom: 1rem;
   }
 
   .article-accroche {
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
   }
 
   .article-body {
@@ -125,26 +143,8 @@ watchEffect(() => {
   }
 }
 
-.v-article-detail__footer {
-  // margin-top: var(--space-l);
-  display: flex;
-  justify-content: flex-end;
 
-  .back-button {
-    background: white;
-    border: 2px solid var(--color-pink, #ff00aa);
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius-m);
-    font-weight: bold;
-    color: var(--color-pink, #ff00aa);
-    text-decoration: none;
 
-    &:hover {
-      background: var(--color-pink, #ff00aa);
-      color: white;
-    }
-  }
-}
 </style>
 
 

@@ -21,7 +21,7 @@
    selected?: boolean
    to?: string
    href?: string
-   variant?: 'outlined' | 'outlined-white'
+  variant?: 'outlined' | 'outlined-white' | 'cta-actus'
  }>()
  
  defineEmits<{
@@ -50,7 +50,7 @@
  .v-app-button {
   border-radius: var(--radius-full);
   padding: var(--space-xs) var(--space-m);
-  min-width: 5rem;
+  min-width: 2rem;
   font-family: var(--font-Inter);
   font-size: 1rem;
   font-weight: 600;
@@ -59,7 +59,7 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  border: 2px solid;
+  border: 0.05rem solid;
  }
  
  
@@ -77,14 +77,15 @@
  
  
  .v-app-button.outlined-white {
-  background: var(--color-white);
-  border-color: var(--color-white);
-  color: var(--color-pink);
+   background: transparent;
+    color: var(--color-white);
  
  
   &:hover {
-    background: var(--color-pink);
-    color: var(--color-white);
+   
+     background: var(--color-white);
+  border-color: var(--color-white);
+  color: var(--color-pink);
   }
  }
  
@@ -94,6 +95,20 @@
   color: var(--color-white);
   border-color: var(--color-white);
  }
+
+ .v-app-button.cta-actus {
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+  background-color: transparent;
+  color: var(--color-white);
+  border: 0.05rem solid var(--color-white);
+
+  &:hover {
+    background-color: var(--color-white);
+    color: var(--color-pink);
+  }
+}
  </style>
  
  

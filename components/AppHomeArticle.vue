@@ -1,11 +1,11 @@
 <template>
   <div class="v-article-card" :class="variantClass">
     <div class="v-article-content">
-      <p class="v-article-date">{{ v_app_article_data.date }}</p>
-      <h3 class="v-article-title">
+      <p class="v-article-date body-1">{{ v_app_article_data.date }}</p>
+      <h4 class="v-article-title">
         {{ v_app_article_data.main_title?.toUpperCase() }}
-      </h3>
-      <p class="v-article-resume">
+      </h4>
+      <p class="v-article-resume body-2">
         {{ v_app_article_data.resume }}
       </p>
     </div>
@@ -39,9 +39,11 @@
  
  
  <style scoped lang="scss">
+
+   // La base commune 
  .v-article-card {
-  border-radius: var(--radius-l);
-  padding: var(--space-l);
+  border-radius: var(--radius-m);
+  padding: var(--space-xl);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -51,30 +53,28 @@
   box-sizing: border-box;
  
  
+    // La variante du blanc 
   &.variant-white {
     background-color: var(--color-white);
-    color: var(--color-text);
     width: 620px;
     min-height: 400px;
  
  
     .v-article-title {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: var(--space-xs);
+      margin-bottom: var(--space-m);
       text-transform: uppercase;
      }
  
  
     .v-article-resume {
-      font-size: 1rem;
-      line-height: 1.4;
       color: var(--color-text);
+           margin-bottom: var(--space-m);
     }
  
  
     .v-article-date {
       color: var(--color-text);
+       margin-bottom: var(--space-m);
     }
   }
  
@@ -87,35 +87,36 @@
   color: var(--color-white);
   width: 100%;
   min-height: 280px;
-  padding: var(--space-m);
+  padding: var(--space-l);
  
  
   .v-article-title {
     font-size: 0.9rem;
-    font-weight: 700;
-    margin-bottom: var(--space-xs);
+    margin-bottom: var(--space-s);
     text-transform: uppercase;
     color: var(--color-white);
   }
  
  
   .v-article-resume {
-    font-size: 0.9rem;
-    line-height: 1.3;
+      font-size: 0.9rem;
+      font-weight: 300;
     color: var(--color-white);
+    margin-bottom: var(--space-s);
   }
  
  
   .v-article-date {
-    font-size: 0.8rem;
-    color:var(--color-pink);
+   font-size: 0.9rem;
+   font-weight: 300;
+    color:var(--color-white);
+    margin-bottom: var(--space-s);
   }
  }
  }
  
  
  .v-article-footer {
-  margin: var(--space-m);
   display: flex;
   justify-content: flex-end;
  }

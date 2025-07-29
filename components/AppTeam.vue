@@ -1,14 +1,17 @@
 <template>
-  <a href="/equipe" class="v-app-team">
- <img
-  :src="v_app_team_data.image.reg.url"
-  :alt="`${v_app_team_data.prenom} ${v_app_team_data.nom}`"
-  class="team-image"
- />
-    <h2 class="prenom">{{ v_app_team_data.prenom }}</h2>
-    <h2 class="nom">{{ v_app_team_data.nom }}</h2>
+  
+  <a href="/equipe" class="v-app-team-card">
+    <img
+      :src="v_app_team_data.image.reg.url"
+      :alt="`${v_app_team_data.prenom} ${v_app_team_data.nom}`"
+      class="team-image"
+    />
+    <div class="identite">
+      <h2 class="prenom">{{ v_app_team_data.prenom }}</h2>
+      <h2 class="nom">{{ v_app_team_data.nom }}</h2>
+    </div>
   </a>
- </template>
+</template>
  
  
  <script setup lang="ts">
@@ -23,55 +26,44 @@
  
  <style scoped lang="scss">
  
- 
- .v-app-team {
+ .v-app-team-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   text-decoration: none;
-  gap: var(--space-xs);
+  gap: var(--space-xl);
   width: 100%;
-  max-width: 16rem;
-  min-width: 12rem;
- 
- 
- 
- 
-  img {
+  max-width: 340px; // taille maximale contrôlée
+  transition: transform 0.2s;
+  padding-bottom: var(--space-xl);
+
+  .team-image {
     width: 100%;
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: 3 / 4;
+     aspect-ratio: 2 / 3;
     object-fit: cover;
     border-radius: var(--radius-s);
   }
- 
- 
- .team-image {
-  width: 100%;
-  max-width: 540px;
-  min-width: 360px;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  border-radius: var(--radius-s);
- }
- 
- 
+
+   .identite {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    gap: 0; // pas d’espace entre prénom et nom
+  }
+
   .prenom,
   .nom {
-    transition: color 0.2s;
-    display: inline-block;
+    margin: 0;
+    font-size: 2rem;
+    line-height: 1;
   }
- 
- 
+
   &:hover .prenom,
   &:hover .nom {
     color: var(--color-pink);
   }
- }
- </style>
- 
- 
+}
+</style>
  
  

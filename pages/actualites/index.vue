@@ -4,7 +4,7 @@
       <!-- {{ data?.result }} -->
     </div>
 
-    <AppArticle
+<AppArticle
   v-for="(article, i) in children_data?.result"
   :key="article.slug"
   :v_app_article_data="article"
@@ -13,6 +13,7 @@
 />
   </main>
 </template>
+
 
 
 <script setup lang="ts">
