@@ -18,11 +18,11 @@
         </div>
       </div>
 
-      <div class="col">
-        <div class="col-inner v-app-domaine__media">
-          <img :src="v_app_domaine_data.image.reg.url" alt="" class="domaine-image" />
-        </div>
-      </div>
+   <div class="col">
+  <div class="col-inner v-app-domaine__media" v-if="v_app_domaine_data.image && v_app_domaine_data.image.reg">
+    <img :src="v_app_domaine_data.image.reg.url" alt="" class="domaine-image" />
+  </div>
+</div>
     </div>
   </section>
 </template>

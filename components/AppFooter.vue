@@ -1,31 +1,29 @@
 <template>
-  <footer class="app-footer">
+  <footer class="app-footer" v-if="v_app_footer_data">
     <div class="footer-container">
       <div class="footer-block">
         <h4>Adresse</h4>
         <div class="body-2" v-html="v_app_footer_data.adresse" />
       </div>
- 
- 
+
       <div class="footer-block">
         <h4>Accès</h4>
         <div class="body-2" v-html="v_app_footer_data.acces" />
       </div>
- 
- 
+
       <div class="footer-block">
         <h4>Contact</h4>
         <div class="body-2" v-html="v_app_footer_data.contact" />
       </div>
- 
- 
+
       <div class="footer-block">
         <h4>Accueil téléphonique</h4>
         <div class="body-2" v-html="v_app_footer_data.accueil" />
       </div>
     </div>
   </footer>
- </template>
+</template>
+
  
  
  
