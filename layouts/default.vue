@@ -21,7 +21,7 @@ type FetchFooterData = CMS_API_Response & {
 const { data: footer } = await useFetch<FetchFooterData>('/api/CMS_KQLRequest', {
   method: 'POST',
   body: {
-    query: `site.find("footer")`,
+    query: `site.find("home")`,
     select: {
       adresse: 'page.adresse.value',
       acces: 'page.acces.value',
