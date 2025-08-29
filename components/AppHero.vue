@@ -24,18 +24,18 @@
 
 
  </template>
- 
- 
+
+
  <script setup lang="ts">
  const props = defineProps<{
   v_app_hero_data: {
-    titre: string
-    texte: string
+    titre?: string
+    texte?: string
   }
   articles: CMS_API_Article[]
  }>()
  </script>
- 
+
  <style scoped lang="scss">
 .v-app-hero {
   margin-block: var(--space-l);
@@ -130,7 +130,6 @@
 
 </style>
 
- 
- 
- 
- 
+
+
+

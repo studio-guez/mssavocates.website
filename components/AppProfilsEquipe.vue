@@ -8,8 +8,8 @@
 
           <div class="v-profil__image">
             <img
-              :src="currentProfil.photo.reg.url"
-              :alt="currentProfil.photo.alt || currentProfil.fullname"
+              :src="currentProfil.photo?.reg.url"
+              :alt="currentProfil.photo?.alt || currentProfil.fullname"
             />
           </div>
         </div>
@@ -33,21 +33,25 @@
   </main>
 </template>
 
-  
+
   <script setup lang="ts">
   const props = defineProps<{
     profils: CMS_API_profils['profils_list']
   }>()
-  
+
   const currentIndex = ref(0)
-  const currentProfil = computed(() => props.profils[currentIndex.value])
-  
+  const currentProfil = computed(() => {
+      if(!props.profils) return
+      return props.profils[currentIndex.value];
+  })
+
   function goToNextProfil() {
+      if(!props.profils) return
     currentIndex.value =
       currentIndex.value < props.profils.length - 1 ? currentIndex.value + 1 : 0
   }
   </script>
-  
+
   <style scoped>
 .v-profil__image-column {
   display: flex;
@@ -74,7 +78,6 @@
   width: 100%;
   max-width: 400px;
   border-radius: var(--radius-s);
-  background-color: var(--color-light-grey);
   object-fit: fill;
 }
 

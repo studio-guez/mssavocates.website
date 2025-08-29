@@ -1,8 +1,8 @@
 <template>
-  
+
   <a href="/equipe" class="v-app-team-card">
     <img
-      :src="v_app_team_data.image.reg.url"
+      :src="v_app_team_data.image?.reg.url"
       :alt="`${v_app_team_data.prenom} ${v_app_team_data.nom}`"
       class="team-image"
     />
@@ -12,17 +12,17 @@
     </div>
   </a>
 </template>
- 
- 
+
+
  <script setup lang="ts">
  import { defineProps } from 'vue'
- 
- 
+
+
  const props = defineProps<{
     v_app_team_data: CMS_API_people
  }>()
  </script>
- 
+
  <style scoped lang="scss">
 .v-app-team-card {
   display: flex;
@@ -84,4 +84,3 @@
 }
 </style>
 
- 

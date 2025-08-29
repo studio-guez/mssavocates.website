@@ -33,68 +33,67 @@ type CMS_API_ImageObject = {
 
 
 type CMS_API_people = {
-    prenom: string,
-    nom: string,
-    image: CMS_API_ImageObject,
-    lien: [],
+    prenom?: string,
+    nom?: string,
+    image?: CMS_API_ImageObject,
+    lien?: [],
 }
 
 type CMS_API_domaines_activite = {
-    "domaines": { "titre": string, "description": string }[],
-    "image": CMS_API_ImageObject,
+    "domaines"?: { "titre": string, "description": string }[],
+    "image"?: CMS_API_ImageObject,
     /*     "id": string */
 }
 
 
 type CMS_API_hero = {
-    titre: string,
-    texte: string,
+    titre?: string,
+    texte?: string,
 }
 
 
 type CMS_API_Article = {
     // title: string
-    accroche: string, 
-    main_title: string
-    date: string
-    resume: string
-    contenu: string
-    slug: string
+    accroche?: string,
+    main_title?: string
+    date?: string
+    resume?: string
+    contenu?: string
+    slug?: string
 }
 
 type CMS_API_Footer = {
-    adresse: string
-    acces: string
-    contact: string
-    accueil: string
+    adresse?: string
+    acces?: string
+    contact?: string
+    accueil?: string
 }
 
 type CMS_API_membre = {
-    nom: string
-    email: string
+    nom?: string
+    email?: string
   }
-  
+
   type CMS_API_profils = {
-    profils_list: {
-      fullname: string;
-      email: string;
-      description: string;
-      photo: CMS_API_ImageObject;
+    profils_list?: {
+      fullname?: string;
+      email?: string;
+      description?: string;
+      photo?: CMS_API_ImageObject;
     }[];
   }
-  
-  
+
+
 
   type CMS_API_contact = {
-    intro: string
-    etude_nom: string
-    etude_email: string
-    etude_tel: string
-    adresse: string
-    membres: CMS_API_membre[] // ou { nom: string, email: string }[]
-    image: CMS_API_ImageObject
+    intro?: string
+    etude_nom?: string
+    etude_email?: string
+    etude_tel?: string
+    adresse?: string
+    membres?: CMS_API_membre[] // ou { nom: string, email: string }[]
+    image?: CMS_API_ImageObject
   }
-  
+
   type CMS_API_PhotoEquipe = CMS_API_ImageObject
 
-  
