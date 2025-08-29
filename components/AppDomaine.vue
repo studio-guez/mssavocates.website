@@ -36,10 +36,12 @@ const props = defineProps<{
 }>()
 </script>
 
-<style scoped>
+
+
+<style scoped lang="scss">
 
 .v-app-domaine__titre {
-  margin-bottom: var(--space-xl);
+  margin-bottom: 0
 }
 
 .v-app-domaine__text {
@@ -57,12 +59,23 @@ const props = defineProps<{
 
 .v-app-domaine__bloc h4 {
   color: var(--color-pink);
+  font-weight: 600; 
 }
 
 .v-app-domaine__media {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* ✅ Fix responsive : colonnes flex qui ne débordent pas */
+.two-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+  gap: var(--space-xxxl);
+}
+@media (max-width: 900px) {
+  .two-cols { gap: var(--space-l); } /* optionnel : gap plus petit en mobile */
 }
 
 .domaine-image {
@@ -72,5 +85,5 @@ const props = defineProps<{
   border-radius: var(--radius-s);
 }
 
-
 </style>
+

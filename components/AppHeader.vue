@@ -8,25 +8,38 @@
       <div class="v-header__menu" @click="toggleMenu">MENU</div>
     </div>
 
-    <nav class="v-header__nav" :class="{ 'is-visible': showMenu }">
-      <ul>
-        <li><a href="/actualites">ACTUALITÉS</a></li>
-        <li><a href="#equipe">ÉQUIPE</a></li>
-        <li><a href="#domaines">DOMAINES D’ACTIVITÉS</a></li>
-       
-        <li><a href="/contact">CONTACT</a></li>
-      </ul>
-    </nav>
+<nav class="v-header__nav" :class="{ 'is-visible': showMenu }" @click="closeMenu">
+  <ul>
+    <li><a href="/actualites">ACTUALITÉS</a></li>
+    <li><a href="#equipe">ÉQUIPE</a></li>
+    <li><a href="#domaines">DOMAINES D’ACTIVITÉS</a></li>
+    <li><a href="/contact">CONTACT</a></li>
+  </ul>
+</nav>
   </header>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
+import { useRoute } from 'vue-router' // si tu n'as pas de router, supprime cette ligne + le watch
 
 const showMenu = ref(false)
-function toggleMenu() {
-  showMenu.value = !showMenu.value
+function toggleMenu() { showMenu.value = !showMenu.value }
+function closeMenu()  { showMenu.value = false }
+
+function onScroll() {
+  if (showMenu.value && window.scrollY > 4) closeMenu()
 }
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', onScroll)
+})
+
+const route = useRoute()
+watch(() => route.fullPath, () => closeMenu())
 </script>
 
 <style scoped lang="scss">
@@ -64,7 +77,7 @@ function toggleMenu() {
     left: 0;
     width: 100%;
     background-color: var(--color-pink);
-      border: var(--border) solid var(--color-white);
+    border: var(--border-width) solid var(--color-white);
     transform: translateY(-100%);
     transition: transform 0.3s ease-in-out;
     z-index: 10;
@@ -105,4 +118,39 @@ a {
     }
   }
 }
+
+/* === Mobile uniquement : empiler les liens === */
+@media (max-width: 899px) {
+  .v-header__nav ul {
+    /* passe en colonne */
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    /* occupe toute la largeur (sinon le max-width:1000px recentre et limite) */
+    max-width: none;
+    margin-inline: 0;
+
+    /* padding un peu réduit pour le panneau mobile (garde l’aspect) */
+    padding: var(--space-m);
+    gap: var(--space-s);
+  }
+
+  .v-header__nav li {
+    flex: none;           /* on n’étire pas les items */
+    display: block;
+  }
+
+  .v-header__nav a {
+    display: block;
+    width: 100%;          /* lien prend toute la ligne */
+    max-width: none;      /* on supprime la limite 7rem du desktop */
+    text-align: center;   /* garde l’alignement actuel */
+    /* pas de bordure / pas d’arrondi : on ne change pas l’aspect visuel */
+    padding: 0;           /* on ne rajoute pas de padding pour rester fidèle */
+    white-space: normal;
+  }
+}
+
+
 </style>

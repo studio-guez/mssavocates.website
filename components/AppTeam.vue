@@ -23,10 +23,8 @@
  }>()
  </script>
  
- 
  <style scoped lang="scss">
- 
- .v-app-team-card {
+.v-app-team-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,22 +32,24 @@
   text-decoration: none;
   gap: var(--space-xl);
   width: 100%;
-  max-width: 340px; // taille maximale contrôlée
+  max-width: 340px;                /* limite desktop */
   transition: transform 0.2s;
   padding-bottom: var(--space-xl);
+  margin-inline: auto;             /* centre la carte dans sa colonne */
 
   .team-image {
     width: 100%;
-     aspect-ratio: 2 / 3;
+    aspect-ratio: 2 / 3;
     object-fit: cover;
     border-radius: var(--radius-s);
+    display: block;
   }
 
-   .identite {
+  .identite {
     display: flex;
     flex-direction: column;
     line-height: 1;
-    gap: 0; // pas d’espace entre prénom et nom
+    gap: 0;                        /* prénom et nom collés */
   }
 
   .prenom,
@@ -57,6 +57,9 @@
     margin: 0;
     font-size: 2rem;
     line-height: 1;
+    font-family: var(--font-NewEdge);
+    font-weight: 600;
+    color: var(--color-black);
   }
 
   &:hover .prenom,
@@ -64,6 +67,21 @@
     color: var(--color-pink);
   }
 }
+
+/* --- Responsive mobile --- */
+@media (max-width: 900px) {
+  .v-app-team-card {
+    max-width: 100%;                   /* prend toute la largeur dispo */
+    margin-inline: var(--space-s);     /* mêmes marges que .container */
+    gap: var(--space-l);
+    padding-bottom: var(--space-l);
+  }
+
+  .v-app-team-card .prenom,
+  .v-app-team-card .nom {
+    //font-size: 1rem;                 /* adapte la taille sur mobile */
+  }
+}
 </style>
- 
+
  

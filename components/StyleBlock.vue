@@ -20,13 +20,17 @@ defineProps<{
 
 <style scoped lang="scss">
 .v-style-block {
-  position: relative; // ← nécessaire pour positionner le divider
+  position: relative;
   background-color: var(--color-white);
   border-radius: var(--radius-l);
-  padding: var(--space-l) var(--space-l) var(--space-l) var(--space-l);
+  padding: var(--space-xl) var(--space-l); // desktop : un peu d’air
   width: 100%;
   box-sizing: border-box;
   border: 0.05rem solid var(--color-pink);
+
+  @media (max-width: 900px) {
+    padding: var(--space-m) var(--space-s); // mobile : plus compact
+  }
 }
 
 .v-style-block.is-fill {

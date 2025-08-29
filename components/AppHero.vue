@@ -1,36 +1,28 @@
 <template>
-  <section class="v-app-hero">
-<div class="v-app-hero__grid">
-  <!-- Texte : 4 colonnes -->
-  <div class="v-app-hero__text">
-    <div class="container">
-      <div class="v-app-hero__text-inner">
-        <h1 class="v-app-hero__title">
-          {{ v_app_hero_data.titre }}
-        </h1>
-        <h3 class="v-app-hero__subtitle">
-          {{ v_app_hero_data.texte }}
-        </h3>
+<section class="v-app-hero">
+  <div class="container">
+    <div class="v-app-hero__grid">
+      <div class="v-app-hero__text">
+        <div class="v-app-hero__text-inner">
+          <h1 class="v-app-hero__title">{{ v_app_hero_data.titre }}</h1>
+          <h3 class="v-app-hero__subtitle">{{ v_app_hero_data.texte }}</h3>
+        </div>
+      </div>
+
+      <div class="v-app-hero__articles">
+        <h3 class="v-app-hero__articles-title">DERNIEREMENT</h3>
+        <AppHomeArticle
+          v-for="a in articles"
+          :key="a.slug"
+          :v_app_article_data="a"
+          variant="pink"
+        />
       </div>
     </div>
   </div>
+</section>
 
- 
- 
-      <!-- Articles : 2 colonnes -->
-      <div class="v-app-hero__articles">
-        <h3 class="v-app-hero__articles-title">DERNIEREMENT</h3>
- 
- 
-        <AppHomeArticle
-          v-for="article in articles"
-          :key="article.slug"
-          :v_app_article_data="article"
-          variant="pink"
-       />
-      </div>
-    </div>
-  </section>
+
  </template>
  
  
@@ -44,71 +36,77 @@
  }>()
  </script>
  
- 
  <style scoped lang="scss">
- .v-app-hero {
-  margin-block: var(--space-xl);
-padding-right: var(--space-xl);
-padding-left: var(--space-xl);
+.v-app-hero {
+  margin-block: var(--space-l);
+  padding: 0; /* padding géré par le container */
+
+  /* 1) Hero : container pleine largeur pour aligner avec le divider */
+  > .container {
+    max-width: none;             /* on enlève la contrainte ici SEULEMENT */
+    padding-inline: var(--space-l);
+    box-sizing: border-box;
+  }
+
   &__grid {
+    /* 2) Grille 6 colonnes comme le divider (leftSplit = 4/6 | 2/6) */
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: var(--space-xxl);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: var(--space-xl);
     align-items: start;
-    justify-content: center;
 
     @media (max-width: 900px) {
       grid-template-columns: 1fr;
+      gap: var(--space-l);
     }
   }
- 
- 
+
+  /* 3) Texte à gauche = colonnes 1..4  */
   &__text {
-    grid-column: span 4;
-    align-self: center; // centré verticalement dans la grille
+    grid-column: 1 / 5;
+    align-self: center;
     display: flex;
     align-items: flex-start;
- 
- 
+
     @media (max-width: 900px) {
-      grid-column: span 1;
+      grid-column: 1 / -1;
     }
   }
- 
- 
-   &__text-inner {
 
+  &__text-inner {
     display: flex;
-    flex-direction: column;   // Centrage vertical dans le bloc
-    align-items: flex-start;    // Alignement du texte à gauche
+    flex-direction: column;
+    align-items: flex-start;
     text-align: left;
     width: 100%;
     height: 100%;
+
+    /* on garde un confort de lecture */
+    max-width: 80ch;
+
+    @media (min-width: 901px) {
+      padding-right: var(--space-xxl);
+    }
   }
- 
- 
+
+  /* 4) Articles à droite = colonnes 5..6  */
   &__articles {
-    grid-column: span 2;
+    grid-column: 5 / 7;
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
-    padding-left: var(--space-l);
     position: relative;
-    width: 100%; // Important
-    box-sizing: border-box; // Pour éviter que padding fasse déborder
- 
- 
+    z-index: 2;
+    min-width: 0;
+
+    /* petit recul visuel par rapport à la ligne */
+    padding-left: var(--space-l);
+
     @media (max-width: 900px) {
-      grid-column: span 1;
+      grid-column: 1 / -1;
       padding-left: 0;
- 
- 
-      &::before {
-        display: none;
-      }
     }
   }
- 
 
   &__articles-title {
     font-family: var(--font-NewEdge);
@@ -116,9 +114,22 @@ padding-left: var(--space-xl);
     font-weight: 400;
     text-align: center;
   }
- }
- 
- </style>
+
+  /* Sécurité mobile */
+  @media (max-width: 900px) {
+    padding: 0;
+
+    &__text-inner {
+      padding-right: 0;
+      max-width: 100%;
+      overflow-wrap: anywhere;
+    }
+  }
+}
+
+
+</style>
+
  
  
  

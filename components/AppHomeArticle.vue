@@ -42,12 +42,12 @@
 
    // La base commune 
  .v-article-card {
-  border-radius: var(--radius-m);
-  padding: var(--space-xl);
+  border-radius: var(--radius-s);
+  padding: var(--space-l);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 2px solid var(--color-pink);
+  border: 1px solid var(--color-pink);
   transition: background-color 0.3s;
   flex: 0 0 auto;
   box-sizing: border-box;
@@ -88,6 +88,7 @@
   width: 100%;
   min-height: 280px;
   padding: var(--space-l);
+  padding-bottom: var(--space-m);
  
  
   .v-article-title {
@@ -125,9 +126,3 @@
  
  
  </style>
- 
- 
- 
- 
- 
- 

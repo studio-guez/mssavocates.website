@@ -40,7 +40,7 @@
 
 
   // Largeurs max
-  --container-width: 90vw;
+  --container-width: min(100%, 1800px);
 }
 
 
@@ -110,7 +110,7 @@ a {
 h1 {
   font-family: var(--font-NewEdge);
   font-weight: 600;
-  font-size: 3.5rem;
+  font-size: clamp(2.5rem, 5vw, 3rem);
   line-height: 1.15;
   color: var(--color-black);
   text-transform: uppercase;
@@ -121,7 +121,7 @@ h1 {
 h2 {
   font-family: var(--font-NewEdge);
   font-weight: 600;
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 5vw, 2.5rem);
   line-height: 1.15;
   color: var(--color-black);
   margin: 0;
@@ -137,7 +137,7 @@ h2.light {
 h3 {
   font-family: var(--font-Inter);
   font-weight: 300;
-  font-size: 1.6rem;
+  font-size: clamp(1.3rem, 5vw, 1.6rem);
   line-height: 1.3;
   color: var(--color-black);
   margin: 0;
@@ -210,18 +210,34 @@ span {
 
 /* Layout utilitaires */
 .container {
-  padding-top: var(--space-l);
-  padding-bottom: var(--space-m);
-  max-width: var(--container-width);
+  box-sizing: border-box;
+  width: 100%;
+  max-width: min(100%, 1600px);
+  /* plus large qu’avant */
   margin-inline: auto;
-  padding-inline: var(--space-m);
-}
-
-
-.section {
+  padding-inline: var(--space-l);
+  /* un peu plus fin */
   padding-block: var(--space-l);
 }
 
+@media (max-width: 900px) {
+  .container {
+    padding-inline: var(--space-s);
+    padding-block: var(--space-l);
+  }
+}
+
+.section {
+  padding-block: var(--space-xl);
+  padding-inline: var(--space-xl);
+}
+
+@media (max-width: 900px) {
+  .section {
+    padding-inline: var(--space-s);
+    padding-block: var(--space-l);
+  }
+}
 
 /* Border radius */
 .rounded-s {
@@ -376,39 +392,53 @@ img {
 }
 
 .two-cols {
-  display: flex;
-  gap: var(--space-xxxl);
-  margin-block: var(--space-l);
-  margin-bottom: var(--space-xxl);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-xxl);
 
   .col {
     flex: 1;
     display: flex;
     justify-content: center;
 
-    // Ajoute ceci :
-    min-height: 200px; // ou selon ton besoin
-    min-width: 400px;
+    /* par défaut (mobile), autoriser à rétrécir */
+    min-width: 0;
   }
 
   .col-inner {
     width: 100%;
     display: flex;
     flex-direction: column;
+    /* permet au contenu flex de ne pas déborder */
+    min-width: 0;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .two-cols {
     flex-direction: column;
+    /* empile */
+    gap: var(--space-s);
+    /* gap plus petit */
 
     .col {
+      width: 100%;
       justify-content: flex-start;
-
-      .col-inner {
-        max-width: 100%;
-      }
+      min-width: 0;
+      /* évite le débordement */
     }
+
+    .col-inner {
+      max-width: 100%;
+    }
+  }
+}
+
+/* DESKTOP : force une largeur mini */
+@media (min-width: 901px) {
+  .two-cols .col {
+    min-width: 400px;
+    /* appliqué uniquement en desktop */
   }
 }
 

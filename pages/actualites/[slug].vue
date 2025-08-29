@@ -70,37 +70,35 @@ watchEffect(() => {
 </script>
 
 
-
 <style scoped lang="scss">
+/* Grille responsive sans @media : 1–2 colonnes selon la largeur */
 .two-cols {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* s’empile tout seul sous 640px */
   gap: var(--space-xxxl);
   margin-block: var(--space-l);
   margin-bottom: var(--space-xxl);
-
-  .col {
-    flex: 1;
-    display: flex;
-    align-items: flex-start; // nouveau : contenu en haut
-    justify-content: flex-start; // nouveau : alignement à gauche
-    min-height: 200px;
-    min-width: 400px;
-  }
-
-  .col-inner {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
 }
 
-.v-article-detail__left {
-  .main-title {
-    text-transform: uppercase;
-    line-height: 1.2;
-  }
+.two-cols .col {
+  /* plus de min-width rigide */
+  min-width: 0;         /* clé anti-overflow pour le contenu flex/grid */
 }
 
+.two-cols .col .col-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;         /* évite que le contenu pousse la colonne */
+}
+
+/* Titre gauche */
+.v-article-detail__left .main-title {
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+/* Colonne droite */
 .v-article-detail__right {
   display: flex;
   flex-direction: column;
@@ -117,6 +115,7 @@ watchEffect(() => {
   }
 }
 
+/* Contenu article (sécurité overflow) */
 .v-article-detail__right-content {
   display: flex;
   flex-direction: column;
@@ -136,15 +135,20 @@ watchEffect(() => {
     font-size: 1rem;
     line-height: 1.7;
     color: #333;
+    overflow-wrap: anywhere;  /* évite qu’un mot/URL casse la mise en page */
 
-    p {
-      margin-bottom: 1rem;
-    }
+    p { margin-bottom: 1rem; }
+    img { max-width: 100%; height: auto; display: block; } /* images contenues */
   }
 }
 
-
-
+/* Vue complète (inchangée) */
+.v-article-detail__full {
+  padding: var(--space-l);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
 </style>
 
 

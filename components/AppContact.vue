@@ -56,6 +56,10 @@ const props = defineProps<{
 
 <style scoped>
 
+.v-app-domaine__titre.light {
+  margin-bottom: 0rem;
+}
+
 .v-app-contact__left {
   display: flex;
   flex-direction: column;
@@ -99,26 +103,29 @@ const props = defineProps<{
 .v-app-contact__right {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* ✅ centre verticalement tout le bloc */
-  align-items: center;      /* ✅ centre horizontalement (image + texte) */
+  justify-content: flex-start; /* ✅ aligne tout en haut */
+  align-items: center;
   gap: var(--space-s);
-  text-align: center;       /* ✅ centre le texte aussi */
+  text-align: center;
   height: 100%;
 }
 
 .v-app-contact__address {
+  margin-top: 0; /* ✅ pas de marge au-dessus en desktop */
   font-size: var(--body-2-size);
   color: var(--color-black);
+
+  /* ✅ si tu veux un petit espace en mobile seulement */
+  @media (max-width: 900px) {
+    margin-top: var(--space-m);
+  }
 }
 
 .v-app-contact__image {
   width: 100%;
   max-width: 100%;
-
-  min-height: 80%;
-  border-radius: var(--radius-m);
-  margin-top: var(--space-s);
+  border-radius: var(--radius-s);
+  margin-top: var(--space-s); /* desktop = petit espace */
 }
-
 
 </style>
