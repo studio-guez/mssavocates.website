@@ -1,3 +1,5 @@
+Index 
+
 <template>
   <main class="v-index">
     <template v-if="data && data.status === 'ok'">
@@ -56,6 +58,11 @@
 
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { onMounted, watch, nextTick } from 'vue'
+
+const route = useRoute()
+
 type FetchData = CMS_API_Response & {
   result: {
     home: {
@@ -173,6 +180,9 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
       }
     }
   }
+}).then(data => {
+  scrollToHash(route.hash)
+  return data
 })
 
 const articlesAll = computed(() => data.value?.result.actualites.articles || [])
@@ -180,28 +190,17 @@ const articlesHero = computed(() => articlesAll.value.slice(0, 2))
 const articlesHome = computed(() => articlesAll.value.slice(0, 4))
 
 // 👉 Ajout scroll automatique vers ancre si route.hash existe
-import { useRoute } from 'vue-router'
-import { onMounted, watch, nextTick } from 'vue'
-
-const route = useRoute()
-
 function scrollToHash(hash: string) {
   if (!hash) return
-  nextTick(() => {
+  window.setTimeout(() => {
     const el = document.querySelector(hash)
     if (el) {
+      console.log(hash)
       el.scrollIntoView({ behavior: 'smooth' })
     }
-  })
+  },500)
 }
-
-onMounted(() => {
-  scrollToHash(route.hash)
-})
-
-watch(() => route.hash, (newHash) => {
-  scrollToHash(newHash)
-})
 </script>
 
 <style lang="scss" scoped></style>
+
