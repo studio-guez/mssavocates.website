@@ -6,10 +6,7 @@
         <Appaeroport :v_app_contact_data="data.result" />
       </StyleBlock>
 
-      <!-- zone facultative pour debug / contenu futur -->
-      <section class="container mt-s">
-        <!-- {{ data.result }} -->
-      </section>
+ 
     </div>
 
     <div v-else>

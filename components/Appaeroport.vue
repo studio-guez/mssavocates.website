@@ -51,23 +51,23 @@ const props = defineProps<{
 
 /* Corps de texte proche du rendu Contact */
 .v-aero__intro {
-  font-size: 1.25rem;
-  line-height: 1.6;
+    max-width: 80ch; /* ✅ limite la largeur du texte */
+  
+  line-height: 1.8;
   color: var(--color-black);
 
-  p + p { margin-top: var(--space-m); }
+  p + p { margin-top: var(--space-xl); }
 }
 
 /* Réutilise la typo/poids de Contact */
 .v-aero__coords {
+      margin-bottom: var(--space-xl);
   font-weight: 300;
-  font-size: 1.25rem;
   color: var(--color-black);
 }
 
 /* Petites respirations sur mobile */
 @media (max-width: 900px) {
   .v-aero__wrap { gap: var(--space-l); }
-  .v-aero__intro { font-size: 1.1rem; }
 }
 </style>
