@@ -15,34 +15,54 @@ Index
         />
       </StyleBlock>
 
-      <!-- photo équipe  -->
-      <StyleBlock class="is-fill">
-        <img :src="data.result.home.photo_equipe.reg.url" class="img-full" />
-      </StyleBlock>
-
-      <!-- équipe  -->
-      <StyleBlock>
-        <div class="container" id="equipe">
-          <h2 class="light">EQUIPE</h2>
-
-          <div class="flex flex-center" style="flex-wrap: wrap; gap: var(--space-xl);">
-            <AppTeam
-              v-for="person in data.result.home.equipe"
-              :key="`${person.prenom}-${person.nom}`"
-              :v_app_team_data="person"
-            />
-          </div>
+      <div class="stacked-section">
+        <!-- photo équipe  -->
+        <div
+          class="stacked-card"
+          :class="{ expanded: expandedCards.photo }"
+          @click="expandedCards.photo = !expandedCards.photo"
+        >
+          <StyleBlock class="is-fill">
+            <img :src="data.result.home.photo_equipe.reg.url" class="img-full" />
+          </StyleBlock>
         </div>
-      </StyleBlock>
 
-      <!-- domaines d'activités  -->
-      <StyleBlock id="domaines">
-        <div>
-          <div v-for="domaine in data.result.home.domaines_activite">
-            <AppDomaine :v_app_domaine_data="domaine" />
-          </div>
+        <!-- équipe  -->
+        <div
+          id="equipe"
+          class="stacked-card"
+          :class="{ expanded: expandedCards.equipe }"
+          @click="expandedCards.equipe = !expandedCards.equipe"
+        >
+          <StyleBlock>
+            <div class="container">
+              <h2 class="light">EQUIPE</h2>
+
+              <div class="flex flex-center" style="flex-wrap: wrap; gap: var(--space-xl);">
+                <AppTeam
+                  v-for="person in data.result.home.equipe"
+                  :key="`${person.prenom}-${person.nom}`"
+                  :v_app_team_data="person"
+                />
+              </div>
+            </div>
+          </StyleBlock>
         </div>
-      </StyleBlock>
+
+        <!-- domaines d'activités  -->
+        <div
+          class="stacked-card expanded"
+          id="domaines"
+        >
+          <StyleBlock>
+            <div>
+              <div v-for="domaine in data.result.home.domaines_activite">
+                <AppDomaine :v_app_domaine_data="domaine" />
+              </div>
+            </div>
+          </StyleBlock>
+        </div>
+      </div>
 
       <!-- Articles Home  -->
       <AppHomeArticleCarousel :articles="articlesHome" variant="white" />
@@ -59,7 +79,7 @@ Index
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { onMounted, watch, nextTick } from 'vue'
+import { onMounted, watch, nextTick, computed } from 'vue'
 
 const route = useRoute()
 
@@ -180,18 +200,26 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
       }
     }
   }
-}).then(data => {
-  scrollToHash(route.hash)
-  return data
 })
 
 const articlesAll = computed(() => data.value?.result.actualites.articles || [])
 const articlesHero = computed(() => articlesAll.value.slice(0, 2))
-const articlesHome = computed(() => articlesAll.value.slice(0, 4))
+const articlesHome = computed(() => articlesAll.value.slice(0, 5))
+
+const expandedCards = ref({
+  photo: false,
+  equipe: false
+})
 
 // 👉 Ajout scroll automatique vers ancre si route.hash existe
 function scrollToHash(hash: string) {
   if (!hash) return
+
+  // Ouvre la carte équipe si le hash correspond
+  if (hash === '#equipe') {
+    expandedCards.value.equipe = true
+  }
+
   window.setTimeout(() => {
     const el = document.querySelector(hash)
     if (el) {
@@ -200,7 +228,35 @@ function scrollToHash(hash: string) {
     }
   },500)
 }
+
+// Appeler scrollToHash après l'initialisation
+onMounted(() => {
+  scrollToHash(route.hash)
+})
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.stacked-section {
+  position: relative;
+}
+
+.stacked-card {
+  position: relative;
+  width: 100%;
+  max-height: 200px;
+  overflow: hidden;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  margin-bottom: -50px;
+
+  @media (max-width: 768px) {
+    margin-bottom: -100px;
+  }
+
+  &.expanded {
+    max-height: 5000px;
+    margin-bottom: 0;
+  }
+}
+</style>
 

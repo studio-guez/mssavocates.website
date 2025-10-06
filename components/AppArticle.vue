@@ -77,6 +77,10 @@
   }
 }
 
+.flex-row-reverse .v-app-article__info .v-app-article__actions {
+  text-align: left;
+}
+
 /* 📱 Mobile : donner plus d’espace au-dessus du bouton */
 @media (max-width: 900px) {
   .v-app-article__info .v-app-article__actions {
