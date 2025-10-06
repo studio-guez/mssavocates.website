@@ -79,8 +79,8 @@ watch(() => route.fullPath, () => closeMenu())
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-     background-color: var(--color-white);;
-    //border: 2px solid var(--color-pink);
+    background-color: var(--color-white);
+    border-bottom: var(--border-width) solid var(--color-pink);
     position: relative;
     z-index: 999; // toujours au-dessus du menu
   }
