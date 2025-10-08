@@ -1,14 +1,14 @@
 <template>
-  
+
   <a href="/equipe" class="v-app-team-card">
     <img
-      :src="v_app_team_data.image.reg.url"
-      :alt="`${v_app_team_data.prenom} ${v_app_team_data.nom}`"
+      :src="v_app_team_data.photo.reg.url"
+      :alt="v_app_team_data.fullname"
       class="team-image"
     />
     <div class="identite">
-      <h2 class="prenom">{{ v_app_team_data.prenom }}</h2>
-      <h2 class="nom">{{ v_app_team_data.nom }}</h2>
+      <h2 class="prenom">{{ v_app_team_data.fullname.split(' ')[0] }}</h2>
+      <h2 class="nom">{{ v_app_team_data.fullname.split(' ').slice(1).join(' ') }}</h2>
     </div>
   </a>
 </template>
@@ -16,10 +16,14 @@
  
  <script setup lang="ts">
  import { defineProps } from 'vue'
- 
- 
+
+
  const props = defineProps<{
-    v_app_team_data: CMS_API_people
+    v_app_team_data: {
+      fullname: string
+      email: string
+      photo: CMS_API_PhotoEquipe
+    }
  }>()
  </script>
  

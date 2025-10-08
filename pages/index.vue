@@ -40,8 +40,8 @@ Index
 
               <div class="flex flex-center" style="flex-wrap: wrap; gap: var(--space-xl);">
                 <AppTeam
-                  v-for="person in data.result.home.equipe"
-                  :key="`${person.prenom}-${person.nom}`"
+                  v-for="person in data.result.equipe.profils_list"
+                  :key="person.fullname"
                   :v_app_team_data="person"
                 />
               </div>
@@ -91,8 +91,14 @@ type FetchData = CMS_API_Response & {
       titre: string
       texte: string
       photo_equipe: CMS_API_PhotoEquipe
-      equipe: CMS_API_people[]
       domaines_activite: CMS_API_domaines_activite[]
+    },
+    equipe: {
+      profils_list: Array<{
+        fullname: string
+        email: string
+        photo: CMS_API_PhotoEquipe
+      }>
     },
     actualites: {
       title: string
@@ -158,24 +164,28 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
             }
           },
 
-          equipe: {
-            query: "page.equipe.toStructure()",
+        }
+      },
+
+      equipe: {
+        query: "site.find('equipe')",
+        select: {
+          profils_list: {
+            query: "page.profils_list.toStructure()",
             select: {
-              lien_test: 'structureItem.lien.value',
-              prenom: 'structureItem.prenom.value',
-              nom: 'structureItem.nom.value',
-              image: {
-                query: "structureItem.image.toFile",
+              fullname: true,
+              email: true,
+              photo: {
+                query: "structureItem.photo.toFile()",
                 select: {
-                  alt: "file.alt.value",
-                  tiny: 'file.resize(50, null, 10)',
-                  small: 'file.resize(500)',
-                  reg: 'file.resize(1280)',
-                  large: 'file.resize(1920)',
-                  xxl: 'file.resize(2500)'
+                  alt: true,
+                  tiny: "file.resize(50, null, 10)",
+                  small: "file.resize(500)",
+                  reg: "file.resize(1280)",
+                  large: "file.resize(1920)",
+                  xxl: "file.resize(2500)"
                 }
-              },
-              caption: "structureItem.caption.value"
+              }
             }
           }
         }
