@@ -70,8 +70,7 @@ Index
 
     <!-- page d'erreur -->
     <template v-else>
-      oups, la page n'existe pas :/
-      -> bouton retour home
+      <AppError />
     </template>
   </main>
 </template>

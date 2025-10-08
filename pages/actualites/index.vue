@@ -1,16 +1,22 @@
 <template>
   <main class="v-actualities">
-    <div class="v-actualities__content">
-      <!-- {{ data?.result }} -->
-    </div>
+    <template v-if="children_data && children_data.status === 'ok'">
+      <div class="v-actualities__content">
+        <!-- {{ data?.result }} -->
+      </div>
 
-<AppArticle
-  v-for="(article, i) in children_data?.result"
-  :key="article.slug"
-  :v_app_article_data="article"
-  :isPreview="true"
-  :reversed="i % 2 === 1"
-/>
+      <AppArticle
+        v-for="(article, i) in children_data?.result"
+        :key="article.slug"
+        :v_app_article_data="article"
+        :isPreview="true"
+        :reversed="i % 2 === 1"
+      />
+    </template>
+
+    <template v-else>
+      <AppError />
+    </template>
   </main>
 </template>
 

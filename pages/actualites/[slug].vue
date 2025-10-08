@@ -1,29 +1,35 @@
 <template>
   <StyleBlock :withDivider="true" dividerPosition="center" :isShortDivider="true">
     <main class="v-article-detail">
-      <div class="two-cols container">
-        <!-- Colonne gauche : titre -->
-        <div class="col">
-          <div class="col-inner v-article-detail__left">
-            <h2 class="main-title">{{ article?.main_title }}</h2>
-          </div>
-        </div>
-
-        <!-- Colonne droite : contenu + bouton -->
-        <div class="col">
-          <div class="col-inner v-article-detail__right">
-            <div class="v-article-detail__right-content">
-              <p class="article-date">{{ article?.date }}</p>
-              <p class="article-accroche"><strong>{{ article?.accroche }}</strong></p>
-              <div class="article-body" v-html="article?.contenu" />
-            </div>
-
-            <div class="v-article-detail__footer">
-              <AppButton to="/actualites" variant="outlined">Retour</AppButton>
+      <template v-if="data && data.status === 'ok' && article">
+        <div class="two-cols container">
+          <!-- Colonne gauche : titre -->
+          <div class="col">
+            <div class="col-inner v-article-detail__left">
+              <h2 class="main-title">{{ article?.main_title }}</h2>
             </div>
           </div>
+
+          <!-- Colonne droite : contenu + bouton -->
+          <div class="col">
+            <div class="col-inner v-article-detail__right">
+              <div class="v-article-detail__right-content">
+                <p class="article-date">{{ article?.date }}</p>
+                <p class="article-accroche"><strong>{{ article?.accroche }}</strong></p>
+                <div class="article-body" v-html="article?.contenu" />
+              </div>
+
+              <div class="v-article-detail__footer">
+                <AppButton to="/actualites" variant="outlined">Retour</AppButton>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </template>
+
+      <template v-else>
+        <AppError />
+      </template>
     </main>
   </StyleBlock>
 </template>

@@ -53,11 +53,34 @@
   box-sizing: border-box;
  
  
-    // La variante du blanc 
+    // La variante du blanc
   &.variant-white {
     background-color: var(--color-white);
     width: 620px;
     min-height: 400px;
+
+    @media (max-width: 768px) {
+      width: 320px;
+      min-height: 200px;
+      padding: var(--space-m);
+    }
+
+    @media (max-width: 768px) {
+      .v-article-title {
+        font-size: 1rem;
+        margin-bottom: var(--space-s);
+      }
+
+      .v-article-resume {
+        font-size: 0.85rem;
+        margin-bottom: var(--space-s);
+      }
+
+      .v-article-date {
+        font-size: 0.8rem;
+        margin-bottom: var(--space-s);
+      }
+    }
  
  
     .v-article-title {
