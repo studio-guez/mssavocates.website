@@ -10,7 +10,7 @@
     </div>
 
     <div v-else>
-      <p class="container">Oups, la page n’existe pas…</p>
+      <AppError />
     </div>
   </main>
 </template>

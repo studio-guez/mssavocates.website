@@ -1,11 +1,16 @@
 <template>
     <main>
-        <StyleBlock withDivider dividerPosition="center">
-    <AppProfilsEquipe
-  :profils="(data?.result?.profils_list as CMS_API_profils['profils_list']) || []"
-/>
-</StyleBlock>
+        <template v-if="data && data.status === 'ok'">
+            <StyleBlock withDivider dividerPosition="center">
+                <AppProfilsEquipe
+                    :profils="(data?.result?.profils_list as CMS_API_profils['profils_list']) || []"
+                />
+            </StyleBlock>
+        </template>
 
+        <template v-else>
+            <AppError />
+        </template>
     </main>
   </template>
 

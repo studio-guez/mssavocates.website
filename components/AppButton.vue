@@ -97,9 +97,9 @@
  }
 
  .v-app-button.cta-actus {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 2rem;
   background-color: transparent;
   color: var(--color-white);
   border: 0.05rem solid var(--color-white);

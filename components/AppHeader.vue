@@ -1,5 +1,5 @@
 <template>
-  <header class="v-header">
+  <header class="v-header" :class="{ 'is-hidden': isHeaderHidden }">
     <div class="v-header__top">
       <a href="/" class="v-header__logo">
         <img src="/public/img/mss_logo.svg" alt="Maulini Schneuwly Strummiello – Avocates" class="no-radius" />
@@ -23,14 +23,30 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
-import { useRoute } from 'vue-router' // si tu n'as pas de router, supprime cette ligne + le watch
+import { useRoute } from 'vue-router'
 
 const showMenu = ref(false)
+const isHeaderHidden = ref(false)
+let lastScrollY = 0
+
 function toggleMenu() { showMenu.value = !showMenu.value }
 function closeMenu()  { showMenu.value = false }
 
 function onScroll() {
-  if (showMenu.value && window.scrollY > 4) closeMenu()
+  const currentScrollY = window.scrollY
+
+  if (showMenu.value && currentScrollY > 4) {
+    closeMenu()
+  }
+
+  // Cache le header si on scroll vers le bas, montre si on scroll vers le haut
+  if (currentScrollY > lastScrollY && currentScrollY > 100) {
+    isHeaderHidden.value = true
+  } else {
+    isHeaderHidden.value = false
+  }
+
+  lastScrollY = currentScrollY
 }
 
 onMounted(() => {
@@ -46,18 +62,25 @@ watch(() => route.fullPath, () => closeMenu())
 
 <style scoped lang="scss">
 .v-header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   box-sizing: border-box;
   z-index: 99;
+  transition: transform 0.3s ease;
+
+  &.is-hidden {
+    transform: translateY(-100%);
+  }
 
   .v-header__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-     background-color: var(--color-white);;
-    //border: 2px solid var(--color-pink);
+    background-color: var(--color-white);
+    border-bottom: var(--border-width) solid var(--color-pink);
     position: relative;
     z-index: 999; // toujours au-dessus du menu
   }

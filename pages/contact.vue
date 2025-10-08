@@ -4,7 +4,7 @@
       <!-- <h2>Contact</h2> -->
 
       <StyleBlock>
-        <AppContact :v_app_contact_data="data.result" />
+        <AppContact :v_app_contact_data="{ ...data.result.contact, membres: data.result.equipe.profils_list.map(p => ({ nom: p.fullname, email: p.email })) }" />
       </StyleBlock>
       <section>
         <!-- test data pour debugger -->
@@ -16,7 +16,7 @@
     </div>
 
     <div v-else>
-      <p>Oups, la page contact n’existe pas…</p>
+      <AppError />
     </div>
   </main>
 </template>
@@ -30,7 +30,22 @@
 
 
 type FetchData = CMS_API_Response & {
-  result: CMS_API_contact
+  result: {
+    contact: {
+      intro: string
+      etude_nom: string
+      etude_email: string
+      etude_tel: string
+      adresse: string
+      image: CMS_API_PhotoEquipe
+    },
+    equipe: {
+      profils_list: Array<{
+        fullname: string
+        email: string
+      }>
+    }
+  }
 }
 
 // Requête API via useFetch() vers le backend Kirby CMS
@@ -47,26 +62,36 @@ const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
   lazy: true,
   method: 'POST',
   body: {
-    query: "site.find('contact')",
+    query: "site",
     select: {
-      intro: true,
-      etude_nom: true,
-      etude_email: true,
-      etude_tel: true,
-      adresse: true,
-      membres: {
-        query: "page.membres.toStructure()",
+      contact: {
+        query: "site.find('contact')",
         select: {
-          nom: "structureItem.nom.value",
-          email: "structureItem.email.value"
+          intro: true,
+          etude_nom: true,
+          etude_email: true,
+          etude_tel: true,
+          adresse: true,
+          image: {
+            query: "page.files.filterBy('type', '==', 'image').first",
+            select: {
+              url: "file.url",
+              alt: "file.alt.value",
+              reg: "file.resize(1280)"
+            }
+          }
         }
       },
-      image: {
-        query: "page.files.filterBy('type', '==', 'image').first",
+      equipe: {
+        query: "site.find('equipe')",
         select: {
-          url: "file.url",
-          alt: "file.alt.value",
-          reg: "file.resize(1280)"
+          profils_list: {
+            query: "page.profils_list.toStructure()",
+            select: {
+              fullname: true,
+              email: true
+            }
+          }
         }
       }
     }

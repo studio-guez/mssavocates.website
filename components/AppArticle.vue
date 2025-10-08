@@ -77,11 +77,15 @@
   }
 }
 
-/* 📱 Mobile : donner plus d’espace au-dessus du bouton */
+.flex-row-reverse .v-app-article__info .v-app-article__actions {
+  text-align: left;
+}
+
+/* 📱 Mobile : bouton toujours à gauche */
 @media (max-width: 900px) {
   .v-app-article__info .v-app-article__actions {
-    margin-top: var(--space-l); /* espace supplémentaire sous le texte */
-    text-align: right;           /* optionnel : réaligner à gauche en mobile */
+    margin-top: var(--space-l);
+    text-align: left;
   }
 }
 
