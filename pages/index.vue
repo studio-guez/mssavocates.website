@@ -56,9 +56,12 @@ Index
         >
           <StyleBlock>
             <div>
-              <div v-for="domaine in data.result.home.domaines_activite">
-                <AppDomaine :v_app_domaine_data="domaine" />
-              </div>
+              <AppDomaine
+                :titre="data.result.home.domaines_titre || 'Domaines d\'activités'"
+                :colonneGauche="data.result.home.domaines_activite_gauche || []"
+                :colonneDroite="data.result.home.domaines_activite_droite || []"
+                :images="data.result.home.domaines_images || []"
+              />
             </div>
           </StyleBlock>
         </div>
@@ -91,7 +94,10 @@ type FetchData = CMS_API_Response & {
       titre: string
       texte: string
       photo_equipe: CMS_API_PhotoEquipe
-      domaines_activite: CMS_API_domaines_activite[]
+      domaines_titre: string
+      domaines_activite_gauche: any[]
+      domaines_activite_droite: any[]
+      domaines_images: CMS_API_ImageObject[]
     },
     equipe: {
       profils_list: Array<{
@@ -140,27 +146,20 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
             }
           },
 
-          domaines_activite: {
-            query: 'page.domaines_activite.toStructure()',
+          domaines_titre: 'page.domaines_titre.value',
+          domaines_activite_gauche: 'page.domaines_activite_gauche.toBlocks.toArray',
+          domaines_activite_droite: 'page.domaines_activite_droite.toBlocks.toArray',
+          domaines_images: {
+            query: 'page.files',
             select: {
-              domaines: {
-                query: 'structureItem.domaines.toStructure()',
-                select: {
-                  titre: 'structureItem.titre.value',
-                  description: 'structureItem.description.value'
-                }
-              },
-              image: {
-                query: "structureItem.image.toFile",
-                select: {
-                  alt: "file.alt.value",
-                  tiny: 'file.resize(50, null, 10)',
-                  small: 'file.resize(500)',
-                  reg: 'file.resize(1280)',
-                  large: 'file.resize(1920)',
-                  xxl: 'file.resize(2500)'
-                }
-              }
+              uuid: 'file.uuid',
+              url: 'file.url',
+              tiny: 'file.resize(50, null, 10)',
+              small: 'file.resize(500)',
+              reg: 'file.resize(1280)',
+              large: 'file.resize(1920)',
+              xxl: 'file.resize(2500)',
+              alt: 'file.alt.value'
             }
           },
 

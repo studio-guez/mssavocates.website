@@ -20,7 +20,7 @@
               </div>
 
               <div class="v-article-detail__footer">
-                <AppButton to="/actualites" variant="outlined">Retour</AppButton>
+                <AppButton to="/actualites" variant="outlined">Tous les articles</AppButton>
               </div>
             </div>
           </div>
