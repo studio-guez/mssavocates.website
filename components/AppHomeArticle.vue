@@ -5,9 +5,7 @@
       <h4 class="v-article-title">
         {{ v_app_article_data.main_title?.toUpperCase() }}
       </h4>
-      <p class="v-article-resume body-2">
-        {{ v_app_article_data.resume }}
-      </p>
+      <div class="v-article-resume body-2" v-html="v_app_article_data.resume" />
     </div>
  
  

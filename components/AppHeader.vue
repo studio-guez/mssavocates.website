@@ -1,5 +1,5 @@
 <template>
-  <header class="v-header" :class="{ 'is-hidden': isHeaderHidden }">
+  <header class="v-header">
     <div class="v-header__top">
       <a href="/" class="v-header__logo">
         <img src="/public/img/mss_logo.svg" alt="Maulini Schneuwly Strummiello – Avocates" class="no-radius" />
@@ -12,10 +12,12 @@
       <ul>
         <li><a href="/actualites">ACTUALITÉS</a></li>
         <li><NuxtLink href="/#equipe">ÉQUIPE</NuxtLink></li>
-        <li><a href="/#domaines">DOMAINES D’ACTIVITÉS</a></li>
-       
+        <li><a href="/#domaines">NOTRE ÉTUDE</a></li>
         <li><a href="/contact">CONTACT</a></li>
       </ul>
+      <AppButton to="/geneve-aeroport" variant="outlined-white" class="v-header__btn">
+        À l'attention du personnel<br>de Genève Aéroport
+      </AppButton>
     </nav>
 
   </header>
@@ -26,8 +28,8 @@ import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const showMenu = ref(false)
-const isHeaderHidden = ref(false)
-let lastScrollY = 0
+// const isHeaderHidden = ref(false)
+// let lastScrollY = 0
 
 function toggleMenu() { showMenu.value = !showMenu.value }
 function closeMenu()  { showMenu.value = false }
@@ -39,14 +41,14 @@ function onScroll() {
     closeMenu()
   }
 
+  // 👇 Comportement de masquage du header au scroll (commenté)
   // Cache le header si on scroll vers le bas, montre si on scroll vers le haut
-  if (currentScrollY > lastScrollY && currentScrollY > 100) {
-    isHeaderHidden.value = true
-  } else {
-    isHeaderHidden.value = false
-  }
-
-  lastScrollY = currentScrollY
+  // if (currentScrollY > lastScrollY && currentScrollY > 100) {
+  //   isHeaderHidden.value = true
+  // } else {
+  //   isHeaderHidden.value = false
+  // }
+  // lastScrollY = currentScrollY
 }
 
 onMounted(() => {
@@ -106,22 +108,25 @@ watch(() => route.fullPath, () => closeMenu())
     transform: translateY(-100%);
     transition: transform 0.3s ease-in-out;
     z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-l);
+    gap: 3rem;
 
     ul {
       list-style: none;
       margin: 0;
-      padding: var(--space-l) 0;
+      padding: 0;
       display: flex;
-      justify-content: space-between;
-      max-width: 1000px;
-      margin-inline: auto;
-      gap: 2rem;
+      justify-content: center;
+      gap: 3rem;
 
       li {
-   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+        flex: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
 a {
@@ -141,6 +146,16 @@ a {
     &.is-visible {
       transform: translateY(0%);
     }
+  }
+
+  .v-header__btn {
+    font-family: var(--font-NewEdge);
+    font-size: 0.9rem;
+    line-height: 1.3;
+    white-space: normal;
+    padding: 0.75rem 2rem !important;
+    border-radius: 1.25rem !important;
+    min-width: 220px;
   }
 }
 

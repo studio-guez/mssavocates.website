@@ -29,6 +29,7 @@ type CMS_API_ImageObject = {
     "reg": CMS_API_Image,
     "large": CMS_API_Image,
     "xxl": CMS_API_Image,
+    "focus"?: string,
 }
 
 

@@ -86,6 +86,10 @@ onMounted(() => {
 
 <style scoped lang="scss">
 
+.v-style-block {
+  margin-bottom: var(--space-xxl);
+}
+
 .v-app-domaine__titre {
   margin-bottom: 0;
   text-transform: uppercase;
@@ -94,13 +98,13 @@ onMounted(() => {
 .v-app-domaine__text {
   display: flex;
   flex-direction: column;
-  gap: var(--space-l);
+  gap: var(--space-mn);
 }
 
 .v-app-domaine__text h4 {
   color: var(--color-pink);
   font-weight: 600;
-  margin-bottom: var(--space-m);
+  margin-bottom: var(--space-xs);
 }
 
 .v-app-domaine__list :deep(ul) {

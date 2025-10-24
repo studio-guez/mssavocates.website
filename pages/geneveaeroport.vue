@@ -1,4 +1,4 @@
-<!-- pages/dispositifdeprotection.vue -->
+je <!-- pages/dispositifdeprotection.vue -->
 <template>
   <main class="v-dispositif">
     <div v-if="data && data.status === 'ok'">

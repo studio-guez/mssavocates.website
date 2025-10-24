@@ -38,6 +38,8 @@ defineProps<{
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .v-style-block__divider {

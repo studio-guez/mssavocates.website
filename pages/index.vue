@@ -15,60 +15,48 @@ Index
         />
       </StyleBlock>
 
-      <div class="stacked-section">
-        <!-- photo équipe  -->
-        <div
-          class="stacked-card"
-          :class="{ expanded: expandedCards.photo }"
-          @click="expandedCards.photo = !expandedCards.photo"
-        >
-          <StyleBlock class="is-fill">
-            <img :src="data.result.home.photo_equipe.reg.url" class="img-full" />
-          </StyleBlock>
-        </div>
-
-        <!-- équipe  -->
-        <div
-          id="equipe"
-          class="stacked-card"
-          :class="{ expanded: expandedCards.equipe }"
-          @click="expandedCards.equipe = !expandedCards.equipe"
-        >
-          <StyleBlock>
-            <div class="container">
-              <h2 class="light">EQUIPE</h2>
-
-              <div class="flex flex-center" style="flex-wrap: wrap; gap: var(--space-xl);">
-                <AppTeam
-                  v-for="person in data.result.equipe.profils_list"
-                  :key="person.fullname"
-                  :v_app_team_data="person"
-                />
-              </div>
-            </div>
-          </StyleBlock>
-        </div>
-
-        <!-- domaines d'activités  -->
-        <div
-          class="stacked-card expanded"
-          id="domaines"
-        >
-          <StyleBlock>
-            <div>
-              <AppDomaine
-                :titre="data.result.home.domaines_titre || 'Domaines d\'activités'"
-                :colonneGauche="data.result.home.domaines_activite_gauche || []"
-                :colonneDroite="data.result.home.domaines_activite_droite || []"
-                :images="data.result.home.domaines_images || []"
-              />
-            </div>
-          </StyleBlock>
-        </div>
-      </div>
+      <!-- photo équipe  -->
+      <StyleBlock class="is-fill photo-equipe-block">
+        <img
+          :src="data.result.home.photo_equipe.xxl.url"
+          :style="{ objectPosition: data.result.home.photo_equipe.focus || 'center' }"
+          class="img-full"
+        />
+      </StyleBlock>
 
       <!-- Articles Home  -->
       <AppHomeArticleCarousel :articles="articlesHome" variant="white" />
+
+      <!-- domaines d'activités  -->
+      <div id="domaines">
+        <StyleBlock>
+          <div>
+            <AppDomaine
+              :titre="data.result.home.domaines_titre || 'Domaines d\'activités'"
+              :colonneGauche="data.result.home.domaines_activite_gauche || []"
+              :colonneDroite="data.result.home.domaines_activite_droite || []"
+              :images="data.result.home.domaines_images || []"
+            />
+          </div>
+        </StyleBlock>
+      </div>
+
+      <!-- équipe  -->
+      <div id="equipe">
+        <StyleBlock>
+          <div class="container">
+            <h2 class="light">EQUIPE</h2>
+
+            <div class="flex flex-center" style="flex-wrap: wrap; gap: var(--space-xl);">
+              <AppTeam
+                v-for="person in data.result.equipe.profils_list"
+                :key="person.fullname"
+                :v_app_team_data="person"
+              />
+            </div>
+          </div>
+        </StyleBlock>
+      </div>
     </template>
 
     <!-- page d'erreur -->
@@ -109,7 +97,8 @@ type FetchData = CMS_API_Response & {
     actualites: {
       title: string
       slug: string
-      articles: CMS_API_Article[]
+      articles_hero: CMS_API_Article[]
+      articles_carousel: CMS_API_Article[]
     }
   }
 }
@@ -142,7 +131,8 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
               small: 'file.resize(500)',
               reg: 'file.resize(1280)',
               large: 'file.resize(1920)',
-              xxl: 'file.resize(2500)'
+              xxl: 'file.resize(2500)',
+              focus: 'file.focus'
             }
           },
 
@@ -195,8 +185,17 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
         select: {
           title: true,
           slug: true,
-          articles: {
-            query: 'page.children().listed().sortBy("date", "desc")',
+          articles_hero: {
+            query: 'page.children().listed().filterBy("show_in_hero", "true").sortBy("date", "desc").limit(2)',
+            select: {
+              main_title: true,
+              date: true,
+              resume: true,
+              slug: true
+            }
+          },
+          articles_carousel: {
+            query: 'page.children().listed().sortBy("date", "desc").limit(5)',
             select: {
               main_title: true,
               date: true,
@@ -210,23 +209,12 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
   }
 })
 
-const articlesAll = computed(() => data.value?.result.actualites.articles || [])
-const articlesHero = computed(() => articlesAll.value.slice(0, 2))
-const articlesHome = computed(() => articlesAll.value.slice(0, 5))
-
-const expandedCards = ref({
-  photo: false,
-  equipe: false
-})
+const articlesHero = computed(() => data.value?.result.actualites.articles_hero || [])
+const articlesHome = computed(() => data.value?.result.actualites.articles_carousel || [])
 
 // 👉 Ajout scroll automatique vers ancre si route.hash existe
 function scrollToHash(hash: string) {
   if (!hash) return
-
-  // Ouvre la carte équipe si le hash correspond
-  if (hash === '#equipe') {
-    expandedCards.value.equipe = true
-  }
 
   window.setTimeout(() => {
     const el = document.querySelector(hash)
@@ -244,26 +232,11 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
-.stacked-section {
-  position: relative;
-}
-
-.stacked-card {
-  position: relative;
-  width: 100%;
-  max-height: 200px;
-  overflow: hidden;
-  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  margin-bottom: -50px;
+.photo-equipe-block {
+  min-height: 600px;
 
   @media (max-width: 768px) {
-    margin-bottom: -100px;
-  }
-
-  &.expanded {
-    max-height: 5000px;
-    margin-bottom: 0;
+    min-height: 400px;
   }
 }
 </style>
