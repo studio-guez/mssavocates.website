@@ -48,15 +48,15 @@ const { data: children_data, status: children_status } = await useFetch<FetchDat
   lazy: true,
   method: 'POST',
   body: {
-    query: `site.find('actualites').children()`,
+    query: `site.find('actualites').children().listed().sortBy("date", "desc")`,
     select: {
-      'title': true,
-      'slug': true,
-      'resume': true,
-      'date': true,
-      'main_title': true,
-      'contenu': true,
-      'accroche': true,
+      title: true,
+      slug: true,
+      resume: 'page.resume.value',
+      date: true,
+      main_title: true,
+      contenu: 'page.contenu.value',
+      accroche: true,
     }
   }
 })
@@ -65,5 +65,9 @@ const { data: children_data, status: children_status } = await useFetch<FetchDat
 
 
 <style lang="scss" scoped>
-.v-actualities {}
+.v-actualities {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
 </style>

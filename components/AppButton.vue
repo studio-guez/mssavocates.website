@@ -21,7 +21,7 @@
    selected?: boolean
    to?: string
    href?: string
-  variant?: 'outlined' | 'outlined-white' | 'cta-actus'
+  variant?: 'outlined' | 'outlined-white' | 'cta-actus' | 'outlined-black'
  }>()
  
  defineEmits<{
@@ -107,6 +107,18 @@
   &:hover {
     background-color: var(--color-white);
     color: var(--color-pink);
+  }
+}
+
+.v-app-button.outlined-black {
+  background-color: var(--color-white);
+  color: #000;
+  border-color: #000;
+  border-radius: var(--radius-s);
+
+  &:hover {
+    background-color: #000;
+    color: var(--color-white);
   }
 }
  </style>

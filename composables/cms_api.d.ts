@@ -29,6 +29,7 @@ type CMS_API_ImageObject = {
     "reg": CMS_API_Image,
     "large": CMS_API_Image,
     "xxl": CMS_API_Image,
+    "focus"?: string,
 }
 
 
@@ -58,8 +59,15 @@ type CMS_API_Article = {
     main_title?: string
     date?: string
     resume?: string
-    contenu?: string
+    contenu?: string | any[]
     slug?: string
+    files?: {
+        id: string
+        uuid?: string
+        url: string
+        filename: string
+        name?: string
+    }[]
 }
 
 type CMS_API_Footer = {
@@ -72,20 +80,20 @@ type CMS_API_Footer = {
 type CMS_API_membre = {
     nom?: string
     email?: string
-  }
+}
 
-  type CMS_API_profils = {
+type CMS_API_profils = {
     profils_list?: {
-      fullname?: string;
-      email?: string;
-      description?: string;
-      photo?: CMS_API_ImageObject;
+        fullname?: string;
+        email?: string;
+        description?: string;
+        photo?: CMS_API_ImageObject;
     }[];
-  }
+}
 
 
 
-  type CMS_API_contact = {
+type CMS_API_contact = {
     intro?: string
     etude_nom?: string
     etude_email?: string
@@ -93,7 +101,7 @@ type CMS_API_membre = {
     adresse?: string
     membres?: CMS_API_membre[] // ou { nom: string, email: string }[]
     image?: CMS_API_ImageObject
-  }
+}
 
-  type CMS_API_PhotoEquipe = CMS_API_ImageObject
+type CMS_API_PhotoEquipe = CMS_API_ImageObject
 

@@ -39,7 +39,7 @@ const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
                     email: true,
                     description: true,
                     photo: {
-                        query: "structureItem.photo.toFile()",
+                        query: "structureItem.photo_full.toFile()",
                         select: {
                             alt: true,
                             tiny: "file.resize(100)",

@@ -10,7 +10,6 @@
       </div>
 
       <div class="v-app-hero__articles">
-        <h3 class="v-app-hero__articles-title">DERNIEREMENT</h3>
         <AppHomeArticle
           v-for="a in articles"
           :key="a.slug"
@@ -98,6 +97,7 @@
     position: relative;
     z-index: 2;
     min-width: 0;
+    justify-content: center;
 
     /* petit recul visuel par rapport à la ligne */
     padding-left: var(--space-l);
