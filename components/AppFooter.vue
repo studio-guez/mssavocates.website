@@ -21,6 +21,12 @@
           <h4>Accueil téléphonique</h4>
           <div class="body-2" v-html="v_app_footer_data.accueil" />
         </div>
+
+        <div class="footer-block footer-block--button">
+          <AppButton to="/geneve-aeroport" variant="outlined-black">
+            À l'attention du personnel<br>de Genève Aéroport
+          </AppButton>
+        </div>
       </div>
     </div>
   </section>
@@ -56,7 +62,20 @@ const props = defineProps<{
   margin-bottom: var(--space-m);
 }
 
+.footer-block--button {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 /* Responsive */
+@media (max-width: 899px) {
+  .footer-block--button {
+    justify-content: flex-start;
+  }
+}
+
+
 @media (min-width: 1200px) {
   .footer-container {
     gap: var(--space-xl);

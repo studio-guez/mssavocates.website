@@ -16,7 +16,7 @@
               <div class="v-article-detail__right-content">
                 <p class="article-date">{{ article?.date }}</p>
                 <p class="article-accroche"><strong>{{ article?.accroche }}</strong></p>
-                <div class="article-body" v-html="article?.contenu" />
+                <KirbyBlocks :blocks="article?.contenu" :files="article?.files" class="article-body" />
               </div>
 
               <div class="v-article-detail__footer">
@@ -51,26 +51,23 @@ const { data, status, error } = await useFetch<CMS_API_Response & { result: CMS_
       accroche: true,
       date: true,
       resume: true,
-      contenu: true,
-      slug: true
+      contenu: 'page.contenu.toBlocks',
+      slug: true,
+      files: {
+        query: 'page.files',
+        select: {
+          id: true,
+          uuid: true,
+          url: true,
+          filename: true,
+          name: true
+        }
+      }
     }
   }
 })
 
-console.log("Slug:", slug)
-console.log("KQL data:", data.value)
-console.log("KQL status:", status.value)
-
 const article = computed(() => data.value?.result ?? null)
-
-watchEffect(() => {
-  if (status.value === 'error' || !article.value) {
-    console.warn('[CMS] Article introuvable ou erreur KQL')
-    console.warn('slug:', slug)
-    console.warn('data:', data.value)
-    console.warn('error:', error.value)
-  }
-})
 
 
 </script>
@@ -80,8 +77,8 @@ watchEffect(() => {
 /* Grille responsive sans @media : 1–2 colonnes selon la largeur */
 .two-cols {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* s’empile tout seul sous 640px */
-  gap: var(--space-xxxl);
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* s'empile tout seul sous 640px */
+  gap: var(--space-xxl);
   margin-block: var(--space-l);
   margin-bottom: var(--space-xxl);
 }

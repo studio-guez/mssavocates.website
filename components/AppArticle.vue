@@ -5,37 +5,34 @@
     withDivider
     divider-position="center"
     :isShortDivider="true"
-    class="v-style-block is-fill"
+    :isFill="true"
   >
-    <!-- ✅ Ajout d’une section + container à l’intérieur -->
-    <section class="section">
-      <div class="container">
-        <div class="two-cols" :class="{ 'flex-row-reverse': reversed }">
-          <!-- Colonne gauche : titre principal -->
-          <div class="col">
-            <div class="col-inner v-app-article__main text-center">
-              <h2 class="v-app-article__main-title" v-html="v_app_article_data.main_title" />
-            </div>
+    <div class="v-app-article-wrapper">
+      <div class="two-cols" :class="{ 'flex-row-reverse': reversed }">
+        <!-- Colonne gauche : titre principal -->
+        <div class="col">
+          <div class="col-inner v-app-article__main text-center">
+            <h2 class="v-app-article__main-title" v-html="v_app_article_data.main_title" />
           </div>
+        </div>
 
-          <!-- Colonne droite : infos -->
-          <div class="col">
-            <div class="col-inner v-app-article__info">
-              <p class="v-app-article__date">{{ v_app_article_data.date }}</p>
-              <h4 class="v-app-article__title">{{ v_app_article_data.accroche }}</h4>
-              <p class="v-app-article__resume" v-html="v_app_article_data.resume" />
-              <div class="v-app-article__actions">
-                <AppButton
-                  :to="`/actualites/${v_app_article_data.slug}`"
-                  label="Lire"
-                  variant="outlined"
-                />
-              </div>
+        <!-- Colonne droite : infos -->
+        <div class="col">
+          <div class="col-inner v-app-article__info">
+            <p class="v-app-article__date">{{ v_app_article_data.date }}</p>
+            <h4 class="v-app-article__title">{{ v_app_article_data.accroche }}</h4>
+            <p class="v-app-article__resume" v-html="v_app_article_data.resume" />
+            <div class="v-app-article__actions">
+              <AppButton
+                :to="`/actualites/${v_app_article_data.slug}`"
+                label="Lire"
+                variant="outlined"
+              />
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </StyleBlock>
 
   <!-- Vue complète (article entier) -->
@@ -60,7 +57,22 @@
     </script>
 
     <style scoped lang="scss">
-  .v-app-article__main-title {
+
+.v-app-article-wrapper {
+  width: 100%;
+  max-width: min(100%, 1600px);
+  margin-inline: auto;
+  padding: var(--space-xxl) var(--space-xl);
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .v-app-article-wrapper {
+    padding: var(--space-xl) var(--space-m);
+  }
+}
+
+.v-app-article__main-title {
     text-transform: uppercase;
     line-height: 1.2;
   }
@@ -97,32 +109,46 @@
     gap: var(--space-m);
   }
 
-  .flex-row-reverse {
-  flex-direction: row-reverse;
+/* Système de colonnes pour les articles */
+.v-app-article-wrapper .two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xxxl);
+  align-items: center;
+
+  .col {
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .col-inner {
+    width: 100%;
+    min-width: 0;
+  }
 }
 
-/* remet en flex quand on veut inverser */
-.two-cols.flex-row-reverse {
-  display: flex;               /* ← override le grid global */
-}
-
-/* desktop : on inverse */
+/* desktop : on inverse pour reversed */
 @media (min-width: 901px) {
-  .two-cols.flex-row-reverse {
-    flex-direction: row-reverse;
-    gap: var(--space-xxxl);
+  .v-app-article-wrapper .two-cols.flex-row-reverse {
+    direction: rtl;
+  }
+
+  .v-app-article-wrapper .two-cols.flex-row-reverse .col {
+    direction: ltr;
   }
 }
 
-/* mobile : on empile (pas de reverse sur mobile) */
+/* mobile : on empile */
 @media (max-width: 900px) {
-  .two-cols.flex-row-reverse {
-    flex-direction: column;
-    gap: var(--space-l);
+  .v-app-article-wrapper .two-cols {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .v-app-article-wrapper .two-cols.flex-row-reverse {
+    direction: ltr;
   }
 }
-
-/* sécurité anti-débordement */
-.two-cols .col { min-width: 0; }
 
     </style>

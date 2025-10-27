@@ -104,7 +104,12 @@ onMounted(() => {
 .v-app-domaine__text h4 {
   color: var(--color-pink);
   font-weight: 600;
-  margin-bottom: var(--space-xs);
+  margin-top: var(--space-l);
+  margin-bottom: var(--space-m);
+}
+
+.v-app-domaine__text h4:first-child {
+  margin-top: 0;
 }
 
 .v-app-domaine__list :deep(ul) {

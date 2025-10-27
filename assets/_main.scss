@@ -340,14 +340,6 @@ img {
   height: auto;
   object-fit: cover;
 
-  .v-style-block.is-fill {
-
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   // arrondi par défaut
   border-radius: var(--radius-s);
 

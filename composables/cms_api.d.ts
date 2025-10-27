@@ -55,12 +55,19 @@ type CMS_API_hero = {
 
 type CMS_API_Article = {
     // title: string
-    accroche: string, 
+    accroche: string,
     main_title: string
     date: string
     resume: string
-    contenu: string
+    contenu: string | any[]
     slug: string
+    files?: {
+        id: string
+        uuid?: string
+        url: string
+        filename: string
+        name?: string
+    }[]
 }
 
 type CMS_API_Footer = {

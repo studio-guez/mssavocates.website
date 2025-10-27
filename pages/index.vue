@@ -209,7 +209,22 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
   }
 })
 
-const articlesHero = computed(() => data.value?.result.actualites.articles_hero || [])
+const articlesHero = computed(() => {
+  const heroArticles = data.value?.result.actualites.articles_hero || []
+  const carouselArticles = data.value?.result.actualites.articles_carousel || []
+
+  // Si on a moins de 2 articles hero, on complète avec les articles du carousel
+  if (heroArticles.length < 2 && carouselArticles.length > 0) {
+    const needed = 2 - heroArticles.length
+    const additionalArticles = carouselArticles
+      .filter(article => !heroArticles.some(hero => hero.slug === article.slug))
+      .slice(0, needed)
+    return [...heroArticles, ...additionalArticles]
+  }
+
+  return heroArticles
+})
+
 const articlesHome = computed(() => data.value?.result.actualites.articles_carousel || [])
 
 // 👉 Ajout scroll automatique vers ancre si route.hash existe

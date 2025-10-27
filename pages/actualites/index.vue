@@ -65,5 +65,9 @@ const { data: children_data, status: children_status } = await useFetch<FetchDat
 
 
 <style lang="scss" scoped>
-.v-actualities {}
+.v-actualities {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
 </style>

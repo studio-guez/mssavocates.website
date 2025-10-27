@@ -11,13 +11,10 @@
     <nav class="v-header__nav" :class="{ 'is-visible': showMenu }">
       <ul>
         <li><a href="/actualites">ACTUALITÉS</a></li>
-        <li><NuxtLink href="/#equipe">ÉQUIPE</NuxtLink></li>
         <li><a href="/#domaines">NOTRE ÉTUDE</a></li>
+        <li><NuxtLink href="/#equipe">ÉQUIPE</NuxtLink></li>
         <li><a href="/contact">CONTACT</a></li>
       </ul>
-      <AppButton to="/geneve-aeroport" variant="outlined-white" class="v-header__btn">
-        À l'attention du personnel<br>de Genève Aéroport
-      </AppButton>
     </nav>
 
   </header>
@@ -137,25 +134,15 @@ a {
   color: var(--color-white);
   text-decoration: none;
   display: block;
-  max-width: 7rem;
+  max-width: 10rem;
   text-align: center;
-  white-space: normal; 
+  white-space: nowrap;
 }
     }
 
     &.is-visible {
       transform: translateY(0%);
     }
-  }
-
-  .v-header__btn {
-    font-family: var(--font-NewEdge);
-    font-size: 0.9rem;
-    line-height: 1.3;
-    white-space: normal;
-    padding: 0.75rem 2rem !important;
-    border-radius: 1.25rem !important;
-    min-width: 220px;
   }
 }
 
