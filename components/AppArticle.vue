@@ -114,12 +114,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-xxxl);
-  align-items: center;
+  align-items: stretch;
 
   .col {
     min-width: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .col-inner {
