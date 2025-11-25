@@ -1,5 +1,3 @@
-Index
-
 <template>
   <main class="v-index">
     <template v-if="data && data.status === 'ok'">
@@ -26,8 +24,8 @@ Index
 
             <div class="flex flex-center" style="flex-wrap: wrap; gap: var(--space-xl);">
               <AppTeam
-                v-for="person in data.result.equipe.profils_list"
-                :key="person.fullname"
+                v-for="person in data.result.equipe"
+                :key="person.title"
                 :v_app_team_data="person"
               />
             </div>
@@ -91,12 +89,11 @@ type FetchData = CMS_API_Response & {
       domaines_images: CMS_API_ImageObject[]
     },
     equipe: {
-      profils_list: Array<{
-        fullname: string
-        email: string
-        photo: CMS_API_PhotoEquipe
-      }>
-    },
+      slug: string
+      title: string
+      email: string
+      photo: CMS_API_PhotoEquipe
+    }[],
     actualites: {
       title: string
       slug: string
@@ -160,24 +157,20 @@ const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_
       },
 
       equipe: {
-        query: "site.find('equipe')",
+        query: "site.find('equipe').children()",
         select: {
-          profils_list: {
-            query: "page.profils_list.toStructure()",
+          title: true,
+          email: true,
+          slug: true,
+          photo: {
+            query: "page.photo.toFile()",
             select: {
-              fullname: true,
-              email: true,
-              photo: {
-                query: "structureItem.photo.toFile()",
-                select: {
-                  alt: true,
-                  tiny: "file.resize(50, null, 10)",
-                  small: "file.resize(500)",
-                  reg: "file.resize(1280)",
-                  large: "file.resize(1920)",
-                  xxl: "file.resize(2500)"
-                }
-              }
+              alt: true,
+              tiny: "file.resize(50, null, 10)",
+              small: "file.resize(500)",
+              reg: "file.resize(1280)",
+              large: "file.resize(1920)",
+              xxl: "file.resize(2500)"
             }
           }
         }

@@ -18,6 +18,7 @@ export default defineEventHandler(async (event) => {// console.log('data', data)
 
     console.log('dataApi', dataApi)
     console.log('API_URL:', process.env.API_URL)
+    console.log('body:', body)
 
     return dataApi
 })

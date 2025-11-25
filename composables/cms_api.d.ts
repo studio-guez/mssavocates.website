@@ -82,13 +82,15 @@ type CMS_API_membre = {
     email?: string
 }
 
-type CMS_API_profils = {
-    profils_list?: {
-        fullname?: string;
-        email?: string;
-        description?: string;
-        photo?: CMS_API_ImageObject;
-    }[];
+type CMS_API_team = {
+    profils_list?: CMS_API_profil[];
+}
+
+type CMS_API_profil = {
+  fullname?: string;
+  email?: string;
+  description?: string;
+  photo?: CMS_API_ImageObject;
 }
 
 

@@ -1,15 +1,15 @@
 <template>
-  <main v-if="currentProfil">
+  <main>
     <div class="two-cols container">
       <!-- Colonne gauche : image -->
       <div class="col">
         <div class="col-inner v-profil__image-column">
-          <h3 class="v-profil__title">{{ currentProfil.fullname }}</h3>
+          <h3 class="v-profil__title">{{ profil.fullname }}</h3>
 
           <div class="v-profil__image">
             <img
-              :src="currentProfil.photo?.reg.url"
-              :alt="currentProfil.photo?.alt || currentProfil.fullname"
+              :src="profil.photo?.reg.url"
+              :alt="profil.photo?.alt || profil.fullname"
             />
           </div>
         </div>
@@ -18,8 +18,8 @@
       <!-- Colonne droite : description + actions -->
       <div class="col">
         <div class="col-inner v-profil__description">
-          <p v-html="currentProfil.description" />
-          <p v-html="currentProfil.email" />
+          <p v-html="profil.description" />
+          <p v-html="profil.email" />
 
           <div class="v-profil__nav">
             <AppButton variant="outlined" href="/">Accueil</AppButton>
@@ -36,19 +36,11 @@
 
   <script setup lang="ts">
   const props = defineProps<{
-    profils: CMS_API_profils['profils_list']
+    profil: CMS_API_profil
   }>()
 
-  const currentIndex = ref(0)
-  const currentProfil = computed(() => {
-      if(!props.profils) return
-      return props.profils[currentIndex.value];
-  })
-
   function goToNextProfil() {
-      if(!props.profils) return
-    currentIndex.value =
-      currentIndex.value < props.profils.length - 1 ? currentIndex.value + 1 : 0
+
   }
   </script>
 
