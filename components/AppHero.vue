@@ -42,7 +42,7 @@
 
   /* 1) Hero : container pleine largeur pour aligner avec le divider */
   > .container {
-    max-width: none;             /* on enlève la contrainte ici SEULEMENT */
+    max-width: 2500px;
     padding-inline: var(--space-l);
     box-sizing: border-box;
   }
