@@ -1,4 +1,4 @@
-Index 
+Index
 
 <template>
   <main class="v-index">
@@ -15,31 +15,8 @@ Index
         />
       </StyleBlock>
 
-      <!-- photo équipe  -->
-      <StyleBlock class="is-fill photo-equipe-block">
-        <img
-          :src="data.result.home.photo_equipe.xxl.url"
-          :style="{ objectPosition: data.result.home.photo_equipe.focus || 'center' }"
-          class="img-full"
-        />
-      </StyleBlock>
-
       <!-- Articles Home  -->
       <AppHomeArticleCarousel :articles="articlesHome" variant="white" />
-
-      <!-- domaines d'activités  -->
-      <div id="domaines">
-        <StyleBlock>
-          <div>
-            <AppDomaine
-              :titre="data.result.home.domaines_titre || 'Domaines d\'activités'"
-              :colonneGauche="data.result.home.domaines_activite_gauche || []"
-              :colonneDroite="data.result.home.domaines_activite_droite || []"
-              :images="data.result.home.domaines_images || []"
-            />
-          </div>
-        </StyleBlock>
-      </div>
 
       <!-- équipe  -->
       <div id="equipe">
@@ -57,6 +34,32 @@ Index
           </div>
         </StyleBlock>
       </div>
+
+      <!-- domaines d'activités  -->
+      <div id="domaines">
+        <StyleBlock>
+          <div>
+            <AppDomaine
+              :titre="data.result.home.domaines_titre || 'Domaines d\'activités'"
+              :colonneGauche="data.result.home.domaines_activite_gauche || []"
+              :colonneDroite="data.result.home.domaines_activite_droite || []"
+              :images="data.result.home.domaines_images || []"
+            />
+          </div>
+        </StyleBlock>
+      </div>
+
+
+
+
+      <!-- photo équipe  -->
+      <StyleBlock class="is-fill photo-equipe-block">
+        <img
+          :src="data.result.home.photo_equipe.xxl.url"
+          :style="{ objectPosition: data.result.home.photo_equipe.focus || 'center' }"
+          class="img-full"
+        />
+      </StyleBlock>
     </template>
 
     <!-- page d'erreur -->
@@ -215,7 +218,7 @@ const articlesHero = computed(() => {
 
   // Si on a moins de 2 articles hero, on complète avec les articles du carousel
   if (heroArticles.length < 2 && carouselArticles.length > 0) {
-    const needed = 2 - heroArticles.length
+    const needed = 1 - heroArticles.length
     const additionalArticles = carouselArticles
       .filter(article => !heroArticles.some(hero => hero.slug === article.slug))
       .slice(0, needed)
