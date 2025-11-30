@@ -35,6 +35,7 @@
   align-items: center;
   text-align: center;
   text-decoration: none;
+  box-shadow: none;
   gap: var(--space-xl);
   width: 100%;
   max-width: 340px;                /* limite desktop */
