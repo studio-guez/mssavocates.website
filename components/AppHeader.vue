@@ -84,9 +84,13 @@ watch(() => route.fullPath, () => closeMenu())
     z-index: 999; // toujours au-dessus du menu
   }
 
-  .v-header__logo img {
-    height: 3.5rem;
-    display: block;
+  .v-header__logo {
+    box-shadow: none;
+
+    img {
+      height: 3.5rem;
+      display: block;
+    }
   }
 
   .v-header__menu {

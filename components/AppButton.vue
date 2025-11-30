@@ -10,12 +10,12 @@
     <slot>{{ label }}</slot>
   </component>
  </template>
- 
- 
+
+
  <script setup lang="ts">
  import { defineProps, defineEmits, computed } from 'vue'
  import { NuxtLink } from '#components'
- 
+
  const props = defineProps<{
    label?: string
    selected?: boolean
@@ -23,17 +23,17 @@
    href?: string
   variant?: 'outlined' | 'outlined-white' | 'cta-actus' | 'outlined-black'
  }>()
- 
+
  defineEmits<{
    (e: 'click'): void
  }>()
- 
+
  const linkTag = computed(() => {
    if (props.to) return NuxtLink
    if (props.href) return 'a'
    return 'button'
  })
- 
+
  const linkAttrs = computed(() => {
    if (linkTag.value === NuxtLink) {
      return { to: props.to }
@@ -44,14 +44,14 @@
    }
  })
  </script>
- 
- 
+
+
  <style scoped lang="scss">
  .v-app-button {
   border-radius: var(--radius-full);
   padding: var(--space-xs) var(--space-m);
   min-width: 2rem;
-  font-family: var(--font-Inter);
+  font-family: var(--font-Inter), sans-serif;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -60,36 +60,37 @@
   text-decoration: none;
   display: inline-block;
   border: 0.05rem solid;
+  box-shadow: none;
  }
- 
- 
+
+
  .v-app-button.outlined {
   background: transparent;
   border-color: var(--color-pink);
   color: var(--color-pink);
- 
- 
+
+
   &:hover {
     background: var(--color-pink);
     color: var(--color-white);
   }
  }
- 
- 
+
+
  .v-app-button.outlined-white {
    background: transparent;
     color: var(--color-white);
- 
- 
+
+
   &:hover {
-   
+
      background: var(--color-white);
   border-color: var(--color-white);
   color: var(--color-pink);
   }
  }
- 
- 
+
+
  .v-app-button.is-selected {
   background: var(--color-pink);
   color: var(--color-white);
@@ -122,7 +123,6 @@
   }
 }
  </style>
- 
- 
- 
- 
+
+
+

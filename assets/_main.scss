@@ -97,8 +97,10 @@ body {
 
 
 a {
-  color: inherit;
+  color: var(--color-pink);
   cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 1px 0 0 var(--color-pink);
 }
 
 
