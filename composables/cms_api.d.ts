@@ -87,7 +87,7 @@ type CMS_API_team = {
 }
 
 type CMS_API_profil = {
-  fullname?: string;
+  title?: string;
   email?: string;
   description?: string;
   photo?: CMS_API_ImageObject;

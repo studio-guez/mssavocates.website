@@ -4,12 +4,12 @@
       <!-- Colonne gauche : image -->
       <div class="col">
         <div class="col-inner v-profil__image-column">
-          <h3 class="v-profil__title">{{ profil.fullname }}</h3>
+          <h3 class="v-profil__title">{{ profil.title }}</h3>
 
           <div class="v-profil__image">
             <img
               :src="profil.photo?.reg.url"
-              :alt="profil.photo?.alt || profil.fullname"
+              :alt="profil.photo?.alt || profil.title"
             />
           </div>
         </div>
@@ -25,7 +25,10 @@
 
           <div class="v-profil__nav">
             <AppButton variant="outlined" href="/">Accueil</AppButton>
-            <AppButton variant="outlined" @click="goToNextProfil">
+            <AppButton v-if="next_slug_profil"
+                       :to="next_slug_profil"
+                       variant="outlined"
+            >
               Profil suivant
             </AppButton>
           </div>
@@ -37,13 +40,10 @@
 
 
   <script setup lang="ts">
-  const props = defineProps<{
+  defineProps<{
     profil: CMS_API_profil
+    next_slug_profil: string | null
   }>()
-
-  function goToNextProfil() {
-
-  }
   </script>
 
   <style scoped>
@@ -56,8 +56,8 @@
 
 .v-profil__title {
   font-weight: 700;
-  margin-bottom: var(--space-m);
   text-align: center;
+  margin: 0;
 }
 
 .v-profil__image {
