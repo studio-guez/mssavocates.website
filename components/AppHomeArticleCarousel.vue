@@ -1,7 +1,5 @@
 <template>
   <div class="article-carousel-wrapper">
-    <h1 class="text-white text-center">ACTUS</h1>
-
     <div
       class="article-carousel"
       ref="carousel"
@@ -135,6 +133,7 @@ function onDrag(e: MouseEvent) {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   user-select: none;
+  cursor: grab;
 
   &.is-dragging {
     cursor: grabbing;
