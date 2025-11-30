@@ -1,28 +1,29 @@
 <template>
   <StyleBlock :withDivider="true" dividerPosition="center" :isShortDivider="true">
     <main class="v-geneve-aeroport">
-      <template v-if="data && data.status === 'ok' && pageData">
-        <div class="two-cols container">
-          <!-- Colonne gauche : titre -->
-          <div class="col">
-            <div class="col-inner v-geneve-aeroport__left">
-              <h2 class="main-title">{{ pageData?.main_title }}</h2>
+      <template v-if="data">
+        <template v-if="data.status === 'ok'">
+          <div class="two-cols container">
+            <!-- Colonne gauche : titre -->
+            <div class="col">
+              <div class="col-inner v-geneve-aeroport__left">
+                <h2 class="main-title">{{ pageData?.main_title }}</h2>
+              </div>
             </div>
-          </div>
 
-          <!-- Colonne droite : contenu -->
-          <div class="col">
-            <div class="col-inner v-geneve-aeroport__right">
-              <div class="v-geneve-aeroport__right-content">
-                <KirbyBlocks :blocks="pageData?.contenu" :files="pageData?.files" class="page-body" />
+            <!-- Colonne droite : contenu -->
+            <div class="col">
+              <div class="col-inner v-geneve-aeroport__right">
+                <div class="v-geneve-aeroport__right-content">
+                  <KirbyBlocks :blocks="pageData?.contenu" :files="pageData?.files" class="page-body" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </template>
-
-      <template v-else>
-        <AppError />
+        </template>
+        <template v-else>
+          <AppError />
+        </template>
       </template>
     </main>
   </StyleBlock>

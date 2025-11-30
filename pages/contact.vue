@@ -1,23 +1,26 @@
 <template>
   <main class="v-contact">
-    <div v-if="data && data.status === 'ok'">
-      <!-- <h2>Contact</h2> -->
+    <template v-if="data">
 
-      <StyleBlock>
-        <AppContact :v_app_contact_data="{ ...data.result.contact, membres: data.result.equipe.profils_list.map(p => ({ nom: p.fullname, email: p.email })) }" />
-      </StyleBlock>
-      <section>
-        <!-- test data pour debugger -->
-        <div>
-          <!-- {{ data.result }} -->
+      <div v-if="data.status === 'ok'">
+        <!-- <h2>Contact</h2> -->
 
-        </div>
-      </section>
-    </div>
+        <StyleBlock>
+          <AppContact :v_app_contact_data="{ ...data.result.contact, membres: data.result.equipe.profils_list.map(p => ({ nom: p.fullname, email: p.email })) }" />
+        </StyleBlock>
+        <section>
+          <!-- test data pour debugger -->
+          <div>
+            <!-- {{ data.result }} -->
 
-    <div v-else>
-      <AppError />
-    </div>
+          </div>
+        </section>
+      </div>
+
+      <div v-else>
+        <AppError />
+      </div>
+    </template>
   </main>
 </template>
 

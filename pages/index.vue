@@ -1,68 +1,69 @@
 <template>
   <main class="v-index">
-    <template v-if="data && data.status === 'ok'">
-      <div>
-        <!-- <h1>{{ data?.result?.home.title }}</h1> -->
-      </div>
+    <template v-if="data">
+      <template v-if="data.status === 'ok'">
+        <div>
+          <!-- <h1>{{ data?.result?.home.title }}</h1> -->
+        </div>
 
-      <!-- hero= texte + articles  -->
-      <StyleBlock withDivider dividerPosition="leftSplit">
-        <AppHero
-          :v_app_hero_data="data.result.home.introduction[0]"
-          :articles="articlesHero"
-        />
-      </StyleBlock>
+        <!-- hero= texte + articles  -->
+        <StyleBlock withDivider dividerPosition="leftSplit">
+          <AppHero
+            :v_app_hero_data="data.result.home.introduction[0]"
+            :articles="articlesHero"
+          />
+        </StyleBlock>
 
-      <!-- Articles Home  -->
-      <AppHomeArticleCarousel :articles="articlesHome" variant="white" />
+        <!-- Articles Home  -->
+        <AppHomeArticleCarousel :articles="articlesHome" variant="white" />
 
-      <!-- équipe  -->
-      <div id="equipe">
-        <StyleBlock>
-          <div class="container">
-            <h2 class="light">EQUIPE</h2>
+        <!-- équipe  -->
+        <div id="equipe">
+          <StyleBlock>
+            <div class="container">
+              <h2 class="light">EQUIPE</h2>
 
-            <div class="flex flex-center" style="flex-wrap: wrap; gap: var(--space-xl);">
-              <AppTeam
-                v-for="person in data.result.equipe"
-                :key="person.title"
-                :v_app_team_data="person"
+              <div class="flex flex-center" style="flex-wrap: wrap; gap: var(--space-xl);">
+                <AppTeam
+                  v-for="person in data.result.equipe"
+                  :key="person.title"
+                  :v_app_team_data="person"
+                />
+              </div>
+            </div>
+          </StyleBlock>
+        </div>
+
+        <!-- domaines d'activités  -->
+        <div id="domaines">
+          <StyleBlock>
+            <div>
+              <AppDomaine
+                :titre="data.result.home.domaines_titre || 'Domaines d\'activités'"
+                :colonneGauche="data.result.home.domaines_activite_gauche || []"
+                :colonneDroite="data.result.home.domaines_activite_droite || []"
+                :images="data.result.home.domaines_images || []"
               />
             </div>
-          </div>
+          </StyleBlock>
+        </div>
+
+
+
+
+        <!-- photo équipe  -->
+        <StyleBlock class="is-fill photo-equipe-block">
+          <img
+            :src="data.result.home.photo_equipe.xxl.url"
+            :style="{ objectPosition: data.result.home.photo_equipe.focus || 'center' }"
+            class="img-full"
+          />
         </StyleBlock>
-      </div>
-
-      <!-- domaines d'activités  -->
-      <div id="domaines">
-        <StyleBlock>
-          <div>
-            <AppDomaine
-              :titre="data.result.home.domaines_titre || 'Domaines d\'activités'"
-              :colonneGauche="data.result.home.domaines_activite_gauche || []"
-              :colonneDroite="data.result.home.domaines_activite_droite || []"
-              :images="data.result.home.domaines_images || []"
-            />
-          </div>
-        </StyleBlock>
-      </div>
-
-
-
-
-      <!-- photo équipe  -->
-      <StyleBlock class="is-fill photo-equipe-block">
-        <img
-          :src="data.result.home.photo_equipe.xxl.url"
-          :style="{ objectPosition: data.result.home.photo_equipe.focus || 'center' }"
-          class="img-full"
-        />
-      </StyleBlock>
-    </template>
-
-    <!-- page d'erreur -->
-    <template v-else>
-      <AppError />
+      </template>
+      <!-- page d'erreur -->
+      <template v-else>
+        <AppError />
+      </template>
     </template>
   </main>
 </template>
@@ -103,7 +104,7 @@ type FetchData = CMS_API_Response & {
   }
 }
 
-const { data: data, status: status_test } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
+const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
   lazy: true,
   method: 'POST',
   body: {

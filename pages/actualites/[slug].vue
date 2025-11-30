@@ -1,34 +1,35 @@
 <template>
   <StyleBlock :withDivider="true" dividerPosition="center" :isShortDivider="true">
     <main class="v-article-detail">
-      <template v-if="data && data.status === 'ok' && article">
-        <div class="two-cols container">
-          <!-- Colonne gauche : titre -->
-          <div class="col">
-            <div class="col-inner v-article-detail__left">
-              <h2 class="main-title">{{ article?.main_title }}</h2>
-            </div>
-          </div>
-
-          <!-- Colonne droite : contenu + bouton -->
-          <div class="col">
-            <div class="col-inner v-article-detail__right">
-              <div class="v-article-detail__right-content">
-                <p class="article-date">{{ article?.date }}</p>
-                <p class="article-accroche"><strong>{{ article?.accroche }}</strong></p>
-                <KirbyBlocks :blocks="article?.contenu" :files="article?.files" class="article-body" />
-              </div>
-
-              <div class="v-article-detail__footer">
-                <AppButton to="/actualites" variant="outlined">Tous les articles</AppButton>
+      <template v-if="data">
+        <template v-if="data.status === 'ok' && article">
+          <div class="two-cols container">
+            <!-- Colonne gauche : titre -->
+            <div class="col">
+              <div class="col-inner v-article-detail__left">
+                <h2 class="main-title">{{ article?.main_title }}</h2>
               </div>
             </div>
-          </div>
-        </div>
-      </template>
 
-      <template v-else>
-        <AppError />
+            <!-- Colonne droite : contenu + bouton -->
+            <div class="col">
+              <div class="col-inner v-article-detail__right">
+                <div class="v-article-detail__right-content">
+                  <p class="article-date">{{ article?.date }}</p>
+                  <p class="article-accroche"><strong>{{ article?.accroche }}</strong></p>
+                  <KirbyBlocks :blocks="article?.contenu" :files="article?.files" class="article-body" />
+                </div>
+
+                <div class="v-article-detail__footer">
+                  <AppButton to="/actualites" variant="outlined">Tous les articles</AppButton>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+        <template v-else>
+          <AppError />
+        </template>
       </template>
     </main>
   </StyleBlock>

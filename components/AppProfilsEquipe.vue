@@ -24,7 +24,7 @@
           </div>
 
           <div class="v-profil__nav">
-            <AppButton variant="outlined" href="/">Accueil</AppButton>
+            <AppButton variant="outlined" to="/#equipe">Équipe</AppButton>
             <AppButton v-if="next_slug_profil"
                        :to="next_slug_profil"
                        variant="outlined"

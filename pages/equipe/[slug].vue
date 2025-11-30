@@ -1,16 +1,18 @@
 <template>
   <main class="v-equipe-slug" >
-    <template v-if="data && data.status === 'ok'">
-      <StyleBlock withDivider dividerPosition="center">
-        <AppProfilsEquipe
-          :profil="data?.result"
-          :next_slug_profil="nextSlugProfil"
-        />
-      </StyleBlock>
-    </template>
+    <template v-if="data">
+      <template v-if="data.status === 'ok'">
+        <StyleBlock withDivider dividerPosition="center">
+          <AppProfilsEquipe
+            :profil="data?.result"
+            :next_slug_profil="nextSlugProfil"
+          />
+        </StyleBlock>
+      </template>
 
-    <template v-else>
-      <AppError />
+      <template v-else>
+        <AppError />
+      </template>
     </template>
   </main>
 </template>
