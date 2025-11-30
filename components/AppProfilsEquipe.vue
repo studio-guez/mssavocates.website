@@ -18,8 +18,10 @@
       <!-- Colonne droite : description + actions -->
       <div class="col">
         <div class="col-inner v-profil__description">
-          <p v-html="profil.description" />
-          <p v-html="profil.email" />
+          <div>
+            <div v-html="profil.description" />
+            <p style="margin-top: var(--space-m)" v-html="profil.email" />
+          </div>
 
           <div class="v-profil__nav">
             <AppButton variant="outlined" href="/">Accueil</AppButton>
@@ -79,14 +81,14 @@
   justify-content: flex-start;
   gap: var(--space-l);
   height: 100%; /* nécessaire pour que margin-top: auto fonctionne */
+}
 
-  p {
-    line-height: 1.6;
-  }
+:global(.v-profil__description p) {
+  line-height: 1.6;
+}
 
-  p + p {
-    margin-top: var(--space-m);
-  }
+:global(.v-profil__description p + p) {
+  margin-top: var(--space-m);
 }
 
 .v-profil__nav {
