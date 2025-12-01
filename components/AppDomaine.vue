@@ -74,12 +74,6 @@ const getImageFromUuid = (uuid: string | string[]) => {
   }
   return null
 }
-
-onMounted(() => {
-  console.log('Colonne Gauche:', props.colonneGauche)
-  console.log('Colonne Droite:', props.colonneDroite)
-  console.log('Images:', props.images)
-})
 </script>
 
 

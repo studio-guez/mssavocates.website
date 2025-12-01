@@ -231,7 +231,6 @@ function scrollToHash(hash: string) {
   window.setTimeout(() => {
     const el = document.querySelector(hash)
     if (el) {
-      console.log(hash)
       el.scrollIntoView({ behavior: 'smooth' })
     }
   },500)

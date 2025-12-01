@@ -1,4 +1,4 @@
-export default defineEventHandler(async (event) => {// console.log('data', data)
+export default defineEventHandler(async (event) => {
 
     const email = process.env.API_AUTH_EMAIL
     const password = process.env.API_AUTH_PASSWORD
@@ -15,10 +15,6 @@ export default defineEventHandler(async (event) => {// console.log('data', data)
         },
         body,
     })
-
-    console.log('dataApi', dataApi)
-    console.log('API_URL:', process.env.API_URL)
-    console.log('body:', body)
 
     return dataApi
 })
