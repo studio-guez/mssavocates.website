@@ -1,6 +1,6 @@
 <template>
 
-      <section class="v-style-block is-fill">
+  <section class="v-style-block is-fill">
     <div class="container">
       <h2 class="v-app-domaine__titre light">CONTACT</h2>
     </div>
@@ -10,7 +10,7 @@
       <div class="col">
         <div class="col-inner v-app-contact__left">
           <!-- Introduction -->
-          <div v-if="v_app_contact_data.intro" class="v-app-contact__intro" v-html="v_app_contact_data.intro" />
+          <div v-if="v_app_contact_data.intro" class="v-app-contact__intro" v-html="v_app_contact_data.intro"/>
 
           <!-- Bloc MSS -->
           <div class="v-app-contact__mss">
@@ -41,7 +41,7 @@
         >
           <p class="v-app-contact__map__address">{{ v_app_contact_data.adresse }}</p>
           <img v-if="v_app_contact_data.image" :src="v_app_contact_data.image.reg.url"
-                draggable="false"
+               draggable="false"
                :alt="v_app_contact_data.image.alt || 'Plan de l\'étude'" class="v-app-contact__image"/>
         </a>
       </div>
@@ -51,17 +51,17 @@
 
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 
-const props = defineProps<{
-    v_app_contact_data: CMS_API_contact
+defineProps<{
+  v_app_contact_data: CMS_API_contact
 }>()
 </script>
 
 <style scoped>
 
 .v-app-domaine__titre.light {
-  margin-bottom: 0rem;
+  margin-bottom: 0;
 }
 
 .v-app-contact__left {
@@ -72,7 +72,6 @@ const props = defineProps<{
 }
 
 .v-app-contact__intro {
-  font-size: var(--body-2-size);
   color: var(--color-black);
 }
 
@@ -114,13 +113,8 @@ const props = defineProps<{
   height: 100%;
 }
 
-.v-app-contact__map {
-
-}
-
 .v-app-contact__map__address {
   margin-top: 0; /* ✅ pas de marge au-dessus en desktop */
-  font-size: var(--body-2-size);
   color: var(--color-black);
 
   /* ✅ si tu veux un petit espace en mobile seulement */
