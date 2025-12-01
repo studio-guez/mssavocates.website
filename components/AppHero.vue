@@ -10,7 +10,7 @@
       </div>
 
       <div class="v-app-hero__articles">
-        <h3 class="v-app-hero__articles-title">DERNIEREMENT</h3>
+        <h3 class="v-app-hero__articles-title">DERNIÈREMENT</h3>
         <AppHomeArticle
           v-for="a in articles"
           :key="a.slug"
