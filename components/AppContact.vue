@@ -35,11 +35,15 @@
 
       <!-- Colonne droite -->
       <div class="col">
-        <div class="col-inner v-app-contact__right">
-          <p class="v-app-contact__address">{{ v_app_contact_data.adresse }}</p>
-        <img v-if="v_app_contact_data.image" :src="v_app_contact_data.image.reg.url"
-                    :alt="v_app_contact_data.image.alt || 'Plan de l\'étude'" class="v-app-contact__image" />
-        </div>
+        <a class="col-inner v-app-contact__right v-app-contact__map"
+           href="https://maps.app.goo.gl/BoShnw7TJncDxnBf6"
+           target="_blank"
+        >
+          <p class="v-app-contact__map__address">{{ v_app_contact_data.adresse }}</p>
+          <img v-if="v_app_contact_data.image" :src="v_app_contact_data.image.reg.url"
+                draggable="false"
+               :alt="v_app_contact_data.image.alt || 'Plan de l\'étude'" class="v-app-contact__image"/>
+        </a>
       </div>
     </div>
   </section>
@@ -110,7 +114,11 @@ const props = defineProps<{
   height: 100%;
 }
 
-.v-app-contact__address {
+.v-app-contact__map {
+
+}
+
+.v-app-contact__map__address {
   margin-top: 0; /* ✅ pas de marge au-dessus en desktop */
   font-size: var(--body-2-size);
   color: var(--color-black);
