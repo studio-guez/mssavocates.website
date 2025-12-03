@@ -1,6 +1,6 @@
 <template>
   <Transition name="fade">
-    <div v-if="isVisible" class="intro-animation" :class="{ 'is-closing': isClosing }">
+    <div v-if="true" class="intro-animation" :class="{ 'is-closing': isClosing }">
       <div class="intro-animation__circle"></div>
       <img
         src="/img/mss_logo--white.svg"
@@ -89,18 +89,14 @@ function startClosingAnimation() {
   &__logo {
     position: relative;
     z-index: 1;
-    width: 200px;
+    width: 70vw;
     height: auto;
     border-radius: 0;
     transition: transform 1.5s ease-in-out, opacity 0.5s 1s ease;
-
-    @media (max-width: 768px) {
-      width: 150px;
-    }
+    mix-blend-mode: revert;
 
     &.is-scaled {
-      transform: scale(0.85);
-      opacity: 0;
+      transform: scale(1.15);
     }
   }
 }
