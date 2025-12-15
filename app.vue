@@ -4,7 +4,10 @@
       :is_data_loaded="isInitialDataLoaded"
     />
     <NuxtLayout>
-      <NuxtPage />
+      <NuxtPage :transition="{
+        name: 'page',
+        mode: 'out-in'
+      }" />
     </NuxtLayout>
   </div>
 </template>
