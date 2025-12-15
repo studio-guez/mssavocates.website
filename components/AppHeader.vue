@@ -130,18 +130,18 @@ watch(() => route.fullPath, () => closeMenu())
         align-items: center;
       }
 
-a {
-  font-family: var(--font-NewEdge);
-  font-weight: 400;
-  font-size: 1.2rem;
-  line-height: 1.2;
-  color: var(--color-white);
-  text-decoration: none;
-  display: block;
-  max-width: 10rem;
-  text-align: center;
-  white-space: nowrap;
-}
+      a {
+        font-family: var(--font-NewEdge);
+        font-weight: 400;
+        font-size: 1.2rem;
+        line-height: 1.2;
+        color: var(--color-white);
+        text-decoration: none;
+        display: block;
+        max-width: 10rem;
+        text-align: center;
+        white-space: nowrap;
+      }
     }
 
     &.is-visible {

@@ -114,7 +114,7 @@ function onDrag(e: MouseEvent) {
 
 <style scoped lang="scss">
 .article-carousel-wrapper {
-  margin-top: var(--space-xxl);
+  margin-top: var(--space-xl);
   margin-bottom: var(--space-xl);
 
   h1 {

@@ -2,9 +2,6 @@
   <main class="v-index">
     <template v-if="data">
       <template v-if="data.status === 'ok'">
-        <div>
-          <!-- <h1>{{ data?.result?.home.title }}</h1> -->
-        </div>
 
         <!-- hero= texte + articles  -->
         <StyleBlock withDivider dividerPosition="leftSplit">
@@ -243,6 +240,11 @@ onMounted(() => {
 </script>
 
 <style lang="scss" scoped>
+.v-index {
+  padding-top: var(--space-xxl);
+  padding-bottom: var(--space-xxl);
+}
+
 .photo-equipe-block {
   min-height: 600px;
 
