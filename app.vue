@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppIntroAnimation
-      :is-data-loaded="isInitialDataLoaded"
+      :is_data_loaded="isInitialDataLoaded"
     />
     <NuxtLayout>
       <NuxtPage />

@@ -227,8 +227,6 @@ const articlesHome = computed(() => data.value?.result.actualites.articles_carou
 // Signal que les données initiales sont chargées
 const { setInitialDataLoaded } = useAppLoading()
 watch(() => data.value, (newData) => {
-  console.log('newData', newData)
-
   if (newData && newData.status === 'ok') {
     setInitialDataLoaded()
   }
