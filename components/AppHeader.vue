@@ -1,19 +1,19 @@
 <template>
   <header class="v-header">
     <div class="v-header__top">
-      <a href="/" class="v-header__logo">
+      <NuxtLink href="/" class="v-header__logo">
         <img src="/public/img/mss_logo.svg" alt="Maulini Schneuwly Strummiello – Avocates" class="no-radius" />
-      </a>
+      </NuxtLink>
 
       <div class="v-header__menu" @click="toggleMenu">MENU</div>
     </div>
 
     <nav class="v-header__nav" :class="{ 'is-visible': showMenu }">
       <ul>
-        <li><a href="/actualites">ACTUALITÉS</a></li>
-        <li><a href="/#domaines">NOTRE ÉTUDE</a></li>
+        <li><NuxtLink href="/actualites">ACTUALITÉS</NuxtLink></li>
+        <li><NuxtLink href="/#domaines">NOTRE ÉTUDE</NuxtLink></li>
         <li><NuxtLink href="/#equipe">ÉQUIPE</NuxtLink></li>
-        <li><a href="/contact">CONTACT</a></li>
+        <li><NuxtLink href="/contact">CONTACT</NuxtLink></li>
       </ul>
     </nav>
 
