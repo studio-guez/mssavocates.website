@@ -221,6 +221,14 @@ const articlesHero = computed(() => {
 
 const articlesHome = computed(() => data.value?.result.actualites.articles_carousel || [])
 
+// Signal que les données initiales sont chargées
+const { setInitialDataLoaded } = useAppLoading()
+watch(() => data.value, (newData) => {
+  if ( newData ) {
+    setInitialDataLoaded()
+  }
+}, { immediate: true })
+
 // 👉 Ajout scroll automatique vers ancre si route.hash existe
 function scrollToHash(hash: string) {
   if (!hash) return

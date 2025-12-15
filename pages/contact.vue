@@ -101,6 +101,14 @@ const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
   }
 })
 
+// Signal que les données initiales sont chargées
+const { setInitialDataLoaded } = useAppLoading()
+watch(() => data.value, (newData) => {
+  if ( newData ) {
+    setInitialDataLoaded()
+  }
+}, { immediate: true })
+
 </script>
 
 <style lang="scss" scoped>

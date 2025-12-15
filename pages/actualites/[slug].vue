@@ -70,6 +70,14 @@ const { data, status, error } = await useFetch<CMS_API_Response & { result: CMS_
 
 const article = computed(() => data.value?.result ?? null)
 
+// Signal que les données initiales sont chargées
+const { setInitialDataLoaded } = useAppLoading()
+watch(() => data.value, (newData) => {
+  if ( newData ) {
+    setInitialDataLoaded()
+  }
+}, { immediate: true })
+
 
 </script>
 
