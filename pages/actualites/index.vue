@@ -24,23 +24,6 @@
 
 
 <script setup lang="ts">
-
-// type FetchData = CMS_API_Response & {
-//   result: {}
-// }
-
-// const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
-//   lazy: true,
-//   method: 'POST',
-//   body: {
-//     query: `site.find('actualites')`,
-//     select: {
-//       'title': true,
-//       'slug': true,
-//     }
-//   }
-// })
-
 type FetchData_children = CMS_API_Response & {
   result: CMS_API_Article[],
 }
@@ -61,6 +44,14 @@ const { data: children_data, status: children_status } = await useFetch<FetchDat
     }
   }
 })
+
+// Signal que les données initiales sont chargées
+const { setInitialDataLoaded } = useAppLoading()
+watch(() => children_data.value, (newData) => {
+  if ( newData ) {
+    setInitialDataLoaded()
+  }
+}, { immediate: true })
 
 </script>
 

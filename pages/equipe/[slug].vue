@@ -99,6 +99,14 @@ watch([profilesData, slug], () => {
   }
 }, { immediate: true })
 
+// Signal que les données initiales sont chargées
+const { setInitialDataLoaded } = useAppLoading()
+watch(() => data.value, (newData) => {
+  if ( newData ) {
+    setInitialDataLoaded()
+  }
+}, { immediate: true })
+
 
 </script>
 
