@@ -84,7 +84,29 @@ const props = defineProps<{
 
 .v-app-article__main-title {
   text-transform: uppercase;
+  padding-top: .15em;
   line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: .2em;
+    background: var(--color-white);
+  }
+
+  .v-app-article-wrapper:hover &:after {
+    background: var(--color-pink);
+  }
 }
 
 .v-app-article__info {
