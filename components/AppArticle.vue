@@ -6,6 +6,7 @@
     divider-position="center"
     :isShortDivider="true"
     :isFill="true"
+    with-over-effect
   >
     <div class="v-app-article-wrapper">
       <div class="two-cols" :class="{ 'flex-row-reverse': reversed }">

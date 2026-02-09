@@ -1,5 +1,10 @@
 <template>
-  <section class="v-style-block" :class="{ 'is-fill': isFill }">
+  <section  class="v-style-block"
+            :class="[
+              { 'is-fill': isFill },
+              {'with-over-effect': withOverEffect},
+            ]"
+  >
     <div
       v-if="withDivider"
       class="v-style-block__divider"
@@ -10,12 +15,15 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{
+withDefaults(defineProps<{
   withDivider?: boolean
   isFill?: boolean
   dividerPosition?: 'center' | 'leftSplit'
   isShortDivider?: boolean
-}>()
+  withOverEffect?: boolean
+}>(), {
+  withOverEffect: false,
+})
 </script>
 
 <style scoped lang="scss">
@@ -32,12 +40,17 @@ defineProps<{
     padding: var(--space-m) var(--space-s); // mobile : plus compact
   }
 
-  &:hover {
-    box-shadow: 0 0 0 1px var(--color-white);
-    background-color: var(--color-pink);
 
-    .v-style-block__divider {
-      background-color: var(--color-white);
+
+  &.with-over-effect {
+
+    &:hover {
+      box-shadow: 0 0 0 1px var(--color-white);
+      background-color: var(--color-pink);
+
+      .v-style-block__divider {
+        background-color: var(--color-white);
+      }
     }
   }
 }
