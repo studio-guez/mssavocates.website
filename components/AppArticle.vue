@@ -64,6 +64,13 @@ const props = defineProps<{
   margin-inline: auto;
   padding: var(--space-xxl) var(--space-xl);
   box-sizing: border-box;
+  cursor: pointer;
+
+  &:hover {
+    * {
+      color: var(--color-white);
+    }
+  }
 }
 
 @media (max-width: 900px) {

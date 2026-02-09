@@ -31,6 +31,15 @@ defineProps<{
   @media (max-width: 900px) {
     padding: var(--space-m) var(--space-s); // mobile : plus compact
   }
+
+  &:hover {
+    box-shadow: 0 0 0 1px var(--color-white);
+    background-color: var(--color-pink);
+
+    .v-style-block__divider {
+      background-color: var(--color-white);
+    }
+  }
 }
 
 .v-style-block.is-fill {
