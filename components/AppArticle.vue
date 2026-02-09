@@ -8,7 +8,9 @@
     :isFill="true"
     with-over-effect
   >
-    <div class="v-app-article-wrapper">
+    <div class="v-app-article-wrapper"
+         @click="useRouter().push({path: `/actualites/${v_app_article_data.slug}`})"
+    >
       <div class="two-cols" :class="{ 'flex-row-reverse': reversed }">
         <!-- Colonne gauche : titre principal -->
         <div class="col">
