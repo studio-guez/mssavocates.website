@@ -15,10 +15,10 @@
         <AppHomeArticleCarousel :articles="articlesHome" variant="white" />
 
         <!-- équipe  -->
-        <div id="equipe">
+        <div id="equipe" data-satck-name="EQUIPE">
           <StyleBlock>
             <div class="container">
-              <h2 class="light">EQUIPE</h2>
+              <h2 class="light">ÉQUIPE</h2>
 
               <div class="flex flex-center" style="flex-wrap: wrap; gap: var(--space-xl);">
                 <AppTeam
@@ -32,7 +32,7 @@
         </div>
 
         <!-- domaines d'activités  -->
-        <div id="domaines">
+        <div id="domaines" data-satck-name="Notre étude">
           <StyleBlock>
             <div>
               <AppDomaine

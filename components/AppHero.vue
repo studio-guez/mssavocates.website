@@ -112,7 +112,7 @@
   &__articles-title {
     font-family: var(--font-NewEdge);
     font-size: 1rem;
-    font-weight: 400;
+    font-weight: 600;
     text-align: center;
   }
 

@@ -132,7 +132,7 @@ watch(() => route.fullPath, () => closeMenu())
 
       a {
         font-family: var(--font-NewEdge);
-        font-weight: 400;
+        font-weight: 600;
         font-size: 1.2rem;
         line-height: 1.2;
         color: var(--color-white);
