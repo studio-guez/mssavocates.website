@@ -254,7 +254,7 @@ onMounted(() => {
 }
 
 .photo-equipe-block {
-  min-height: 600px;
+  height: calc(100vh - 5.5rem);
 
   @media (max-width: 768px) {
     min-height: 400px;
