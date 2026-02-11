@@ -23,8 +23,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import {useStoreShowMenu} from "~/composables/store";
 
-const showMenu = ref(false)
+const showMenu = useStoreShowMenu()
 // const isHeaderHidden = ref(false)
 // let lastScrollY = 0
 

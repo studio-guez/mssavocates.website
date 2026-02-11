@@ -4,7 +4,7 @@
       <template v-if="data.status === 'ok'">
 
         <header class="v-index__header-stack"
-                v-if="headerStack.length > 0"
+                v-if="headerStack.length > 0 && !showMenu"
         >
 
           <div v-for="(stackName, index) in headerStack"
@@ -86,9 +86,11 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { onMounted, watch, nextTick, computed } from 'vue'
+import {useStoreShowMenu} from "~/composables/store";
 
 const route = useRoute()
 const headerStack = useStoreHeaderStack()
+const showMenu = useStoreShowMenu()
 
 type FetchData = CMS_API_Response & {
   result: {
