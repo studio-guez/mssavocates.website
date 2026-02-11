@@ -57,6 +57,14 @@ const props = defineProps<{
   gap: var(--space-l);
 }
 
+:global(.footer-container h4) {
+  font-size: 1rem;
+}
+
+:global(.footer-container p) {
+  font-size: .8rem;
+}
+
 /* Blocs */
 .footer-block h4 {
   margin-bottom: var(--space-m);
