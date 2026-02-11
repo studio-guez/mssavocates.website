@@ -285,8 +285,6 @@ function createObservableHeader() {
 
       const headerHeight = headerElement.getBoundingClientRect().height - stackHeight + (stackHeight * headerStack.value.length)
 
-      console.log('headerHeight', headerHeight)
-
       if(
         headerStack.value.includes(stackName)
         && element.getBoundingClientRect().top > headerHeight
