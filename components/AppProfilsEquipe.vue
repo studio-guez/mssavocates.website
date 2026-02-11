@@ -20,7 +20,14 @@
         <div class="col-inner v-profil__description">
           <div>
             <div v-html="profil.description" />
-            <p style="margin-top: var(--space-m)" v-html="profil.email" />
+            <p v-if="profil.email" style="margin-top: var(--space-m)" v-html="profil.email" />
+            <AppButton
+              v-if="profil.cv_file"
+              variant="outlined"
+              :to="profil.cv_file"
+              target="_blank"
+              style="margin-top: var(--space-m)"
+            >Curriculum Vitae</AppButton>
           </div>
 
           <div class="v-profil__nav">

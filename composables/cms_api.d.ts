@@ -91,6 +91,7 @@ type CMS_API_profil = {
   email?: string;
   description?: string;
   photo?: CMS_API_ImageObject;
+  cv_file?: string;
 }
 
 

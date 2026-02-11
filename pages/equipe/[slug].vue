@@ -42,6 +42,7 @@ const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
       slug: true,
       email: true,
       description: true,
+      cv_file: true,
       photo: {
         query: "page.photo_full.toFile()",
         select: {
