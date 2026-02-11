@@ -73,6 +73,10 @@ const props = defineProps<{
     * {
       color: var(--color-white);
     }
+    .v-app-button.outlined {
+      color: var(--color-pink);
+      background: var(--color-white);
+    }
   }
 }
 
