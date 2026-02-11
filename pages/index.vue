@@ -3,6 +3,19 @@
     <template v-if="data">
       <template v-if="data.status === 'ok'">
 
+        <header class="v-index__header-stack"
+                v-if="headerStack.length > 0"
+        >
+
+          <div v-for="(stackName, index) in headerStack"
+               :key="index"
+               class="v-index__header-stack__item"
+          >
+              {{stackName}}
+          </div>
+
+        </header>
+
         <!-- hero= texte + articles  -->
         <StyleBlock withDivider dividerPosition="leftSplit">
           <AppHero
@@ -18,7 +31,11 @@
         <div id="equipe" data-satck-name="EQUIPE">
           <StyleBlock>
             <div class="container">
-              <h2 class="light">ÉQUIPE</h2>
+              <h2 class="light"
+                  style="margin-bottom: 0;"
+              >EQUIPE</h2>
+            </div>
+            <div class="container">
 
               <div class="flex flex-center" style="flex-wrap: wrap; gap: var(--space-xl);">
                 <AppTeam
@@ -32,11 +49,11 @@
         </div>
 
         <!-- domaines d'activités  -->
-        <div id="domaines" data-satck-name="Notre étude">
+        <div id="domaines" :data-satck-name="data.result.home.domaines_titre">
           <StyleBlock>
             <div>
               <AppDomaine
-                :titre="data.result.home.domaines_titre || 'Domaines d\'activités'"
+                :titre="data.result.home.domaines_titre"
                 :colonneGauche="data.result.home.domaines_activite_gauche || []"
                 :colonneDroite="data.result.home.domaines_activite_droite || []"
                 :images="data.result.home.domaines_images || []"
@@ -71,6 +88,7 @@ import { useRoute } from 'vue-router'
 import { onMounted, watch, nextTick, computed } from 'vue'
 
 const route = useRoute()
+const headerStack = useStoreHeaderStack()
 
 type FetchData = CMS_API_Response & {
   result: {
@@ -244,7 +262,53 @@ function scrollToHash(hash: string) {
 // Appeler scrollToHash après l'initialisation
 onMounted(() => {
   scrollToHash(route.hash)
+
+  createObservableHeader()
 })
+
+
+function createObservableHeader() {
+  const stackElements = document.querySelectorAll('[data-satck-name]')
+  const headerElement = document.querySelector('.v-header')
+  const stackHeight = 60
+
+  window.addEventListener('scroll', () => {
+
+    stackElements.forEach((element) => {
+
+      if( ! (element instanceof HTMLElement) ) return
+      if( ! (headerElement instanceof HTMLElement) ) return
+
+      const stackName = element.dataset.satckName
+
+      if ( ! stackName ) return
+
+      const headerHeight = headerElement.getBoundingClientRect().height - stackHeight + (stackHeight * headerStack.value.length)
+
+      console.log('headerHeight', headerHeight)
+
+      if(
+        headerStack.value.includes(stackName)
+        && element.getBoundingClientRect().top > headerHeight
+      ) {
+
+        headerStack.value = headerStack.value.filter(item => item !== stackName)
+
+      }
+
+      else if(
+        ! headerStack.value.includes(stackName)
+        && element.getBoundingClientRect().top < headerHeight
+      ) {
+
+          headerStack.value.push(stackName)
+
+      }
+    })
+  })
+}
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -258,6 +322,30 @@ onMounted(() => {
 
   @media (max-width: 768px) {
     min-height: 400px;
+  }
+}
+
+.v-index__header-stack {
+  position: fixed;
+  top: calc(5.5rem + 1px );
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: white;
+}
+
+.v-index__header-stack__item {
+  font-family: var(--font-NewEdge), sans-serif;
+  padding-left: calc( var(--space-l) * 2);
+  padding-right: calc( var(--space-l) * 2);
+  box-sizing: border-box;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  border-bottom: 1px solid var(--color-pink);
+  padding-top: .5rem;
+  text-transform: uppercase;
+
+  @media (max-width: 900px) {
+    padding-left: var(--space-m);
   }
 }
 </style>

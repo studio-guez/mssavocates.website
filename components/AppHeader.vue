@@ -11,7 +11,7 @@
     <nav class="v-header__nav" :class="{ 'is-visible': showMenu }">
       <ul>
         <li><NuxtLink href="/actualites">ACTUALITÉS</NuxtLink></li>
-        <li><NuxtLink href="/#domaines">NOTRE ÉTUDE</NuxtLink></li>
+        <li><NuxtLink href="/#domaines">NOTRE ETUDE</NuxtLink></li>
         <li><NuxtLink href="/#equipe">ÉQUIPE</NuxtLink></li>
         <li><NuxtLink href="/contact">CONTACT</NuxtLink></li>
       </ul>
