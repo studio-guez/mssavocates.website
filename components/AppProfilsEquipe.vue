@@ -25,7 +25,7 @@
             />
             <a
               v-if="profil.cv_file"
-              :to="profil.cv_file"
+              :href="profil.cv_file"
               target="_blank"
               class="cv-button"
               style="margin-top: var(--space-m); display: inline-block;"
