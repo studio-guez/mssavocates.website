@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
     const body = await readBody(event)
 
-    const dataApi = await $fetch(`${useRuntimeConfig().public.apiUrl}/api/query`, {
+    const dataApi = await $fetch(`${useRuntimeConfig().public.apiBase}/api/query`, {
         lazy: true,
         method: 'POST',
         headers: {
