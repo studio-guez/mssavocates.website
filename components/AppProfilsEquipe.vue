@@ -20,9 +20,12 @@
         <div class="col-inner v-profil__description">
           <div>
             <div v-html="profil.description" />
-            <p v-if="profil.email"
-               style="margin-top: var(--space-m)" v-html="profil.email"
-            />
+            <div style="margin-top: var(--space-m)">
+              <a v-if="decodeMailAdresse"
+                 :href="`mailto:${decodeMailAdresse}`"
+                 class="cv-button"
+              >{{decodeMailAdresse}}</a>
+            </div>
             <a
               v-if="profil.cv_file"
               :href="profil.cv_file"
@@ -49,10 +52,20 @@
 
 
   <script setup lang="ts">
-  defineProps<{
+  const props = defineProps<{
     profil: CMS_API_profil
     next_slug_profil: string | null
   }>()
+
+  const decodeMailAdresse = ref<null | string>(null)
+
+  onMounted(() => {
+    window.setTimeout(() => {
+      if( !props.profil.email) return
+      decodeMailAdresse.value = props.profil.email.replaceAll('[at]', '@mssavocates.ch')
+    }, 2_000)
+  })
+
   </script>
 
   <style scoped>
