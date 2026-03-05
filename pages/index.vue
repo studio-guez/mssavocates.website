@@ -346,6 +346,7 @@ function createObservableHeader() {
 
   @media (max-width: 900px) {
     padding-left: var(--space-m);
+    font-size: 1.15rem;
   }
 }
 </style>
