@@ -256,7 +256,8 @@ function scrollToHash(hash: string) {
   window.setTimeout(() => {
     const el = document.querySelector(hash)
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
+      const top = el.getBoundingClientRect().top + window.scrollY - 150
+      window.scrollTo({ top, behavior: 'smooth' })
     }
   },500)
 }
