@@ -225,7 +225,7 @@ const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
 
 function goToStackSection(stackName: string) {
   const element = document.querySelector(`[data-satck-name='${stackName}']`)
-  console.log(stackName)
+
   if (element) {
     const top = element.getBoundingClientRect().top + window.scrollY - 150
     window.scrollTo({ top, behavior: 'smooth' })
