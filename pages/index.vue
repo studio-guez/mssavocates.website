@@ -70,7 +70,6 @@
           <img
             :src="data.result.home.photo_equipe.xxl.url"
             :style="{ objectPosition: data.result.home.photo_equipe.focus || 'center' }"
-            class="img-full"
           />
         </StyleBlock>
       </template>
@@ -319,10 +318,16 @@ function createObservableHeader() {
 }
 
 .photo-equipe-block {
-  height: calc(100vh - 5.5rem);
+  overflow: hidden;
 
-  @media (max-width: 768px) {
-    min-height: 400px;
+  @media (max-width: 800px) {
+    aspect-ratio: 1/1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }
 
