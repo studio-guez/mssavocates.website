@@ -14,7 +14,7 @@
 
         <div class="footer-block">
           <h4>Contact</h4>
-          <div class="body-2" v-html="v_app_footer_data.contact" />
+          <div class="body-2" v-html="contactTextDecode" />
         </div>
 
         <div class="footer-block">
@@ -39,6 +39,16 @@ import { defineProps } from 'vue'
 const props = defineProps<{
   v_app_footer_data: CMS_API_Footer
 }>()
+
+const contactTextDecode = ref(props.v_app_footer_data.contact)
+
+onMounted(() => {
+  window.setTimeout(() => {
+    if( !props.v_app_footer_data.contact) return
+    contactTextDecode.value = props.v_app_footer_data.contact.replaceAll('[at]', '@mssavocates.ch')
+  }, 2_000)
+})
+
 </script>
 
 <style scoped lang="scss">
