@@ -15,7 +15,7 @@
           <!-- Bloc MSS -->
           <div class="v-app-contact__mss">
             <p>{{ v_app_contact_data.etude_nom }}</p>
-            <p>{{ v_app_contact_data.etude_email }}</p>
+            <p>{{ decodeMailAdresse }}</p>
             <p>{{ v_app_contact_data.etude_tel }}</p>
           </div>
 
@@ -53,9 +53,19 @@
 <script setup lang="ts">
 import {defineProps} from 'vue'
 
-defineProps<{
+const props = defineProps<{
   v_app_contact_data: CMS_API_contact
 }>()
+
+const decodeMailAdresse = ref<null | string>(null)
+
+onMounted(() => {
+  window.setTimeout(() => {
+    if( !props.v_app_contact_data.etude_email) return
+    decodeMailAdresse.value = props.v_app_contact_data.etude_email.replaceAll('[at]', '@mssavocates.ch')
+  }, 2_000)
+})
+
 </script>
 
 <style scoped>
