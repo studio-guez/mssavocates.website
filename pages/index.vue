@@ -359,6 +359,7 @@ function createObservableHeader() {
   border-bottom: 1px solid var(--color-pink);
   padding-top: .5rem;
   text-transform: uppercase;
+  cursor: pointer;
 
   @media (max-width: 900px) {
     padding-left: var(--space-m);
