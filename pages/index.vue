@@ -10,6 +10,7 @@
           <div v-for="(stackName, index) in headerStack"
                :key="index"
                class="v-index__header-stack__item"
+               @click="goToStackSection(stackName)"
           >
               {{stackName}}
           </div>
@@ -221,6 +222,15 @@ const { data, status } = await useFetch<FetchData>('/api/CMS_KQLRequest', {
     }
   }
 })
+
+function goToStackSection(stackName: string) {
+  const element = document.querySelector(`[data-satck-name='${stackName}']`)
+  console.log(stackName)
+  if (element) {
+    const top = element.getBoundingClientRect().top + window.scrollY - 150
+    window.scrollTo({ top, behavior: 'smooth' })
+  }
+}
 
 const articlesHero = computed(() => {
   const heroArticles = data.value?.result.actualites.articles_hero || []
