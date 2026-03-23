@@ -81,6 +81,10 @@ withDefaults(defineProps<{
   &.is-leftSplit {
     left: calc(100% * 4 / 6); // Sépare 4 colonnes texte et 2 colonnes articles
     transform: translateX(-50%);
+
+    @media (min-width: 2600px) {
+      display: none;
+    }
   }
 
   @media (max-width: 900px) {

@@ -12,7 +12,11 @@
                class="v-index__header-stack__item"
                @click="goToStackSection(stackName)"
           >
+            <div
+              class="v-index__header-stack__item__text"
+            >
               {{stackName}}
+            </div>
           </div>
 
         </header>
@@ -29,12 +33,12 @@
         <AppHomeArticleCarousel :articles="articlesHome" variant="white" />
 
         <!-- équipe  -->
-        <div id="equipe" data-satck-name="EQUIPE">
+        <div id="equipe" data-satck-name="ÉQUIPE">
           <StyleBlock>
             <div class="container">
               <h2 class="light"
                   style="margin-bottom: 0;"
-              >EQUIPE</h2>
+              >ÉQUIPE</h2>
             </div>
             <div class="container">
 
@@ -67,8 +71,13 @@
 
 
         <!-- photo équipe  -->
-        <StyleBlock class="is-fill photo-equipe-block">
+        <StyleBlock class="is-fill photo-equipe-block"
+                    style="background: transparent"
+        >
           <img
+            style="
+              max-height: calc( 80vh - 4rem);
+            "
             :src="data.result.home.photo_equipe.xxl.url"
             :style="{ objectPosition: data.result.home.photo_equipe.focus || 'center' }"
           />
@@ -343,7 +352,7 @@ function createObservableHeader() {
 
 .v-index__header-stack {
   position: fixed;
-  top: calc(5.5rem + 1px );
+  top: calc(6rem + 1px );
   left: 0;
   width: 100%;
   z-index: 100;
@@ -352,10 +361,10 @@ function createObservableHeader() {
 
 .v-index__header-stack__item {
   font-family: var(--font-NewEdge), sans-serif;
-  padding-left: calc( var(--space-l) * 2);
-  padding-right: calc( var(--space-l) * 2);
+  padding-left: var(--space-l);
+  padding-right: var(--space-l);
   box-sizing: border-box;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-size: 1.5em;
   border-bottom: 1px solid var(--color-pink);
   padding-top: .5rem;
   text-transform: uppercase;
@@ -364,6 +373,20 @@ function createObservableHeader() {
   @media (max-width: 900px) {
     padding-left: var(--space-m);
     font-size: 1.15rem;
+  }
+}
+
+.v-index__header-stack__item__text {
+  box-sizing: border-box;
+  max-width: min(100%, 1600px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-l);
+  padding-right: var(--space-l);
+
+  @media (max-width: 900px) {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 </style>

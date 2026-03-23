@@ -14,7 +14,7 @@
 
           <!-- Bloc MSS -->
           <div class="v-app-contact__mss">
-            <p>{{ v_app_contact_data.etude_nom }}</p>
+            <p v-html="v_app_contact_data.etude_nom" />
             <p>{{ decodeMailAdresse }}</p>
             <p>{{ v_app_contact_data.etude_tel }}</p>
           </div>

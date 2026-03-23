@@ -28,6 +28,15 @@
           </AppButton>
         </div>
       </div>
+
+      <div class="app--footer__bottom">
+        <div class="app--footer__bottom__container footer-container">
+          <p>©2026 MSS Avocates</p>
+          <p><span style="font-weight: 600">Photographie:</span> ©Carole Parodi</p>
+          <p><span style="font-weight: 600">Design et développement:</span> studio guez</p>
+          <div/>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -55,6 +64,7 @@ onMounted(() => {
 
 
 .app-footer {
+  position: relative;
   background-color: var(--color-white);
   border-radius: var(--radius-l) var(--radius-l) 0 0;
   /* ✅ padding vertical/marges gérés par .section + .container (main.css) */
@@ -72,6 +82,9 @@ onMounted(() => {
 }
 
 :global(.footer-container p) {
+  font-size: .8rem;
+}
+:global(.footer-container span) {
   font-size: .8rem;
 }
 
@@ -97,6 +110,21 @@ onMounted(() => {
 @media (min-width: 1200px) {
   .footer-container {
     gap: var(--space-xl);
+  }
+}
+
+.app--footer__bottom {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.app--footer__bottom__container {
+  padding-top: 2rem;
+  width: 100%;
+
+  > *:nth-child(3){
+    grid-column-end: span 2;
   }
 }
 </style>

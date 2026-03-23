@@ -41,6 +41,6 @@ const { data: footer } = await useFetch<FetchFooterData>('/api/CMS_KQLRequest', 
 
 .layout-main {
   flex: 1;
-  padding-top: 5.5rem;
+  padding-top: 6rem;
 }
 </style>
